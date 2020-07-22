@@ -196,7 +196,8 @@
 ### Association
 - has_many :items
 
-
+## ER図
+<img width="1158" alt="ER図" src="https://user-images.githubusercontent.com/64828177/88142037-bf1b7b80-cc2f-11ea-8d03-9a2121c213b1.png">
 
 
 
