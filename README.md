@@ -69,7 +69,7 @@
 |------|----|-------|
 |user_id|references|null: false, foreign_key: true|
 |item_id|references|null: false, foreign_key: true|
-|text|text||
+|text|text|null: false|
 
 ### Association
 - belongs_to :item
@@ -141,7 +141,6 @@
 
 ### Association
 - has_many :items
-- has_many :brand
 - has_ancestry
 
 ## sizesテーブル
@@ -201,7 +200,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|string|null: false|
+|user_id|references|null: false, foreign_key: true|
 |customer_id|string|null: false|
 |card_id|string|null: false|
 
