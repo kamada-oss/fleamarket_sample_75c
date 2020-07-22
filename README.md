@@ -182,7 +182,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|day|string|null: false|
+|day|date|null: false|
 
 ### Association
 - has_many :items
@@ -196,4 +196,15 @@
 ### Association
 - has_many :items
 
-## ER図
+## card テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|string|null: false|
+|customer_id|string|null: false|
+|card_id|string|null: false|
+
+### Association
+- belongs_to :user
+
+
