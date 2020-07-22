@@ -205,6 +205,6 @@
 |card_id|string|null: false|
 
 ### Association
-- belongs_to :user
+- has_one :user
 
 
