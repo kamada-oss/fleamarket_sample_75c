@@ -31,6 +31,7 @@
 - accepts_nested_attributes_for :deliver_address
 - has_many :items, through: :purchases
 - has_many :purchases
+- has_one :card
 
 ## deliver_addressテーブル
 
@@ -205,7 +206,7 @@
 |card_id|string|null: false|
 
 ### Association
-- has_one :user
+- belongs_to :user
 
 
 ## ER図
