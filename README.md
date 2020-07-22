@@ -196,8 +196,6 @@
 ### Association
 - has_many :items
 
-## ER図
-file:///Users/mitsubayashimidori/Desktop/ER%E5%9B%B3.png
 
 
 
