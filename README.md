@@ -197,7 +197,7 @@
 ### Association
 - has_many :items
 
-## card テーブル
+## cards テーブル
 
 |Column|Type|Options|
 |------|----|-------|
