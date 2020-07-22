@@ -126,7 +126,7 @@
 |------|----|-------|
 |image_url|string|null: false|
 |item_id|references|null: false, foreign_key: true|
-|user_id|references|null: falsem foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :item, optional: true
