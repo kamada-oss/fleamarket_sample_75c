@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ItemsControllerTest < ActionDispatch::IntegrationTest
+class ItemImageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
