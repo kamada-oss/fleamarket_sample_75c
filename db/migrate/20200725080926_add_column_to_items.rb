@@ -5,8 +5,6 @@ class AddColumnToItems < ActiveRecord::Migration[5.2]
     add_column :items, :prefecture,  :string,  null:false
     add_column :items, :condition,   :integer, null:false
     add_column :items, :price,       :integer, null:false
-    add_column :items, :saler_id,    :integer, null:false
-    add_column :items, :buyer_id,    :integer, null:false
     add_reference :items, :category,    null:false
     add_reference :items, :brand,       null:false
     add_reference :items, :size,        null:false
