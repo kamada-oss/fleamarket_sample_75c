@@ -1,0 +1,60 @@
+  -# = render 'ヘッダーのファイル先'
+
+  -# メインの部分
+  = form_with(model: @item, local: true, multipart: true) do |f|
+    .sell__container
+      .sell__container__main
+        .sell__container__main__wrapper
+          .sell__container__main__wrapper--head
+            %h2 商品の情報を入力
+
+
+            -# 画像投稿フォーム
+          .sell__container__main__wrapper__sell-upload
+            %label.sell__container__main__wrapper__sell-upload__head
+              出品画像
+            %span.sell__container__main__wrapper__sell-upload__head--require
+              必須
+            %p 最大10枚までアップロードできます
+          #image-box
+            #previews
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.imagesrc, data: { index: i }, width: "100", height: '100'
+
+                -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
+                %i.fas.fa-camera
+
+                -# 商品名の部分
+        .sell__container__main__form
+          .sell__container__main__form__group
+            = f.label :name do
+              商品名
+              %span.sell__container__main__form__group--require
+                必須
+              = f.text_field :name, class: "sell__container__main__form__group__input", placeholder: "40文字まで"
+            = f.label :description do
+              商品の説明
+              %span.sell__container__main__form__group--require
+                必須
+            = f.text_area :description, { class: 'sell__textarea-default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5' }
+            = render partial: 'error-messages', locals: {product: f.object, column: 'name'}
+
+            -# 商品の詳細部分
+        .sell__container__main__form.clearfix
+          %h3.sell__container__main__form__sub-head 商品の詳細
+
+
+          -# 配送についての部分
+
+          -# 価格の部分
+
+
+          -# 出品する,下記に保存,もどるのボタンの部分
+
+          -# = render 'フッターのファイル先'
+
+
+
+
+
