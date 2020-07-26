@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
-  has_many   :users, through: :purchases
+  belongs_to :user
+  has_one    :purchase
   belongs_to :category
   belongs_to :brand
-  has_many   :likes, depedent: :destroy
+  has_many   :likes, dependent: :destroy
   has_many   :comments
   has_one    :shipping, dependent: :destroy
   accepts_nested_attributes_for :shipping
