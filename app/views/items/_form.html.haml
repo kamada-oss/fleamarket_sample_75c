@@ -1,45 +1,52 @@
 .sell
-  -# = render 'ヘッダーのファイル先'
+  = render 'single-container'
 
   -# メインの部分
   = form_with(model: @item, local: true, multipart: true) do |f|
     .sell__container
       .sell__container__main
         .sell__container__main__wrapper
-          .sell__container__main__wrapper__head
-            %h2 商品の情報を入力
+          %h2.sell__container__main__wrapper__head 商品の情報を入力
 
 
-            -# 画像投稿フォーム
-          .sell__container__main__wrapper__sell-upload
-            %label
-              出品画像
-            %span.form-require
-              必須
-            %p 最大10枚までアップロードできます
-          #image-box
-            #previews
-              - if @item.persisted?
-                - @item.item_images.each_with_index do |image, i|
-                  = image_tag image.imagesrc, data: { index: i }, width: "100", height: '100'
+          -# 画像投稿フォーム
+        .sell__container__main__sell-upload
+          %label
+            出品画像
+          %span.form-require
+            必須
+          %p 最大10枚までアップロードできます
+          .sell__container__main__sell-upload__image
+            .sell__container__main__sell-upload__image__box
+              .sell__container__main__sell-upload__image__box__inside
+                .sell__container__main__sell-upload__image__box__inside__file
+                  %label{class: "input-box__image"}
+                    = icon('fas', 'camera')
+                    = f.file_field :item_image, class: "input-box__file"
+                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
 
-                -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
-                %i.fas.fa-camera
+
+                  -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
+
 
                 -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
-            %label
-              商品名
-              %span.form-require
-                必須
-              = f.text_field :name, class: "sell__container__main__form__group__input", placeholder: "40文字まで"
-            %label
-              商品の説明
-              %span.form-require
-                必須
-            = f.text_area :description, { class: 'sell__textarea-default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5' }
-            -# = render partial: 'error-messages', locals: {product: f.object, column: 'name'}
+            .sell__container__main__form__group__name
+              %label
+                商品名
+                %span.form-require
+                  必須
+              %div
+                = f.text_field :name, class: "sell__container__main__form__group__input", placeholder: "40文字まで"
+          .sell__container__main__form__explanation
+            .sell__container__main__form__explanation__name
+              %label
+                商品の説明
+                %span.form-require
+                  必須
+              = f.text_area :explanation,class: 'sell__container__main__form__explanation__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+              -# = render partial: 'error-messages', locals: {product: f.object, column: 'name'}
 
             -# 商品の詳細部分
         .sell__container__main__form.clearfix
@@ -51,23 +58,26 @@
                 カテゴリー
                 %span.form-require
                   必須
-                  -# ancestryで設定したあとコーディング
-                  %i.fas.fa-angle-down
-            -# .sell__container__main__form__box__brand
-            -#   %label
-            -#     ブランド
-            -#       %span.form-require_brand
-            -#         任意
-            -#   .sell__container__main__form__box__brand__select
-            -#     = f.fields_for :brand do |b|
-            -#       = b.text_field :name, placeholder: '例）シャネル'
+                
+                .select--wrap{id: "category__box--parent"}
+                  = f.collection_select :category_ids, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form", name: 'item[category_ids][]'
+                  -# Category.all.limit(13), :id, :name,{prompt:"---"},{class:"select--wrap-cat1__default-category1", id: "parent_form"}
+            .sell__container__main__form__box__brand
+              %label
+                ブランド
+                %span.form-require__brand
+                  任意
+              .sell__container__main__form__box__brand__select
+                = f.fields_for :brand do |b|
+                  = b.text_field :name, placeholder: '例）シャネル'
             .sell__container__main__form__box__condition
               %label
                 商品の状態
                 %span.form-require
                   必須
-              .sell__container__main__form__box__condition__select
-                -# = f.select :condition, Item.conditions.keys, {prompt: "---"},{class:"  "}
+                -# .select--wrap
+                -#   = f.select :status, Item.statuses.keys, {prompt:"---"},{class:"select--wrap__default"}
+                -#   %i.fas.fa-angle-down
 
           -# 配送についての部分
         .sell__container__main__delivery
@@ -109,7 +119,7 @@
           -# 出品する,下記に保存,もどるのボタンの部分
 
 
-          -# = render 'フッターのファイル先'
+  -# = render 'shared/footer'
 
 
 
