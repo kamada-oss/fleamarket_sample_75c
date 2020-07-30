@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :signup, only: [:index, :create] do
     collection do
       get 'registration_user_information'
-      get 'registration_identification'
       get 'registration_send_address'
     end
   end

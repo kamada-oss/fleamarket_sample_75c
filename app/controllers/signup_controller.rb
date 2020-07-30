@@ -6,9 +6,6 @@ class SignupController < ApplicationController
     @user = User.new
   end
 
-  def registration_identification
-  end
-
   def registration_send_address
   end
 

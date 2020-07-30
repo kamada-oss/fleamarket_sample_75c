@@ -1,29 +1,71 @@
+// 変数
+$red-btn-color: #FF3333;
+$furima-color: #00CCCC;
+
+@mixin signup-main{
+  display: block;
+  background-color: white;
+  width: 700px;
+  margin: auto;
+  &__head {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 30px 0;
+    border-bottom: solid 1px #EEEEEE;
+  }
+}
+
+@mixin signup-header{
+  text-align: center;
+  padding: 40px 0;
+  img {
+    width: 180px;
+    height: 48px;
+  }
+}
+
+// progress-bar
+@mixin progress-bar-text($color){
+  color: $color;
+  font-size: 0.8em;
+  padding-bottom: 5px;
+}
+
+@mixin progress-bar-circle($color){
+  background-color: $color;
+  width: 10px;
+  height: 10px;
+  line-height: 30px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+@mixin progress-bar-line($color, $left, $width) {
+  position: absolute;
+  left: $left;
+  bottom: 43%; /*下線の上下位置調整*/
+  display: inline-block;
+  width: $width; /*下線の幅*/
+  height: 2px; /*下線の太さ*/
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translate(-50%); /*位置調整*/
+  background-color: $color; /*下線の色*/
+}
+
+
 .signup-container {
   height: 100%;
   background-color: #EEEEEE;
 
   // 新規登録方法選択画面
   .singup-index-header {
-    text-align: center;
-    padding: 40px 0;
-    img {
-      width: 180px;
-      height: 48px;
-    }
+    @include signup-header;
   }
   .singup-index-main {
-    display: block;
-    background-color: white;
-    width: 50%;
-    margin: auto;
-    &__head {
-      text-align: center;
-      font-size: 1.4em;
-      font-weight: bold;
-      padding: 30px 0;
-      border-bottom: solid 1px #EEEEEE;
-    }
-
+    @include signup-main();
     &__inner { 
       display: block;
       padding: 30px 0;
@@ -40,7 +82,7 @@
       }
       
       &--btn-mail{
-        background-color: #FF3333;
+        background-color: $red-btn-color;
         color: white;
         p {
           font-size: 0.8em;
@@ -74,13 +116,13 @@
         font-size: 0.9em;
         a {
           text-decoration: none;
-          color: #55acee;
+          color: $furima-color;
         }
       }
-
     }
   }
 
+  // 新規登録フッダー
   .singup-index-footer {
     padding: 50px 0;
     text-align: center;
@@ -96,7 +138,7 @@
         }
       }
     }
-    &--logo{
+    &--logo {
       padding-top: 10px;
       img {
         width: 100px;
@@ -105,120 +147,151 @@
       }
     }
   }
-}
 
-
-
-.account-page {
-  .account-page__inner {
-    width: 600px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    h3{
-      margin-bottom: 5px;
+  // ユーザー登録フォーム
+  .signup-registration-header {
+    display: flex;
+    padding: 40px 0;
+    margin: auto;
+    justify-content: center;
+    img {
+      width: 180px;
+      height: 48px;
+      margin-right: 50px;
     }
-  }
-  .field__header{
-    line-height: 50px;
-    text-align: center;
-    font-weight: bold;
-  }
-  .field {
-    width: calc(100% - 300px);
-    text-align: center;
-    margin-bottom: 10px;
 
-    .field-label {
-      padding: 10px 0;
-      letter-spacing: 1px;
-      font-size: 14px;
-      font-weight: 200;
-
-      i {
-        font-size: 11px;
+    // progress-bar
+      ul{
+        display: table-cell;
+        padding-left: 30px;
+        // progress-bar-line
+        position: relative;
+        .progress-bar__left--complete{
+          @include progress-bar-line($furima-color, 118%, 98%)
+        }
+        .progress-bar__left--incomplete{
+          @include progress-bar-line(gray, 118%, 98%)
+        }
+        .progress-bar__right--complete{
+          @include progress-bar-line($furima-color, 108%, 82%)
+        }
+        .progress-bar__right--incomplete{
+          @include progress-bar-line(gray, 108%, 82%)
+        }
       }
-    }
+      .complete{
+        margin-left: 1.2em;
+      }
 
-    .field-input {
-      input {
+      .progress-text {
+        &--complete {
+          @include progress-bar-text($furima-color);
+        }
+        &--incomplete{
+          @include progress-bar-text(gray);
+        }
+      }
+      .progress-circle {
+        &--complete {
+          @include progress-bar-circle($furima-color);
+        }
+        &--incomplete {
+          @include progress-bar-circle(gray);
+        }
+      }
+  }
+  .signup-registration-main {
+    @include signup-main();
+    padding-bottom: 20px;
+    &__inner {
+      .field {
+        margin: auto;
+        padding: 15px 0;
+        width: 50%;
+        &__label {
+          &__form-require {
+            color: white;
+            background-color: $red-btn-color;
+            font-size: 0.8em;
+            border-radius: 2px;
+            padding: 1px 1px;
+            vertical-align: middle;
+            margin: 0 0 2px 4px;
+          }
+        }
+        &__input {
+          input {
+            width: 100%;
+            height: 50px;
+            font-size: 15px;
+            text-indent: 1em;
+            border: solid 1px gray;
+            border-radius: 0.3em;
+          }
+        }
+        &__input-name {
+          display: flex;
+          justify-content: space-between;
+          &--left {
+            width: 48%;
+            input {
+              width: 100%;
+              height: 50px;
+              font-size: 15px;
+              text-indent: 1em;
+              border: solid 1px gray;
+              border-radius: 0.3em;
+            }
+          }
+          &--right {
+            width: 48%;
+            input {
+              width: 100%;
+              height: 50px;
+              font-size: 15px;
+              text-indent: 1em;
+              border: solid 1px gray;
+              border-radius: 0.3em;
+            }
+          }
+        }
+
+        &__input-birthday{
+          width: 100%;
+          display:flex;
+          justify-content: space-between;
+
+          #user_birthday_1i{
+            height: 50px;
+            border: solid 1px gray;
+            border-radius: 0.3em;
+            width: 33%;
+          }
+          #user_birthday_2i{
+            height: 50px;
+            border: solid 1px gray;
+            border-radius: 0.3em;
+            width: 33%;
+          }
+          #user_birthday_3i{
+            height: 50px;
+            border: solid 1px gray;
+            border-radius: 0.3em;
+            width: 33%;
+          }
+          
+        }
+      }
+      .red-btn {
         width: 100%;
-        padding: 10px;
-        letter-spacing: 1px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+        margin-top: 10px;
+        background-color: $red-btn-color;
+        border: none;
+        border-radius: 0.3em;
       }
     }
-  }
-
-
-  
-
-  .btn {
-    display: inline-block;
-    height: 50px;
-    padding: 0 30px;
-    line-height: 50px;
-    letter-spacing: 1px;
-    text-align: center;
-    border: none;
-    border-radius: 2px;
-  }
-
-  input[type='submit'] {
-    float: left;
-    margin-top: 20px;
-    color: #fff;
-    background-color: #38aef0;
-  }
-
-  .field-label {
-    .field_with_errors {
-      display: inline-block;
-      color: #d65f4c;
-      font-weight: 400;
-    }
-  }
-
-  .field-input {
-    .field_with_errors {
-      position: relative;
-
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 5px;
-        background-color: #d65f4c;
-      }
-    }
-  }
-}
-
-#error_explanation {
-  margin: 20px 0;
-  padding: 20px 30px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-
-  h2 {
-    margin-bottom: 10px;
-    color: #d65f4c;
-    font-size: 14px;
-  }
-
-  ul {
-    margin: 0;
-    padding-left: 17px;
-    list-style: square;
-  }
-
-  li {
-    margin: 0;
-    padding: 0;
-    font-size: 13px;
   }
 }
