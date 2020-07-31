@@ -1,0 +1,17 @@
+.signup-container  
+  = render 'done-header'
+  .signup-registration-main
+    %h2.signup-registration-main__head
+      会員登録完了
+    .signup-registration-main__inner
+      .signup-registration-main__inner__done
+        .signup-registration-main__inner__done__text
+          %h4
+            ありがとうございます。
+          %h4
+            会員登録が完了しました。
+        .signup-registration-main__inner__done__btn
+          = link_to root_path, class:'btn done-btn'do
+            フリマをはじめる
+        .signup-registration-main__inner__done__img
+  = render 'footer'

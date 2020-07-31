@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'registration_user_information'
       get 'registration_send_address'
+      get 'done'
     end
   end
 end

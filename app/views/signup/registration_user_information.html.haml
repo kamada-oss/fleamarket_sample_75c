@@ -10,7 +10,7 @@
             = f.label 'ニックネーム'
             %span.field__label__form-require 必須
           .field__input
-            = f.text_field :nickname, placeholder: '例）フリマ太郎'
+            = f.text_field :nickname, placeholder: '例）フリマ太郎',autofocus: true
         .field
           .field__label
             = f.label 'メールアドレス'
@@ -53,11 +53,9 @@
             %span.field__label__form-require 必須
           .field__input-birthday
             = f.date_select :birthday, use_month_numbers: true,start_year: 1900
-
-            
         .field
           = f.submit "次へ進む", class: 'red-btn'
-    .singup-index-main__inner__announce
+    .signup-index-main__inner__announce
       %p
         登録することで、
         = link_to '利用規約', '#' 
