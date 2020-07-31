@@ -158,9 +158,6 @@ p{
     background-color: #fff;
     max-width: 700px;
     display: block;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
     width: 100%;
     margin: 0 auto;
     &__main{
@@ -214,10 +211,6 @@ p{
         display: block;
         padding: 40px;
         vertical-align: baseline;
-        border-width: 0px;
-        border-style: initial;
-        border-color: initial;
-        border-image: initial;
         border-top: 1px solid #eee;
         &__group{
           &__input{
@@ -257,10 +250,6 @@ p{
         display: block;
         padding: 40px;
         vertical-align: baseline;
-        border-width: 0px;
-        border-style: initial;
-        border-color: initial;
-        border-image: initial;
         border-top: 1px solid #eee;
         &__box{
           margin-top: 32px;
