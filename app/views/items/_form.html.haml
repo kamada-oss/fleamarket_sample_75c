@@ -47,7 +47,7 @@
                   %span.form-require
                     必須
                 = f.text_area :explanation,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
-              -# = render partial: 'error-messages', locals: {product: f.object, column: 'name'}
+              -# 入力がされていない時のエラー文を追記する。= render partial: 'error-messages', locals: {product: f.object, column: 'name'}
 
             -# 商品の詳細部分
         .sell__container__main__detail
@@ -148,7 +148,6 @@
           = f.submit "出品する", class: "sell__container__main__btn__confirm"
           .sell__container__main__btn__back
             もどる
-  -# = render 'shared/footer'
   .sell__footer
     %ul.sell__footer__nav
       .sell__footer__nav__li
@@ -158,7 +157,7 @@
       .sell__footer__nav__li
         = link_to "特定商取引に関する記述", "/", class:'suppliers'
     .sell__footer__logo
-      = link_to "/" do
+      = link_to "/items" do
         = image_tag "logo-white.png", class: "footer__sell-page"
 
 
