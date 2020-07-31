@@ -5,17 +5,19 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @parents = Category.all.order("id ASC").limit(13)
     @item = Item.new
+    @parents = Category.all.order("id ASC").limit(13)
     @item.item_images.build
+    @item.build_shipping
+    @item.build_brand
   end
 
   def create
-    @item = Item.new(item_parameter)
+    @item = Item.new(item_params)
     respond_to do |format|
       if @item.save
         params[:item_images][:image].each do |image|
-          @item.item_images.create(image: image, product_id: @product.id)
+          @item.item_images.create(image: image, item_id: @item.id)
         end
         format.html{redirect_to root_path}
       else
@@ -35,8 +37,8 @@ class ItemsController < ApplicationController
   end
 
   private
-  def item_parameter
-    params.require(:item).permit(:name, :description, :first_category_id, :second_category_id, :third_category_id, :size, :item_status, :delivery_fee, product_images_attributes: [:image]).merge(user_id: current_user.id)
+  def item_params
+    params.require(:item).permit(:name, :description, :first_category_id, :second_category_id, :third_category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
 end
