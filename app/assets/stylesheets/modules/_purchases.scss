@@ -1,3 +1,121 @@
-// Place all the styles related to the purchases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.body {
+  height: 100%;
+  width: 100%;
+  background-color: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  &__purchase {
+    height: 100%;
+    width: 60%;
+    background-color: white;
+    &__title {
+      height: 100px;
+      width: 60%;
+      font-size: 30px;
+      text-align: center;
+      line-height: 100px;
+      margin: 0 auto;
+      border-bottom: 1px solid gray;
+    }
+    &__item {
+      height: 150px;
+      width: 60%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid gray;
+      position: relative;
+      &__image {
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        margin: auto;
+      }
+      &__name {
+        height: 50px;
+        width: 300px;
+        font-size: 20px;
+        margin: auto;
+        &__price {
+          height: 30px;
+          width: 250px;
+          font-size: 14px;
+          margin-top: 15px;
+          text-align: right;
+        }
+      }
+    }
+    &__price {
+      height: 100px;
+      width: 60%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      line-height: 100px;
+      border-bottom: 1px solid gray;
+      &__text {
+        margin-left: 50px;
+      }
+      &__amount {
+        font-size: 20px;
+        margin-right: 50px;
+      }
+    }
+    &__payment {
+      height: 150px;
+      width: 60%;
+      margin: 0 auto;
+      border-bottom: 1px solid gray;
+      &__topic {
+        padding: 20px 0 0 20px;
+        font-size: 14px;
+      }
+      &__info {
+        padding: 20px 0 0 20px;
+        font-size: 14px;
+      }
+    }
+    &__shipping--address{
+      height: 150px;
+      width: 60%;
+      margin: 0 auto;
+      border-bottom: 1px solid gray;
+      &__topic {
+        padding: 20px 0 0 20px;
+        font-size: 14px;
+      }
+      &__info {
+        padding: 20px 0 0 20px;
+        font-size: 14px;
+      }
+    }
+    &__confirmation {
+      height: 100px;
+      width: 60%;
+      margin: 0 auto;
+      &__note {
+        height: 40px;
+        width: 100%;
+        line-height: 40px;
+        font-size: 14px;
+        text-align: center;
+        margin: auto;
+      }
+      &__purchase {
+        height: 50px;
+        width: 250px;
+        margin: 15px auto;
+      }
+      .purchase-btn {
+        font-size: 18px;
+        text-decoration: none;
+        color: white;
+        background-color: red;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 50px;
+        padding: 10px 80px;
+      }
+    }
+  }
+}

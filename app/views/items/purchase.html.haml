@@ -1,0 +1,39 @@
+.signup-container
+  = render '/signup/index-header'
+.body
+  .body__purchase
+    .body__purchase__title
+      購入内容の確認
+    .body__purchase__item
+      .body__purchase__item__image
+        イメージ
+      .body__purchase__item__name
+        サンプル
+        .body__purchase__item__name__price
+          送料込み (税込) 3,000円
+    .body__purchase__price
+      .body__purchase__price__text
+        支払い金額
+      .body__purchase__price__amount
+        3,000円
+    .body__purchase__payment
+      .body__purchase__payment__topic
+        支払い方法
+      .body__purchase__payment__info
+        クレジットカード
+        *********
+        有効期限
+    .body__purchase__shipping--address
+      .body__purchase__shipping--address__topic
+        配送先
+      .body__purchase__shipping--address__info
+        .body__purchase__shipping--address__info__
+        東京都
+        帰宅
+        番地
+    .body__purchase__confirmation
+      .body__purchase__confirmation__note
+        ※必要事項が登録されていません。
+      .body__purchase__confirmation__purchase
+        = link_to '#', class: "purchase-btn" do
+          購入する
