@@ -1,0 +1,161 @@
+.sell
+  = render 'single-container'
+
+  -# メインの部分
+  = form_with(model: @item, local: true, multipart: true) do |f|
+    .sell__container
+      .sell__container__main
+        .sell__container__main__wrapper
+          %h2.sell__container__main__wrapper__head 商品の情報を入力
+
+
+          -# 画像投稿フォーム
+        .sell__container__main__sell-upload
+          %label
+            出品画像
+          %span.form-require
+            必須
+          %p 最大10枚までアップロードできます
+          .sell__container__main__sell-upload__image
+            .sell__container__main__sell-upload__image__box
+              .sell__container__main__sell-upload__image__box__inside
+                .sell__container__main__sell-upload__image__box__inside__file
+                  %label{class: "input-box__image"}
+                    = icon('fas', 'camera')
+                    = f.file_field :item_image, class: "input-box__file"
+                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+
+
+                  -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
+
+
+                -# 商品名の部分
+        .sell__container__main__form
+          .sell__container__main__form__group
+            .sell__container__main__form__group__name
+              %label
+                商品名
+                %span.form-require
+                  必須
+              %div
+                = f.text_field :name, class: "sell__container__main__form__group__input", placeholder: "40文字まで"
+          .sell__container__main__form__explanation
+            .sell__container__main__form__explanation__upper
+              .sell__container__main__form__explanation__upper__name
+                %label
+                  商品の説明
+                  %span.form-require
+                    必須
+                = f.text_area :explanation,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+              -# 入力がされていない時のエラー文を追記する。= render partial: 'error-messages', locals: {product: f.object, column: 'name'}
+
+            -# 商品の詳細部分
+        .sell__container__main__detail
+          %h3.sell__container__main__detail__sub-head 
+            商品の詳細
+          .sell__container__main__detail__box
+            .sell__container__main__detail__box__category
+              %label
+                カテゴリー
+                %span.form-require
+                  必須
+                .select--wrap{id: "category__box--parent"}
+                  %i.fas.fa-chevron-down
+                  = f.collection_select :category_ids, @parents, :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent-form", name: 'item[category_ids][]'
+                  -# Category.all.limit(13), :id, :name,{prompt:"---"},{class:"select--wrap-cat1__default-category1", id: "parent_form"}
+            .sell__container__main__detail__box__brand
+              %label
+                ブランド
+                %span.form-require__brand
+                  任意
+                .select--wrap
+                  = f.fields_for :brand do |b|
+                    = f.text_field :name, placeholder: '例）シャネル'
+            .sell__container__main__detail__box__condition
+              %label
+                商品の状態
+                %span.form-require
+                  必須
+                .select--wrap
+                  %i.fas.fa-chevron-down
+                  = f.select :conditions, Item.conditions.keys,{prompt:"選択してください"}, {class: "select-default"}
+
+          -# 配送についての部分
+        .sell__container__main__delivery
+          %h3.sell__container__main__delivery__sub-head
+            配送について
+          .sell__container__main__delivery__box
+            .sell__container__main__delivery__box__top
+              %label
+                配送料の負担
+                %span.form-require
+                  必須
+              .select--wrap
+                %i.fas.fa-chevron-down
+                = f.select :fee_burdens, Item.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
+            .sell__container__main__delivery__box__middle
+              %label
+                発送元の地域
+                %span.form-require
+                  必須
+              .select--wrap
+                %i.fas.fa-chevron-down
+                = f.select :areas, Item.areas.keys, {prompt: "選択してください"},{class: "select-default"}
+            .sell__container__main__delivery__box__bottom
+              %label
+                発送までの日数
+                %span.form-require
+                  必須
+              .select--wrap
+                %i.fas.fa-chevron-down
+                = f.select :handling_times, Item.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
+
+          -# 価格の部分
+        .sell__container__main__price
+          %h3
+            販売価格(¥300~9,999,999)
+            -# link_toを追加
+          .sell__container__main__price__form
+            .sell__container__main__price__form__left
+              %label
+                販売価格
+                %span.form-require
+                  必須
+            .sell__container__main__price__form__right
+              ¥
+            .input--price
+              = f.text_field :price, class:"input--price__default",placeholder: "例) 300"
+          .sell__container__main__price__postage
+            .sell__container__main__price__postage__message
+              %label.postage-tax
+                販売手数料（10%)
+              .sell__container__main__price__postage__price-info
+                ー
+          .sell__container__main__price__profit
+            .sell__container__main__price__profit__message
+              %label.profit
+                販売利益
+              .sell__container__main__price__profit__price-info
+                ー
+            
+          -# 出品する,下記に保存,もどるのボタンの部分
+        .sell__container__main__btn
+          .sell__container__main__btn__info
+            %p
+              禁止されている出品、行為を必ずご確認ください。
+              %br またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+              %br また、出品をもちまして加盟店規約に同意したことになります。
+          = f.submit "出品する", class: "sell__container__main__btn__confirm"
+          .sell__container__main__btn__back
+            もどる
+  .sell__footer
+    %ul.sell__footer__nav
+      .sell__footer__nav__li
+        = link_to "プライバシーポリシー", "/", class: 'privacy' 
+      .sell__footer__nav__li
+        = link_to "メルカリ利用規約", "/", class: 'terms'
+      .sell__footer__nav__li
+        = link_to "特定商取引に関する記述", "/", class:'suppliers'
+    .sell__footer__logo
+      = link_to "/items" do
+        = image_tag "logo-white.png", class: "footer__sell-page"

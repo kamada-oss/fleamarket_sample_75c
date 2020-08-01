@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'items#index'
   resources :signup, only: [:index, :create] do
     collection do
@@ -8,4 +7,5 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
+  resources :items, only: [:index, :new] 
 end
