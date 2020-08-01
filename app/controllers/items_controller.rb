@@ -27,11 +27,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  def search
+  def search_child
     respond_to do |format|
       format.html
-      format.json do
+      formta.json do
         @children = Category.find(params[:parent_id]).children
+      end
+    end
+  end
+
+  def search_grandchild
+    respond_to do |format|
+      format.html
+      format.hson do
+        @grandchildren = Category.find(params[:child_id]).children
       end
     end
   end
