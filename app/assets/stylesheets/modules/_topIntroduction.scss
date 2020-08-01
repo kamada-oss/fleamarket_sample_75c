@@ -17,8 +17,9 @@
   }
   &__mains {
     display: flex;
-    align-items: center;
+    text-align: center;
     max-width: 1020px;
+    width: 100%;
     margin: 0 auto;
     &__main {
       width: 30%;
@@ -26,23 +27,32 @@
       margin: 16px 5% 0 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      text-align: center;
+      &--top-img {
+        position: relative;
+        margin-bottom: 20px;
+      }
       &--sub-title {
         font-size: 24px;
         font-weight: bold;
+        line-height: 50px;
+        margin: 0 0 0 2px;
         &--green {
           color: #3CCACE;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: bold;
+          background-color: white;
         }
         &--black {
           color: #000000;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: bold;
+          background-color: white;
         }
       }
       &--text {
-        margin: 25px 0 0;
+        margin: 16px 0 0;
+        line-height: 1.5;
         font-size: 18px;
       }
       &--num {
@@ -61,12 +71,14 @@
     &__main-right {
       width: 30%;
       position: relative;
-      margin: 16px 0 0;
+      margin: 20px 0 0;
+      position: relative;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       &--text {
-        margin: 25px 0 27px;
+        margin: 32px 10px 0px;
         font-size: 18px;
       }
       &--num {

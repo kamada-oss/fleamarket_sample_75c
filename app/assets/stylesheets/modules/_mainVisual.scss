@@ -9,6 +9,7 @@
   padding: 0 60px;
   display: flex;
   align-items: center;
+  
   &__body-main{
     max-width: 1280px;
     width: 100%;
@@ -28,9 +29,17 @@
       margin: 16px 0 0 0;
     }
     &--btn{
+      width: 180px;
       display: flex;
       margin: 24px 0 0 0;
-
+      box-sizing: border-box;
+      .appBtn {
+        margin-right: 10px;
+        width: 180px;
+      }
+      .googleBtn {
+        width: 180px;
+      } 
     }
   }
 }
