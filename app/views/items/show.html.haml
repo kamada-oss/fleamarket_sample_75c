@@ -1,5 +1,6 @@
 = render '/shared/header'
-= render "nav-box"
+-# 追加実装タスク【サーバサイド】パンくず実装時、使用
+-# = render '/shared/nav-box'
 
 .main
   .main__show
@@ -11,22 +12,20 @@
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
               %li.main__show__contents__content__item-box__body__photo__content
-                = image_tag "material/sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__upper"
+                = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__upper"
                 %ul.main__show__contents__content__item-box__body__photo__content__lawer
                   %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "material/sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+                    = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
                   %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "material/sample/sample2.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+                    = image_tag "sample/sample2.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
                   %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "material/sample/sample3.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+                    = image_tag "sample/sample3.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
-            %span.main__show__contents__content__item-box__price__item-price
+            .main__show__contents__content__item-box__price__item-price
               ¥10000
             .main__show__contents__content__item-box__price__detail
-              %span.main__show__contents__content__item-box__price__detail__tax
-                (税込)
-              %span.main__show__contents__content__item-box__price__detail__fee
-                送料込み
+              .main__show__contents__content__item-box__price__detail__tax
+                (税込)送料込み
           .main__show__contents__content__item-box__detail
             まさに「絶品」。濃厚な大人の味わい。 デュクセルソースと40数種スパイスで仕上げた、大人向けの本格的なカレーです。
           .main__show__contents__content__item-box__table
