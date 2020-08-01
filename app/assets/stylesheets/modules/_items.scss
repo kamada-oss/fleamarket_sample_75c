@@ -1,3 +1,382 @@
 * {
   box-sizing: border-box;
 }
+
+// トップページの出品ボタン
+.sell-tab {
+  font-size: 22px;
+  height: 160px;
+  width: 160px;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  &__box{
+    width: 160px;
+    height: 160px;
+    background-color: #3CCACE;
+    border-radius: 50%;
+    &--text{
+      font-size: 22px;
+      color: white;
+      padding-top: 32px;
+      text-decoration: none;
+    }
+    &--logo{
+      font-size: 58px;
+      color: white;
+    }
+  }
+  a.sell-tab__box__text{
+    color: white;
+  }
+}
+
+
+// 出品画面
+h2{
+  font-size: 100%;
+}
+
+h3{
+  color: rgb(136, 136, 136);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-bottom: 24px;
+}
+
+label{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-top: 16px;
+}
+
+span{
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.form-require__brand{
+  background-color: #bfbfbf;
+  color: #fff;
+
+}
+
+p{
+  display: block;
+  margin-bottom: 10px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-top: 16px;
+}
+
+.input-box__file{
+  display: none;
+}
+.input-box__image{
+  text-align: center;
+  size: initial;
+}
+// ヘッダー
+.sell__page__header{
+  text-align: center;
+  height: 128px;
+}
+.header__sell-page{
+  width: 15%;
+  margin-top: 30px;
+}
+// フッター
+.sell__footer{
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 0px 20px 10px;
+  text-decoration: none;
+  &__nav {
+    text-align: center;
+    margin-top: 20px;
+    &__li{
+      display: inline-block;
+      margin: 0 auto;
+      a{
+        text-decoration: none;
+        margin-left: 16px;
+        color: black;
+      }
+    }
+  }
+}
+.sell__footer__logo{
+  text-align: center;
+}
+.footer__sell-page{
+  text-align: center;
+  width: 15%;
+  margin-top: 30px;
+}
+
+.select--wrap{
+  position: relative;
+  background: #fff;
+  margin-top: 16px;
+  .fa-chevron-down {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    z-index: 2;
+    color: #888;
+    font-size: 8px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+}
+// 選択の箇所
+.select-default{
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 56px 0 16px;
+  width: 100%;
+}
+// 画像投稿ファーム
+.sell{
+  background-color: #EEEEEE;
+  &__container{
+    background-color: #fff;
+    max-width: 700px;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    &__main{
+      max-width: 700px;
+      &__wrapper{
+        &__head{
+          padding: 24px 8px;
+          font-size: 18px;
+          line-height: 1.5;
+          text-align: center;
+        }
+      }
+      &__sell-upload{
+        padding: 40px;
+        &__image{
+          margin-top: 16px;
+          display: block;
+          &__box{
+            display: flex;
+            flex-wrap: wrap;
+            margin: -8px -4px 0px;
+            &__inside{
+              height: 150px;
+              margin-top: 8px;
+              flex: 1 1 0%;
+              padding: 0px 4px;
+              &__file{
+                align-content: center;
+                -webkit-box-align: center;
+                align-items: center;
+                background-color: rgb(245, 245, 245);
+                cursor: pointer;
+                display: flex;
+                height: 100%;
+                flex-wrap: wrap;
+                -webkit-box-pack: center;
+                justify-content: center;
+                position: relative;
+                border-width: 1px;
+                border-style: dashed;
+                border-color: rgb(204, 204, 204);
+                border-image: initial;
+                transition: all 0.5s ease-out 0s;
+              }
+            }
+          }
+        }
+      }
+      // 商品名
+      &__form{
+        display: block;
+        padding: 40px;
+        vertical-align: baseline;
+        border-top: 1px solid #eee;
+        &__group{
+          &__input{
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: inherit;
+            height: 48px;
+            margin-top: 16px;
+            padding: 0 16px;
+            width: 100%;
+          }
+        }
+        // 商品説明
+        &__explanation{
+          margin-top: 32px;
+          &__upper{
+            &__default{
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              font-family: inherit;
+              font-size: inherit;
+              height: 148px;
+              padding: 0 16px;
+              width: 100%;
+              margin-top: 16px;
+            }
+          }
+        }
+      }
+      // 商品詳細
+      &__detail{
+        display: block;
+        padding: 40px;
+        vertical-align: baseline;
+        border-top: 1px solid #eee;
+        &__box{
+          margin-top: 32px;
+          &__category{
+          }
+          // ブランド
+          &__brand{
+            margin-top: 32px;
+            .select--wrap{
+              input{
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-family: inherit;
+                font-size: inherit;
+                height: 48px;
+                width: 100%;
+                margin: 0;
+                border: 1px solid #ccc;
+                padding-left: 16px;
+              }
+            }
+          }
+          &__condition{
+            margin-top: 32px;
+
+          }
+        }
+      }
+      &__delivery{
+        padding: 40px;
+        border-top: 1px solid #eee;
+        &__box{
+          margin-top: 32px;
+          &__middle{
+            margin-top: 32px;
+          }
+          &__bottom{
+            margin-top: 32px;
+          }
+        }
+      }
+      // 販売価格
+      &__price{
+        padding: 40px;
+        border-top: 1px solid #eee;
+        &__form{
+          -webkit-box-align: center;
+          align-items: center;
+          box-sizing: content-box;
+          display: flex;
+          height: 46px;
+          &__right{
+            float: right;
+            margin-right: 8px;
+            width: 50%;
+            text-align: right;
+            margin-top: 30px;
+          }
+          .input--price{
+            display: block;
+            padding: 24px 0;
+            height: 63px;
+            box-sizing: border-box;
+            &__default{
+              border:1px solid #ccc;
+              height:50px;
+              border-radius: 5px; 
+              text-align: left;
+              padding-left:10px;
+            }
+          }
+        }
+        &__postage{
+          margin-top: 32px;
+          .postage-tax{
+            color:  rgb(136, 136, 136);
+          }
+          &__price-info{
+            font-size: 20px;
+            color: rgb(136, 136, 136);
+            float: right;
+            margin-right: 30px;
+            margin-bottom: 10px;
+          }
+        }
+        &__profit{
+          margin-top: 32px;
+          border-top: 1px solid #eee;
+          .profit{
+            color: rgb(136, 136, 136);
+          }
+          &__price-info{
+            font-size: 20px;
+            color: rgb(136, 136, 136);
+            float: right;
+            margin-right: 30px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      &__btn{
+        padding: 40px;
+        font-size: 13px;
+        &__confirm{
+          border: 1px solid #ea352d;
+          margin: 40px 0 0;
+          width: 100%;
+          font-size: 24px;
+          line-height: 48px;
+          color: rgb(255, 255, 255);
+          background-color: #ea352d;
+          text-align: center;
+          cursor: pointer;
+
+        }
+        &__back{
+          display: block;
+          line-height: 48px;
+          font-size: 24px;
+          width: 50%;
+          text-align: center;
+          text-decoration: none;
+          margin: 24px auto 0px;
+          color: white;
+          background-color:#AAAAAA;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+
