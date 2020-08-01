@@ -1,0 +1,29 @@
+.signup-index-main
+  .login-index-main__head
+    %p
+      アカウントをお持ちでない方はこちら
+    = link_to '/signup/registration_user_information', class: 'login-index-main__head--btn-registration' do
+      新規会員登録
+  .signup-index-main__inner
+    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-google' do
+      = image_tag src='google.png'
+      Googleで登録する
+    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-facebook' do
+      = icon 'fab', 'facebook-square'
+      Facebookで登録する
+    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-apple' do
+      = icon 'fab', 'apple'
+      Appleで登録する
+  .signup-registration-main__inner
+    = form_for(resource, as: resource_name, url: session_path(resource_name), action: '/login/', method: 'POST', novalidate: 'novalidate') do |f|
+      .field
+        .field__input
+          = f.email_field :email, placeholder: 'メールアドレス',autofocus: true
+        .field__input
+          = f.password_field :password, placeholder: 'パスワード', class:'field__input__send-name'
+      .field
+        = f.submit "ログイン", class: 'red-btn'
+  .login__password-forget
+    %p
+      = link_to 'パスワードをお忘れの方', '#' 
+      
