@@ -8,5 +8,5 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
-  resources :items, only: [:index, :new] 
+  resources :items, only: [:index, :new, :show] 
 end
