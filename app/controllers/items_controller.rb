@@ -27,6 +27,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def search
     respond_to do |format|
       format.html
