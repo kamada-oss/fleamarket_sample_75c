@@ -150,6 +150,38 @@ p{
   padding: 0 56px 0 16px;
   width: 100%;
 }
+
+// カテゴリー子要素箇所
+.select--default__category1{
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 56px 0 16px;
+  width: 100%;
+}
+// カテゴリー孫要素箇所
+.select--wrap__category2{
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 56px 0 16px;
+  width: 100%;
+}
+
 // 画像投稿ファーム
 .sell{
   background-color: #EEEEEE;

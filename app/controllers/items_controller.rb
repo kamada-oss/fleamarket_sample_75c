@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   def search_child
     respond_to do |format|
       format.html
-      formta.json do
+      format.json do
         @children = Category.find(params[:parent_id]).children
       end
     end
@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
   def search_grandchild
     respond_to do |format|
       format.html
-      format.hson do
+      format.json do
         @grandchildren = Category.find(params[:child_id]).children
       end
     end
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :first_category_id, :second_category_id, :third_category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
 end
