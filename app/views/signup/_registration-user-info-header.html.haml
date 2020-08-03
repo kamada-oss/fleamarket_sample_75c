@@ -1,0 +1,16 @@
+.signup-registration-header
+  %h1
+    = link_to root_path do
+      = image_tag src='logo.png'
+  %ul
+    %li.progress-text--complete ユーザー情報
+    %li.progress-circle--complete
+    .progress-bar__left--incomplete
+  %ul
+    %li.progress-text--incomplete 商品送付先住所
+    %li.progress-circle--incomplete
+    .progress-bar__right--incomplete
+  %ul.complete
+    %li.progress-text--incomplete 完了
+    %li.progress-circle--incomplete
+  
