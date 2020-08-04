@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       get 'parent'
       get 'child'
       get 'grandchild'
+  resources :items, only: [:index, :new, :show] do
+    collection do
+      get 'purchase'
     end
   end
   devise_for :users

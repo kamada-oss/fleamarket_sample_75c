@@ -1,3 +1,121 @@
-// Place all the styles related to the purchases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin detail_space($height, $width, $margin){
+  height: $height;
+  width: $width;
+  margin: $margin;
+}
+
+@mixin clearfix($display, $justify-content) {
+  display: $display;
+  justify-content: $justify-content;
+}
+
+@mixin about_font($font-size, $text-align, $line-height, $padding){
+  font-size: $font-size;
+  text-align: $text-align;
+  line-height: $line-height;
+  padding: $padding;
+}
+
+.body {
+  @include detail_space(100%, 100%, false);
+  @include clearfix(flex, center);
+  background-color: #EEEEEE;
+  &__purchase {
+    @include detail_space(100%, 60%, false);
+    background-color: white;
+
+    // 購入内容の確認
+    &__title {
+      @include detail_space(100px, 60%, auto);
+      @include about_font(30px, center, 100px, false);
+      border-bottom: 1px solid #EEEEEE;
+    }
+
+    // 商品情報
+    &__item {
+      @include detail_space(150px, 60%, auto);
+      @include clearfix(flex, center);
+      border-bottom: 1px solid #EEEEEE;
+      position: relative;
+      &__image {
+        @include detail_space(100px, 100px, auto);
+      }
+      &__name {
+        @include detail_space(50px, 300px, auto);
+        font-size: 16px;
+      }
+      .body__purchase__item__name__price {
+        @include detail_space(30px, 250px, false);
+        @include about_font(14px, right, false, false);
+        right: 30px;
+        bottom: 5px;
+        position: absolute;
+        &__tax {
+          float: left;
+        }
+        &__sum {
+          float: right;
+        }
+      }
+
+    // 金額情報
+    }
+    &__price {
+      @include detail_space(100px, 60%, auto);
+      @include clearfix(flex, space-between);
+      line-height: 100px;
+      border-bottom: 1px solid #EEEEEE;
+      &__text {
+        margin-left: 50px;
+      }
+      &__amount {
+        font-size: 20px;
+        margin-right: 50px;
+      }
+
+    // 支払い方法
+    }
+    &__payment {
+      @include detail_space(150px, 60%, auto);
+      border-bottom: 1px solid #EEEEEE;
+      &__topic {
+        @include about_font(14px, false, false, 20px 0 0 20px);
+      }
+      &__info {
+        @include about_font(14px, false, false, 20px 0 0 20px);
+      }
+
+    // 配送先
+    }
+    &__shipping--address{
+      @include detail_space(150px, 60%, auto);
+      border-bottom: 1px solid #EEEEEE;
+      &__topic {
+        @include about_font(14px, false, false, 20px 0 0 20px);
+      }
+      &__info {
+        @include about_font(14px, false, false, 20px 0 0 20px);
+      }
+    }
+
+    // 購入確定ボタン
+    &__confirmation {
+      @include detail_space(150px, 60%, auto);
+      &__note {
+        @include detail_space(40px, 100%, auto);
+        @include about_font(14px, center, 40px, false);
+      }
+      &__purchase {
+        @include detail_space(50px, 250px,15px auto);
+      }
+      .purchase-btn {
+        @include about_font(18px, center, 50px, false);
+        color: white;
+        background-color: red;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 10px 89px;
+      }
+    }
+  }
+}
