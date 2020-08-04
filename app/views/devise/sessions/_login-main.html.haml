@@ -18,9 +18,9 @@
     = form_for(resource, as: resource_name, url: session_path(resource_name), action: '/login/', method: 'POST', novalidate: 'novalidate') do |f|
       .field
         .field__input
-          = f.email_field :email, placeholder: 'メールアドレス',autofocus: true
+          = f.email_field :email, placeholder: 'メールアドレス', autofocus: true, autocomplete: 'email'
         .field__input
-          = f.password_field :password, placeholder: 'パスワード', class:'field__input__send-name'
+          = f.password_field :password, placeholder: 'パスワード', class:'field__input__send-name', autocomplete: 'current-password'
       .field
         = f.submit "ログイン", class: 'red-btn'
   .login__password-forget

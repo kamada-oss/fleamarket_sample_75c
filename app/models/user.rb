@@ -8,4 +8,14 @@ class User < ApplicationRecord
   has_many :items, through: :purchases
   has_many :purchases
   has_one  :card
+
+  validates :nickname, presence: true, length: {maximum: 20}
+  validates :email, presence:true, uniqueness: true
+  # validates :password, presense:true, uniqueness: true,length: {in: 7..128 }
+  # validates :password_confirmation, presense:true, uniqueness: true
+  validates :family_name, presence:true, length: {maximum: 35}
+  validates :first_name, presence:true, length: {maximum: 35}
+  validates :family_name_kana, presence:true, length: {maximum: 35}
+  validates :first_name_kana, presence:true, length: {maximum: 35}
+  validates :birthday, presence: true
 end

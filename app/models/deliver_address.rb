@@ -1,5 +1,14 @@
 class DeliverAddress < ApplicationRecord
   belongs_to :user, optional: true
+  validates :family_name, presence: true, length: {maximum: 35}
+  validates :first_name, presence: true, length: {maximum: 35}
+  validates :family_name_kana, presence: true, length: {maximum: 35}
+  validates :first_name_kana, presence: true, length: {maximum: 35}
+  # validates :zip_code, presence: true, length: 7
+  validates :prefecture, presence: true
+  validates :city, presence: true, length: {maximum: 35}
+  validates :address1, presence: true 
+
 
   enum prefecture: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
