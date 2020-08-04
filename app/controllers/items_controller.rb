@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :category_parent_array, only: [:new, :create, :edit, :update]
 
   def index
     @item = Item.all
@@ -14,16 +15,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    respond_to do |format|
-      if @item.save
-        params[:item_images][:image].each do |image|
-          @item.item_images.create(image: image, item_id: @item.id)
-        end
-        format.html{redirect_to root_path}
-      else
-        @item.item_images.build
-        format.html{render action: 'new'}
-      end
+    if @item.image.present?
+      @item.save
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
@@ -49,8 +45,13 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
+  def category_parent_array
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
+    end
+  end
 end

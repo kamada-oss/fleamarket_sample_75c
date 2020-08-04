@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :edit, :update] do
+  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
     collection do
       get 'search_child', defaults: { format: 'json' }
       get 'search_grandchild', defaults: { format: 'json' }
@@ -25,5 +25,4 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
-  resources :items, only: [:index, :new, :show] 
 end
