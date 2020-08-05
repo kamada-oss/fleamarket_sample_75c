@@ -36,17 +36,7 @@
 
 
 // 出品画面
-h2{
-  font-size: 100%;
-}
 
-h3{
-  color: rgb(136, 136, 136);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4em;
-  margin-bottom: 24px;
-}
 
 label{
   font-size: 14px;
@@ -167,6 +157,9 @@ p{
           font-size: 18px;
           line-height: 1.5;
           text-align: center;
+          h2{
+            font-size: 100%;
+          }
         }
       }
       &__sell-upload{
@@ -248,6 +241,15 @@ p{
         padding: 40px;
         vertical-align: baseline;
         border-top: 1px solid #eee;
+        &__subhead{
+          h3{
+            color: rgb(136, 136, 136);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+            margin-bottom: 24px;
+          }
+        }
         &__box{
           margin-top: 32px;
           &__category{
@@ -278,6 +280,15 @@ p{
       &__delivery{
         padding: 40px;
         border-top: 1px solid #eee;
+        &__sub-head{
+          h3{
+            color: rgb(136, 136, 136);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+            margin-bottom: 24px;
+          }
+        }
         &__box{
           margin-top: 32px;
           &__middle{
@@ -292,6 +303,13 @@ p{
       &__price{
         padding: 40px;
         border-top: 1px solid #eee;
+        h3{
+          color: rgb(136, 136, 136);
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.4em;
+          margin-bottom: 24px;
+        }
         &__form{
           -webkit-box-align: center;
           align-items: center;

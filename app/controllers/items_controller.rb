@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def search
     respond_to do |format|
       format.html
@@ -33,6 +36,9 @@ class ItemsController < ApplicationController
         @children = Category.find(params[:parent_id]).children
       end
     end
+  end
+
+  def purchase
   end
 
   private

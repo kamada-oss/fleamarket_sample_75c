@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root 'items#index'
+  resources :items, only: [:index, :new, :show] do
+    collection do
+      get 'purchase'
+    end
+  end
   devise_for :users
   resources :signup, only: [:index, :create] do
     collection do
@@ -8,5 +13,4 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
-  resources :items, only: [:index, :new] 
 end
