@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :category_parent_array, only: [:new, :create, :edit, :update]
 
   def index
-    @item = Item.all
+    @item = Item.includes(:images).order('created_at DESC')
   end
 
   def new
@@ -26,6 +26,12 @@ class ItemsController < ApplicationController
   def show
   end
   
+  def edit
+  end
+
+  def update
+  end
+
   def search_child
     respond_to do |format|
       format.html
@@ -43,14 +49,14 @@ class ItemsController < ApplicationController
       end
     end
   end
-  
+
   def purchase
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :explanation, :category_id, :parent_form, :child_form, :grandchild_form, :price, :size, :conditions, :fee_burdens, :areas, :handling_times, images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
   def category_parent_array

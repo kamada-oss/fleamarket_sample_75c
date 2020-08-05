@@ -16,18 +16,15 @@
           %span.form-require
             必須
           %p 最大10枚までアップロードできます
-          .sell__container__main__sell-upload__image
-            .sell__container__main__sell-upload__image__box
-              .sell__container__main__sell-upload__image__box__inside
-                .sell__container__main__sell-upload__image__box__inside__file
-                  %label{class: "input-box__image"}
-                    = icon('fas', 'camera')
-                    = f.file_field :item_image, class: "input-box__file"
-                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-
-
-                  -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
-
+          #image-box-1
+            .sell__container__main__sell-upload__image
+              .sell__container__main__sell-upload__image__box
+                .sell__container__main__sell-upload__image__box__inside
+                  .sell__container__main__sell-upload__image__box__inside__file
+                    %label{class: "input-box__image"}
+                      = icon('fas', 'camera')
+                      = f.file_field :item_image, class: "input-box__file"
+                      %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
 
                 -# 商品名の部分
         .sell__container__main__form
@@ -123,18 +120,18 @@
             .sell__container__main__price__form__right
               ¥
             .input--price
-              = f.text_field :price, class:"input--price__default",placeholder: "例) 300"
+              = f.number_field :price, class:"input--price__default",placeholder: "例) 300"
           .sell__container__main__price__postage
             .sell__container__main__price__postage__message
               %label.postage-tax
                 販売手数料（10%)
-              .sell__container__main__price__postage__price-info
+              .sell__container__main__price__postage__price-info#tax-text
                 ー
           .sell__container__main__price__profit
             .sell__container__main__price__profit__message
               %label.profit
                 販売利益
-              .sell__container__main__price__profit__price-info
+              .sell__container__main__price__profit__price-info#profit-text
                 ー
             
           -# 出品する,下記に保存,もどるのボタンの部分

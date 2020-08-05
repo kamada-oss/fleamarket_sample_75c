@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get 'parent'
       get 'child'
       get 'grandchild'
+    end
+  end
   resources :items, only: [:index, :new, :show] do
     collection do
       get 'purchase'
