@@ -1,10 +1,18 @@
 class DeliverAddress < ApplicationRecord
   belongs_to :user, optional: true
-  validates :family_name, presence: true, length: {maximum: 35}
-  validates :first_name, presence: true, length: {maximum: 35}
-  validates :family_name_kana, presence: true, length: {maximum: 35}
-  validates :first_name_kana, presence: true, length: {maximum: 35}
-  # validates :zip_code, presence: true, length: 7
+
+  VALID_KATAKANA_REGEX = /\A[\p{katakana}\p{blank}ー－]+\z/
+  VALID_ZENKAKU_REGEX = /\A[ぁ-んァ-ン一-龥]/
+
+  validates :family_name, presence: true, length: {maximum: 35},
+  　            format: { with: VALID_ZENKAKU_REGEX, message: 'は全角で入力して下さい'}
+  validates :first_name, presence: true, length: {maximum: 35},
+  　            format: { with: VALID_ZENKAKU_REGEX, message: 'は全角で入力して下さい'}
+  validates :family_name_kana, presence: true, length: {maximum: 35}, 
+                format: { with: VALID_KATAKANA_REGEX, message: 'は全角カタカナで入力して下さい'}
+  validates :first_name_kana, presence: true, length: {maximum: 35}, 
+                format: { with: VALID_KATAKANA_REGEX, message: 'は全角カタカナで入力して下さい'}
+  validates :zip_code, presence: true, length: { is: 7 } 
   validates :prefecture, presence: true
   validates :city, presence: true, length: {maximum: 35}
   validates :address1, presence: true 
