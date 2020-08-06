@@ -6,12 +6,7 @@
   display: flex;
   align-items: center;
   margin-left: 280px;
-  &__new {
-    color: rgb(219, 56, 83);
-  }
-  &__left{
-    
-  }
+  
 }
 .products--head{
   margin-left: 10px;
@@ -68,7 +63,6 @@
     font-size: 28px;
     line-height: 1.4;
     font-weight: bold;
-    margin-left: 50px;
   }
     &__product{
       height: 321px;

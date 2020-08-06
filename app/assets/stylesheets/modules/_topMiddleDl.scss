@@ -14,19 +14,25 @@
     &__title {
       font-size: 27px;
       font-weight: bold;
+      line-height: 1.4;
     }
     &__text {
       font-size: 18px;
-      margin: 20px 0;
+      margin: 20px 0 30px;
+      line-height: 1.5;
     }
-      .appBth {
-        display: flex;
-        width: 180px;
-      } 
-      .gooleBth {
-      margin-left: 10px;
+    &__icon {
       width: 180px;
-      }
-    
+      display: flex;
+      box-sizing: border-box;
+    }
+    &__appBth {
+      margin-right: 10px;
+      width: 180px;
+    } 
+    &__gooleBth {
+      margin-right: 10px;
+      width: 180px;
+    }
   }
 }
