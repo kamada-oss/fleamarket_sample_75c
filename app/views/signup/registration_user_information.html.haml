@@ -1,0 +1,67 @@
+.signup-container
+  = render 'registration-user-info-header'
+  .signup-registration-main
+    %h2.signup-registration-main__head
+      ユーザー情報入力
+    .signup-registration-main__inner
+      = form_with model: @user, local: true, url: registration_send_address_signup_index_path, method: 'GET', class: '' do |f|
+        .field
+          .field__label
+            = f.label 'ニックネーム'
+            %span.field__label__form-require 必須
+          .field__input
+            = f.text_field :nickname, placeholder: '例）フリマ太郎',autofocus: true
+        .field
+          .field__label
+            = f.label 'メールアドレス'
+            %span.field__label__form-require 必須
+          .field__input
+            = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
+        .field
+          .field__label
+            = f.label 'パスワード'
+            %span.field__label__form-require 必須
+          .field__input
+            = f.password_field :password, placeholder: '7文字以上'
+        .field
+          .field__label
+            = f.label 'パスワード（確認）'
+            %span.field__label__form-require 必須
+          .field__input
+            = f.password_field :password_confirmation, placeholder: '7文字以上'
+        .field
+          .field__label
+            = f.label 'お名前(全角)'
+            %span.field__label__form-require 必須
+          .field__input-name
+            .field__input-name--left
+              = f.text_field :family_name, placeholder: '例）山田'
+            .field__input-name--right
+              = f.text_field :first_name, placeholder: '例）彩'
+        .field
+          .field__label
+            = f.label 'お名前カナ(全角)'
+            %span.field__label__form-require 必須
+          .field__input-name
+            .field__input-name--left
+              = f.text_field :family_name_kana, placeholder: '例）ヤマダ'
+            .field__input-name--right
+              = f.text_field :first_name_kana, placeholder: '例）アヤ'
+        .field
+          .field__label
+            = f.label '生年月日'
+            %span.field__label__form-require 必須
+          .field__input-birthday
+            = f.date_select :birthday, use_month_numbers: true,start_year: 1900
+        .field
+          = f.submit "次へ進む", class: 'red-btn'
+    .signup-index-main__inner__announce
+      %p
+        登録することで、
+        = link_to '利用規約', '#' 
+        と
+        = link_to 'プライバシーポリシー', '#'
+        に
+        %br
+        同意したものとみなされます。
+  =render 'footer'
