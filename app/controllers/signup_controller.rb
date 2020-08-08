@@ -10,7 +10,6 @@ class SignupController < ApplicationController
 
   def registration_send_address
     @user = User.new(user_params)
-    binding.pry
     if @user.valid?
       @send_address = DeliverAddress.new
       # 入力されたユーザー情報をsessionに保存
