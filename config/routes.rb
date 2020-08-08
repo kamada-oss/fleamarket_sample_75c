@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'card/new'
+  get 'card/show'
   root 'items#index'
   resources :items, only: [:index, :new, :show] do
     collection do
