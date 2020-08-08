@@ -1,0 +1,5 @@
+.error-message
+  - if errors = object.errors.full_messages_for(column.to_sym)
+    %ul.error_message
+      -errors.each do |message|
+        %li= message
