@@ -4,9 +4,10 @@ Rails.application.routes.draw do
     collection do
       get 'search_child', defaults: { format: 'json' }
       get 'search_grandchild', defaults: { format: 'json' }
-    end
-    namespace :items do
-      resources :searches, only: [:index, :show, :new]
+      get 'search'
+      get 'post_done'
+      get 'delete_done'
+      get 'update_done'
     end
   end
 

@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :category_parent_array, only: [:new, :create, :edit, :update]
+  before_action :check_item_details, only: [:post_done]
 
   def index
-    @item = Item.includes(:images).order('created_at DESC')
+    @item = Item.all
   end
 
   def new
@@ -15,12 +16,15 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.image.present?
-      @item.save
-      redirect_to root_path
+    if @item.save
+      redirect_to post_done_item_path
     else
       redirect_to root_path
     end
+  end
+
+  def post_done
+    @item = Item.all
   end
 
   def show
@@ -30,6 +34,20 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if item_params[:images_attributes].nil?
+      flash.now[:alert] = '更新できませんでした【画像を1枚以上入れてください】'
+      render :edit
+    else
+      exit_ids = []
+      item_params[:images_attributes].each do |a,b|
+        exit_ids << item_params[images_attributes].dig(:"#{a}", :id).to_i
+      end
+      ids = Image.where(item_id: params[:id]).map{|image| image.id}
+      exit_ids_uniq = exit_ids.exit_ids_uniq
+      delete__db = ids - exit_ids_uniq
+      Image.where(id:delete__db).destroy_all
+      @item.touch
+    end
   end
 
   def search_child
@@ -56,11 +74,15 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :explanation, :category_id, :parent_form, :child_form, :grandchild_form, :price, :size, :conditions, :fee_burdens, :areas, :handling_times, images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:image_url])
   end
 
   def category_parent_array
     @category_parent_array = Category.where(ancestry: nil).each do |parent|
     end
+  end
+  
+  def check_item_details
+    @item = Item.all
   end
 end

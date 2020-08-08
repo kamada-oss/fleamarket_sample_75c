@@ -8,7 +8,6 @@
         .sell__container__main__wrapper
           %h2.sell__container__main__wrapper__head 商品の情報を入力
 
-
           -# 画像投稿フォーム
         .sell__container__main__sell-upload
           %label
@@ -17,15 +16,14 @@
             必須
           %p 最大10枚までアップロードできます
           #image-box-1
-            .sell__container__main__sell-upload__image
-              .sell__container__main__sell-upload__image__box
-                .sell__container__main__sell-upload__image__box__inside
-                  .sell__container__main__sell-upload__image__box__inside__file
-                    %label{class: "input-box__image"}
-                      = icon('fas', 'camera')
-                      = f.file_field :item_image, class: "input-box__file"
-                      %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-
+            %label.input-box__image{for: "img-file"}
+              .sell__container__main__sell-upload__file#image-box__container
+                = f.fields_for :item_images do |image|
+                  #append-js
+                    .js-file_group{"data-index" => "#{image.index}"}
+                      = image.file_field :item_image, type: 'file', name: "item_images[images_attributes][][image_url]", value:"", id:"img-file", class: "js-file"
+                  %i.fas.fa-camera
+                  %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
                 -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
@@ -43,7 +41,7 @@
                   商品の説明
                   %span.form-require
                     必須
-                = f.text_area :explanation,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+                = f.text_area :text,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
               -# 入力がされていない時のエラー文を追記する。= render partial: 'error-messages', locals: {product: f.object, column: 'name'}
 
             -# 商品の詳細部分
@@ -96,7 +94,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :areas, Item.areas.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :prefectures, Item.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
             .sell__container__main__delivery__box__bottom
               %label
                 発送までの日数

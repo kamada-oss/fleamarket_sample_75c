@@ -16,6 +16,16 @@
   padding: 0 56px 0 16px;
   width: 100%;
 }
+@mixin image_place() {
+  content: '';
+  padding-top: 70px;
+  text-align: center;
+  height: 180px;
+  padding: 0.5em 1em;
+  background: #f0f7ff;
+  border: 1px dashed rgb(204, 204, 204);
+  box-shadow: 0px 0px 0px;
+}
 
 
 // トップページの出品ボタン
@@ -52,25 +62,12 @@
 
 
 // 出品画面
-h2{
-  font-size: 100%;
-}
-
-h3{
-  color: rgb(136, 136, 136);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4em;
-  margin-bottom: 24px;
-}
-
 label{
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4em;
   margin-top: 16px;
 }
-
 span{
   background-color: red;
   color: white;
@@ -80,7 +77,6 @@ span{
 .form-require__brand{
   background-color: #bfbfbf;
   color: #fff;
-
 }
 
 p{
@@ -91,12 +87,15 @@ p{
   margin-top: 16px;
 }
 
-.input-box__file{
-  display: none;
-}
 .input-box__image{
-  text-align: center;
-  size: initial;
+  flex-wrap: wrap;
+  .item-image{
+    &__content{
+      &--icon{
+        object-fit: contain;
+      }
+    }
+  }
 }
 // ヘッダー
 .sell__page__header{
@@ -178,46 +177,79 @@ p{
       max-width: 700px;
       &__wrapper{
         &__head{
+          h2{
+            font-size: 100%;
+          }
+        }
+        &__head{
           padding: 24px 8px;
           font-size: 18px;
           line-height: 1.5;
           text-align: center;
         }
       }
+      #image-box-1{
+        display: flex;
+        flex-wrap: wrap;
+        .item-image{
+          width: 180px;
+        }
+        .item-num-0{
+          width: 600px;
+          @include image_place();
+        }
+        .item-num-1{
+          width: 400px;
+          @include image_place();
+        }
+        .item-num-2{
+          width: 200px;
+          @include image_place();
+        }
+        .item-num-3{
+          width: 600px;
+          @include image_place();
+        }
+        .item-num-4{
+          width: 400px;
+          @include image_place();
+        }
+        .item-num-5{
+          width: 200px;
+          @include image_place();
+        }
+        .item-num-6{
+          width: 600px;
+          @include image_place();
+        }
+        .item-num-7{
+          width: 400px;
+          @include image_place();
+        }
+        .item-num-8{
+          width: 200px;
+          @include image_place();
+        }
+        .item-num-9{
+          width: 600px;
+          @include image_place();
+        }
+      }
       &__sell-upload{
         padding: 40px;
-        &__image{
-          margin-top: 16px;
-          display: block;
-          &__box{
-            display: flex;
-            flex-wrap: wrap;
-            margin: -8px -4px 0px;
-            &__inside{
-              height: 150px;
-              margin-top: 8px;
-              flex: 1 1 0%;
-              padding: 0px 4px;
-              &__file{
-                align-content: center;
-                -webkit-box-align: center;
-                align-items: center;
-                background-color: rgb(245, 245, 245);
-                cursor: pointer;
-                display: flex;
-                height: 100%;
-                flex-wrap: wrap;
-                -webkit-box-pack: center;
-                justify-content: center;
-                position: relative;
-                border-width: 1px;
-                border-style: dashed;
-                border-color: rgb(204, 204, 204);
-                border-image: initial;
-                transition: all 0.5s ease-out 0s;
-              }
-            }
+        &__file{
+          width: 600px;
+          @include image_place();
+          cursor: pointer;
+          .fas-fa-camera{
+            display: inline-block;
+            margin-top: 75px;
           }
+        }
+      }
+      .js-file_group{
+        .js-file{
+          display: none;
         }
       }
       // 商品名
@@ -257,6 +289,16 @@ p{
         padding: 40px;
         vertical-align: baseline;
         border-top: 1px solid #eee;
+        &__subhead{
+          h3{
+            color: rgb(136, 136, 136);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+            margin-bottom: 24px;
+          }
+          
+        }
         &__box{
           margin-top: 32px;
           &__category{
@@ -284,6 +326,15 @@ p{
       &__delivery{
         padding: 40px;
         border-top: 1px solid #eee;
+        &__sub-head{
+          h3{
+            color: rgb(136, 136, 136);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+            margin-bottom: 24px;
+          }
+        }
         &__box{
           margin-top: 32px;
           &__middle{
@@ -298,6 +349,14 @@ p{
       &__price{
         padding: 40px;
         border-top: 1px solid #eee;
+        h3{
+          color: rgb(136, 136, 136);
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.4em;
+          margin-bottom: 24px;
+        }
+        
         &__form{
           -webkit-box-align: center;
           align-items: center;
@@ -385,4 +444,38 @@ p{
   }
 }
 
+// post_done
+.done {
+  width: calc(100% - 250px);
+  height: 90vh;
+  padding: 100px;
 
+  &__title {
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+
+  &__backlink{
+    width: 250px;
+    height: 50px;
+    background-color: #3ccace;
+    display: block;
+    margin: 15px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+
+    .link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 50px;
+    }
+  }
+}
+#fullsize {
+  width: 100%;
+}

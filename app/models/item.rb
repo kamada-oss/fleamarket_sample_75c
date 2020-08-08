@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   enum condition: { "新品・未使用":1, "未使用に近い":2, "目立った傷や汚れ無し":3, "やや傷や汚れあり":4, "傷や汚れあり":5,"全体的に状態が悪い":6 }
   enum fee_burden: { "送料込み（出品者負担）":1, "着払い（購入者負担）":2 }
   enum handling_time: { "1~2日で発送":1, "2~3日で発送":2, "4~7日で発送":3 }
-  enum area:{
+  enum prefecture:{
     "北海道":1,"青森県":2,"岩手県":3,"宮城県":4,"秋田県":5,"山形県":6,"福島県":7,
     "茨城県":8,"栃木県":9,"群馬県":10,"埼玉県":11,"千葉県":12,"東京都":13,"神奈川県":14,
     "新潟県":15,"富山県":16,"石川県":17,"福井県":18,"山梨県":19,"長野県":20,
@@ -23,4 +23,17 @@ class Item < ApplicationRecord
   belongs_to :size, optional: true
   has_many   :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
+  validates :name,                         presence: true,    length: { maximum: 40 } 
+  validates :item_explanation,             presence: true,    length: { maximum: 1000 } 
+  validates :category,                     presence: true
+  validates :item_status,                  presence: true
+  validates :auction_status,               presence: true
+  validates :delivery_fee,                 presence: true
+  validates :shipping_origin,              presence: true
+  validates :days_until_shipping,          presence: true
+  validates :exhibition_price,             presence: true
+  validates_associated :item_images
+  validates :item_images,                       presence: true
+
+
 end
