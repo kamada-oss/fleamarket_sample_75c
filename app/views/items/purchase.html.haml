@@ -55,13 +55,20 @@
     -# 購入確定ボタン
     .body__purchase__confirmation
       .body__purchase__confirmation__note
-        ※必要事項が登録されていません。
+        - if @card.blank?
+          %p ※下記よりクレジットカードの登録を行った後購入手続きに進みます。
+        - else
+          %p ※必要事項を今一度ご確認ください。
       .body__purchase__confirmation__purchase
         -# = form_with url: card_new_path, class:"purchase-btn" do
         -#   %script{type: "text/javascript", src: "https://checkout.pay.jp",class:"purchase-btn", "data-text": "購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
-
-        = link_to card_new_path, class: "purchase-btn" do
-          購入する
+        - if @card.blank?
+          = form_tag card_pay_path, method: :post do
+            :plain
+            %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
+        - else
+          = link_to card_new_path, class: "purchase-btn" do
+            購入する
 
 -# フッター
 .signup-container

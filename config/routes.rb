@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'card/new'
   get 'card/show'
+  post 'card/pay'
   root 'items#index'
   resources :items, only: [:index, :new, :show] do
     collection do

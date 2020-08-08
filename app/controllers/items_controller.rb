@@ -40,6 +40,8 @@ class ItemsController < ApplicationController
   end
 
   def purchase
+    user = User.first
+    card = Card.find_by(user_id: user.id)
   end
 
   private
