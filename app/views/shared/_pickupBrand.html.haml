@@ -1,0 +1,25 @@
+.wrapper
+  .containerBrand
+    %h2.containerBrand__title
+      ピックアップカテゴリー
+    .containerBrand__product
+      .containerBrand__product--head
+        = link_to "#", class: "products--head" do
+          %h3.head
+            %span.head__new new!
+            .head__left ⇦ - - -新規投稿商品- - - ⇨ old
+      .containerBrand__product--lists
+        - @brandProducts.each do |product|
+          = link_to product_path(product), class: "listBtn" do
+            %figure.product__images
+              = image_tag product.images[0].name.url, alt: "image_url",size: "200x150", class:"new-img"
+            .containerBrand__product--lists__list--body
+              %h3.product--name
+                = product.name
+              .containerBrand__product--lists__list--body__details
+                %ul.details__menu
+                  %li
+                    = product.price
+                    円
+                  %li ★
+              %p.taxIncluded （税込）
