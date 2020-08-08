@@ -43,6 +43,9 @@
     z-index: auto;
     height: 150px;
     object-fit: cover;
+    float: left;
+    width: 50%;
+    height: 220px;
   }
 }
 .details__menu{
@@ -72,12 +75,15 @@
       &--head{
       }
       &--lists{
-      width: 780px;
-      margin: 26px auto;
-      display: flex;
-      overflow-x: scroll;
+        width: 780px;
+        margin: 26px auto;
+        justify-content: space-around;
+        display: flex;
+        width: calc(100%/4);
+
         .product__images {
           margin-left: 45px;
+
         }
       &__list{
         width: 220px;
