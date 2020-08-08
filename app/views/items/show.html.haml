@@ -26,6 +26,8 @@
             .main__show__contents__content__item-box__price__detail
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
+              .main__show__contents__content__item-box__purchase
+                = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
             まさに「絶品」。濃厚な大人の味わい。 デュクセルソースと40数種スパイスで仕上げた、大人向けの本格的なカレーです。
           .main__show__contents__content__item-box__table
@@ -83,6 +85,12 @@
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
                   = icon('fa','flag', class: "main__show__contents__content__item-box__optional__right__btn__link__icon")
                   不適切な商品の通報
+        
+          .main__show__contents__content__item-user
+            .main__show__contents__content__item-user__edit
+              = link_to "商品の編集", "#", class: "main__show__contents__content__item-user__edit__link"
+            .main__show__contents__content__item-user__destroy
+              = link_to "この商品を削除する", "#", class: "main__show__contents__content__item-user__destroy__link"
         .main__show__contents__content__comment-box
           %form{action: "#", class: "main__show__contents__content__comment-box__form"}
             %textarea.main__show__contents__content__comment-box__form__textarea
