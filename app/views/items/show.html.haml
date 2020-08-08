@@ -8,7 +8,7 @@
       .main__show__contents__content
         .main__show__contents__content__item-box
           .main__show__contents__content__item-box__name
-            item名
+            = @item.name
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
               %li.main__show__contents__content__item-box__body__photo__content
@@ -22,14 +22,14 @@
                     = image_tag "sample/sample3.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
             .main__show__contents__content__item-box__price__item-price
-              ¥10000
+              = "¥#{@item.price}"
             .main__show__contents__content__item-box__price__detail
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
               .main__show__contents__content__item-box__purchase
                 = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
-            まさに「絶品」。濃厚な大人の味わい。 デュクセルソースと40数種スパイスで仕上げた、大人向けの本格的なカレーです。
+            = @item.text
           .main__show__contents__content__item-box__table
             %table.main__show__contents__content__item-box__table__content
               %tbody.main__show__contents__content__item-box__table__content__tbody
