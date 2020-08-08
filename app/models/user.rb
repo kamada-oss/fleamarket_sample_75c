@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one  :card
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  VALID_KATAKANA_REGEX = /\A[\p{katakana}\p{blank}ー－]+\z/
+  VALID_KATAKANA_REGEX = /\A[ァ-ン]/
   VALID_ZENKAKU_REGEX = /\A[ぁ-んァ-ン一-龥]/
 
   validates :nickname, presence: true, length: {maximum: 20}
