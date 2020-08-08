@@ -1,7 +1,3 @@
-// 変数
-$red-btn-color: #FF3333;
-$furima-color: #00CCCC;
-
 @mixin signup-main{
   display: block;
   background-color: white;
@@ -55,12 +51,12 @@ $furima-color: #00CCCC;
   background-color: $color; /*下線の色*/
 }
 
-@mixin form-box() {
+@mixin form-box($color) {
   width: 100%;
   height: 50px;
   font-size: 15px;
   text-indent: 1em;
-  border: solid 1px gray;
+  border: solid 1px $color;
   border-radius: 0.3em;
 }
 
@@ -244,13 +240,13 @@ $furima-color: #00CCCC;
         }
         &__input {
           input {
-            @include form-box();
+            @include form-box(gray);
           }
           &__send-name {
             margin-top: 10px;
           }
           select {
-            @include form-box();
+            @include form-box(gray);
           }
         }
         &__input-name {
@@ -259,13 +255,13 @@ $furima-color: #00CCCC;
           &--left {
             width: 48%;
             input {
-              @include form-box();
+              @include form-box(gray);
             }
           }
           &--right {
             width: 48%;
             input {
-              @include form-box();
+              @include form-box(gray);
             }
           }
         }
@@ -284,9 +280,47 @@ $furima-color: #00CCCC;
           #user_birthday_3i{
             @include form-birthday();
           }
-          
+        }
+
+        // エラーメッセージ
+        &__input-error {
+          input {
+            @include form-box($red-btn-color);
+          }
+          &__send-name {
+            margin-top: 10px;
+          }
+          select {
+            @include form-box($red-btn-color);
+          }
+        }
+        &__input-name-error {
+          display: flex;
+          justify-content: space-between;
+          &--left {
+            width: 48%;
+            input {
+              @include form-box($red-btn-color);
+            }
+          }
+          &--right {
+            width: 48%;
+            input {
+              @include form-box($red-btn-color);
+            }
+          }
+        }
+        .error-message{
+          ul{
+            li{
+              margin-top: 10px;
+              font-size: 0.9em;
+              color: $red-btn-color;
+            }
+          }
         }
       }
+      
       .red-btn {
         width: 100%;
         height: 50px;
@@ -326,6 +360,13 @@ $furima-color: #00CCCC;
           height: 360px;
           background-size:cover;
         }
+      }
+
+      // ログイン時エラー
+      .login_error_text{
+        text-align: center;
+        font-size: 0.9em;
+        color: $red-btn-color;
       }
     }
   }
