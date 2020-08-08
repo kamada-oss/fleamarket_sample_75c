@@ -9,35 +9,20 @@
           .field__label
             = f.label 'ニックネーム'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:nickname)
-            .field__input-error
-              = f.text_field :nickname, placeholder: '例）フリマ太郎',autofocus: true
-              = render partial: 'error-messages', locals: {object: @user, column: 'nickname'}
-          - else
-            .field__input
-              = f.text_field :nickname, placeholder: '例）フリマ太郎',autofocus: true
+          .field__input
+            = f.text_field :nickname, placeholder: '例）フリマ太郎',autofocus: true
         .field
           .field__label
             = f.label 'メールアドレス'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:email)
-            .field__input-error
-              = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
-              = render partial: 'error-messages', locals: {object: @user, column: 'email'}
-          - else  
-            .field__input
-              = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
+          .field__input
+            = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
         .field
           .field__label
             = f.label 'パスワード'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:email)
-            .field__input-error
-              = f.password_field :password, placeholder: '7文字以上'
-              = render partial: 'error-messages', locals: {object: @user, column: 'password'}
-          - else
-            .field__input
-              = f.password_field :password, placeholder: '7文字以上'
+          .field__input
+            = f.password_field :password, placeholder: '7文字以上'
         .field
           .field__label
             = f.label 'パスワード（確認）'
@@ -48,40 +33,20 @@
           .field__label
             = f.label 'お名前(全角)'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:family_name) or @user.errors.include?(:first_name)
-            .field__input-name-error
-              .field__input-name-error--left
-                = f.text_field :family_name, placeholder: '例）山田'
-              .field__input-name-error--right
-                = f.text_field :first_name, placeholder: '例）彩'
-          - else
-            .field__input-name
-              .field__input-name--left  
-                = f.text_field :family_name, placeholder: '例）山田'
-              .field__input-name--right
-                = f.text_field :first_name, placeholder: '例）彩'
-          = render partial: 'error-messages', locals: {object: @user, column: 'family_name'}
-          = render partial: 'error-messages', locals: {object: @user, column: 'first_name'}
-
+          .field__input-name
+            .field__input-name--left
+              = f.text_field :family_name, placeholder: '例）山田'
+            .field__input-name--right
+              = f.text_field :first_name, placeholder: '例）彩'
         .field
           .field__label
             = f.label 'お名前カナ(全角)'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:family_name_kana) or @user.errors.include?(:first_name_kana)
-            .field__input-name-error
-              .field__input-name-error--left
-                = f.text_field :family_name_kana, placeholder: '例）ヤマダ'
-              .field__input-name-error--right
-                = f.text_field :first_name_kana, placeholder: '例）アヤ'
-          - else
-            .field__input-name
-              .field__input-name--left
-                = f.text_field :family_name_kana, placeholder: '例）ヤマダ'
-              .field__input-name--right
-                = f.text_field :first_name_kana, placeholder: '例）アヤ'
-          = render partial: 'error-messages', locals: {object: @user, column: 'family_name_kana'}
-          = render partial: 'error-messages', locals: {object: @user, column: 'first_name_kana'}
-
+          .field__input-name
+            .field__input-name--left
+              = f.text_field :family_name_kana, placeholder: '例）ヤマダ'
+            .field__input-name--right
+              = f.text_field :first_name_kana, placeholder: '例）アヤ'
         .field
           .field__label
             = f.label '生年月日'

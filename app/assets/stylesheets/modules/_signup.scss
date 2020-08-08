@@ -1,3 +1,7 @@
+// 変数
+$red-btn-color: #FF3333;
+$furima-color: #00CCCC;
+
 @mixin signup-main{
   display: block;
   background-color: white;
@@ -51,12 +55,12 @@
   background-color: $color; /*下線の色*/
 }
 
-@mixin form-box($color) {
+@mixin form-box() {
   width: 100%;
   height: 50px;
   font-size: 15px;
   text-indent: 1em;
-  border: solid 1px $color;
+  border: solid 1px gray;
   border-radius: 0.3em;
 }
 
@@ -240,13 +244,13 @@
         }
         &__input {
           input {
-            @include form-box(gray);
+            @include form-box();
           }
           &__send-name {
             margin-top: 10px;
           }
           select {
-            @include form-box(gray);
+            @include form-box();
           }
         }
         &__input-name {
@@ -255,13 +259,13 @@
           &--left {
             width: 48%;
             input {
-              @include form-box(gray);
+              @include form-box();
             }
           }
           &--right {
             width: 48%;
             input {
-              @include form-box(gray);
+              @include form-box();
             }
           }
         }
@@ -280,47 +284,9 @@
           #user_birthday_3i{
             @include form-birthday();
           }
-        }
-
-        // エラーメッセージ
-        &__input-error {
-          input {
-            @include form-box($red-btn-color);
-          }
-          &__send-name {
-            margin-top: 10px;
-          }
-          select {
-            @include form-box($red-btn-color);
-          }
-        }
-        &__input-name-error {
-          display: flex;
-          justify-content: space-between;
-          &--left {
-            width: 48%;
-            input {
-              @include form-box($red-btn-color);
-            }
-          }
-          &--right {
-            width: 48%;
-            input {
-              @include form-box($red-btn-color);
-            }
-          }
-        }
-        .error-message{
-          ul{
-            li{
-              margin-top: 10px;
-              font-size: 0.9em;
-              color: $red-btn-color;
-            }
-          }
+          
         }
       }
-      
       .red-btn {
         width: 100%;
         height: 50px;
@@ -360,13 +326,6 @@
           height: 360px;
           background-size:cover;
         }
-      }
-
-      // ログイン時エラー
-      .login_error_text{
-        text-align: center;
-        font-size: 0.9em;
-        color: $red-btn-color;
       }
     }
   }

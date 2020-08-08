@@ -1,23 +1,6 @@
 class DeliverAddress < ApplicationRecord
   belongs_to :user, optional: true
 
-  VALID_KATAKANA_REGEX = /\A[ァ-ン]/
-  VALID_ZENKAKU_REGEX = /\A[ぁ-んァ-ン一-龥]/
-
-  validates :family_name, presence: true, length: {maximum: 35},
-                format: { with: VALID_ZENKAKU_REGEX, message: 'は全角で入力して下さい'}
-  validates :first_name, presence: true, length: {maximum: 35},
-                format: { with: VALID_ZENKAKU_REGEX, message: 'は全角で入力して下さい'}
-  validates :family_name_kana, presence: true, length: {maximum: 35}, 
-                format: { with: VALID_KATAKANA_REGEX, message: 'は全角カタカナで入力して下さい'}
-  validates :first_name_kana, presence: true, length: {maximum: 35}, 
-                format: { with: VALID_KATAKANA_REGEX, message: 'は全角カタカナで入力して下さい'}
-  validates :zip_code, presence: true, length: { is: 7 } 
-  validates :prefecture, presence: true
-  validates :city, presence: true, length: {maximum: 35}
-  validates :address1, presence: true 
-
-
   enum prefecture: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,

@@ -13,7 +13,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|null: false|
+|nickname|string|null: false, unique: true|
 |email|string|null: false, unique: true|
 |password|string|null: false, unique: true|
 |family_name|string|null: false|
@@ -22,6 +22,7 @@
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
 |introduction|text|
+|phone_number|integer|null: false|
 
 ### Association
 - has_many :likes, dependent: :destroy
@@ -45,7 +46,7 @@
 |city|string|null: false|
 |address1|string|null: false|
 |address2|string||
-|phone_number|string|
+|phone_number|integer|null: false|
 |user_id|references|null: false, foreign_key: true|
 
 ### Association
