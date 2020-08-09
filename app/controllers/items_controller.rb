@@ -3,22 +3,22 @@ class ItemsController < ApplicationController
   before_action :check_item_details, only: [:post_done]
 
   def index
-    @item = Item.all
+    @item = Item.includes(:item_images)
   end
 
   def new
     @item = Item.new
+    @item.item_images.new
     @parents = Category.all.order("id ASC").limit(13)
-    @item.item_images.build
-    @item.build_shipping
-    @item.build_brand
   end
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
-      redirect_to root_path
+      redirect_to post_done_item_path
     else
+      @item.item_images.new
       redirect_to root_path
     end
   end
@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:image_url])
+    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:item_image,:_destroy, :id])
   end
 
   def category_parent_array

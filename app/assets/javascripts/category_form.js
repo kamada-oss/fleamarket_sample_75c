@@ -30,15 +30,15 @@ $(function(){
   }
   // 子要素のアクション
   $('#parent_form').on('change', function(){
-    var parentCategory = document.getElementById('parent_form').value; //選択された親カテゴリーの名前を取得
-    if (parentCategory != "選択してください"){ //親カテゴリーが初期値でないことを確認
+    var parentValue = document.getElementById('parent_form').value; //選択された親カテゴリーの名前を取得
+    if (parentValue != "選択してください"){ //親カテゴリーが初期値でないことを確認
       $('#category__box--children').remove(); //親が変更された時、子以下を削除する
       $('#category__box--grandchildren').remove();
       $.ajax({
         url: '/items/search_child',
         type: 'GET',
         data: {
-          parent_id: parentCategory
+          parent_id: parentValue
         },
         dataType: 'json'
       })
@@ -62,13 +62,13 @@ $(function(){
   });
   // 孫要素のアクション
   $('.sell__container__main__detail__box__category').on('change', '#child_form', function(){
-    var childId = $('#child_form option:selected').data('category'); //選択された子カテゴリーのidを取得
-    if (childId != "選択してください"){ //子カテゴリーが初期値でないことを確認
+    var childValue = $('#child_form option:selected').data('category'); //選択された子カテゴリーのidを取得
+    if (childValue != "選択してください"){ //子カテゴリーが初期値でないことを確認
       $.ajax({
         url: '/items/search_grandchild',
         type: 'GET',
         data: {
-          child_id: childId
+          child_id: childValue
         },
         dataType: 'json'
       })

@@ -111,7 +111,7 @@
 ### Association
 - has_many :users, through: :purchases
 - belongs_to :category
-- belongs_to :brand
+- belongs_to :brand, optional: true
 - has_many :likes, depedent: :destroy
 - has_many :comments
 - has_one :shipping, dependent: :destroy

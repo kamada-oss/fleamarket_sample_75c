@@ -56,7 +56,7 @@
                   必須
                 .select--wrap{id: "category__box--parent"}
                   %i.fas.fa-chevron-down
-                  = f.collection_select :category_id, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_ids][]'
+                  = f.collection_select :category_ids, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_ids][]'
             .sell__container__main__detail__box__brand
               %label
                 ブランド
@@ -64,7 +64,7 @@
                   任意
                 .select--wrap
                   = f.fields_for :brand do |b|
-                    = f.text_field :name, placeholder: '例）シャネル'
+                    = f.text_field :brand_name, placeholder: '例）シャネル'
             .sell__container__main__detail__box__condition
               %label
                 商品の状態
@@ -72,7 +72,7 @@
                   必須
                 .select--wrap
                   %i.fas.fa-chevron-down
-                  = f.select :conditions, Item.conditions.keys,{prompt:"選択してください"}, {class: "select-default"}
+                  = f.select :condition, Item.conditions.keys,{prompt:"選択してください"}, {class: "select-default"}
 
           -# 配送についての部分
         .sell__container__main__delivery
@@ -86,7 +86,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :fee_burdens, Item.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
+                = f.select :fee_burdens, Shipping.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
             .sell__container__main__delivery__box__middle
               %label
                 発送元の地域
@@ -94,7 +94,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :prefectures, Item.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :prefecture, Shipping.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
             .sell__container__main__delivery__box__bottom
               %label
                 発送までの日数
@@ -102,7 +102,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :handling_times, Item.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :handling_times, Shipping.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
 
           -# 価格の部分
         .sell__container__main__price
