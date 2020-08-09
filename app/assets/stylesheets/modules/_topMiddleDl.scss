@@ -7,7 +7,8 @@
   text-shadow: 0 0 5px rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
-  &__in-box {
+    
+    &__in-box {
     max-width: 1040px;
     width: 100%;
     margin: 0 auto;
@@ -25,14 +26,18 @@
       width: 180px;
       display: flex;
       box-sizing: border-box;
-    }
-    &__appBth {
-      margin-right: 10px;
-      width: 180px;
-    } 
-    &__gooleBth {
-      margin-right: 10px;
-      width: 180px;
+      &__appBtn {
+        &__link {
+          margin-right: 10px;
+          width: 180px;
+        }
+      }
+      &__gooleBtn {
+        &__link {
+          margin-right: 10px;
+          width: 180px;
+        }
+      }
     }
   }
 }

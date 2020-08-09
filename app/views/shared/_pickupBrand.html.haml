@@ -2,50 +2,100 @@
   .containerBrand
     %h2.containerBrand__title
       ピックアップブランド
+    .containerBrand__head
+      = link_to "アーカイバ" ,"#", class: "containerBrand__head__link"
     .containerBrand__product
-      .containerBrand__product--head
-        = link_to "#", class: "products--head" do
-          %h3.head
-            .head__left アーカイバ
-      .containerBrand__product--lists
-        %figure.containerCategory__images
-          = image_tag "IMG_9072.jpg", class: "containerCategory__images__image"
-        %h3.item__name
-          ee
-        %p.item__detail
-          1000円
-          %li ★ 0
-        %p.taxIncluded （税込）
-      .containerBrand__product--lists
-        %figure.containerBramd__images
-          = image_tag "a001.png", class: "containerCategory__images__image"
-        %h3.item__name
-          product3
-        %p.item__detail
-          30000円
-          %li ★ 0
-        %p.taxIncluded （税込）
 
-      .containerCategory__product--lists
-        %figure.containerBrand__images
-          = image_tag "a004.png", class: "containerCategory__images__image"
-        %h3.item__name
-          product2
-        %p.item__detail
-          20000円
-          %li ★ 0
-        %p.taxIncluded （税込）
+      .containerBrand__product__lists
+        = link_to "#", class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag "a007.png", class: "containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              ee
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                1000円
+              .containerBrand__product__lists__link__body__detail__icon
+                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+                .containerBrand__product__lists__link__body__detail__icon__text
+                  &nbsp1
+            .containerBrand__product__lists__link__body__tax （税込）
+      
+      .containerBrand__product__lists
+        = link_to "#", class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag "a004.png", class: "containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              product3
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                30000円
+              .containerBrand__product__lists__link__body__detail__icon
+                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+                .containerBrand__product__lists__link__body__detail__icon__text
+                  &nbsp1
+            .containerBrand__product__lists__link__body__tax （税込）
 
-      .containerCategory__product--lists
-        %figure.containerBrand__images
-          = image_tag "a007.png", class: "containerCategory__images__image"
-        %h3.item__name
-          product1
-        %p.item__detail
-          10000円
-          %li ★ 1
-        %p.taxIncluded （税込）
+      .containerBrand__product__lists
+        = link_to "#", class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag "a001.png", class: "containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              product2
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                20000円
+              .containerBrand__product__lists__link__body__detail__icon
+                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+                .containerBrand__product__lists__link__body__detail__icon__text
+                  &nbsp1
+            .containerBrand__product__lists__link__body__tax （税込）
 
+      .containerBrand__product__lists
+        = link_to "#", class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag "a007.png", class: "containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              product1
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                10000円
+              .containerBrand__product__lists__link__body__detail__icon
+                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+                .containerBrand__product__lists__link__body__detail__icon__text
+                  &nbsp1
+            .containerBrand__product__lists__link__body__tax （税込）
+
+      .containerBrand__product__lists
+        = link_to "#", class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag "a004.png", class: "containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              ee
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                1000円
+              .containerBrand__product__lists__link__body__detail__icon
+                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+                .containerBrand__product__lists__link__body__detail__icon__text
+                  &nbsp1
+            .containerBrand__product__lists__link__body__tax （税込）
+
+
+
+
+
+
+
+
+
+
+        
 
 
         -# - @items.each do |product|
