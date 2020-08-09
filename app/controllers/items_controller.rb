@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   def index
     @items = Item.all
   end
@@ -27,6 +26,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def search
     respond_to do |format|
       format.html
@@ -36,9 +38,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase
+  end
+
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :first_category_id, :second_category_id, :third_category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
   end
-
 end

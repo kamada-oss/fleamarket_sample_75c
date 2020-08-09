@@ -39,7 +39,7 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'ancestry'
 gem 'devise'
 gem 'font-awesome-sass'
-
+gem 'fog-aws'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +51,9 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails' 
+  gem 'rails-controller-testing'
 end
 
 group :development do
