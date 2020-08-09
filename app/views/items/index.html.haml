@@ -5,3 +5,9 @@
   新規登録
 = link_to new_user_session_path do
   ログイン
+= link_to destroy_user_session_path, method: :delete do
+  ログアウト
+- if user_signed_in?
+  %h3 ログイン中
+- else
+  %h3 未ログイン
