@@ -87,7 +87,7 @@
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
                   = icon('fa','flag', class: "main__show__contents__content__item-box__optional__right__btn__link__icon")
                   不適切な商品の通報
-        
+        - if user_signed_in? && current_user.id
           .main__show__contents__content__item-user
             .main__show__contents__content__item-user__edit
               = link_to "商品の編集", "#", class: "main__show__contents__content__item-user__edit__link"
