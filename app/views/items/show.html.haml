@@ -39,7 +39,7 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     出品者
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    userの名前
+                    出品者名
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     カテゴリー
@@ -53,30 +53,32 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     ブランド
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
+                    = @item.brand
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     商品のサイズ
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
+                    -# = @size.name
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     商品の状態
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    新品/未使用
+                    = @item.condition
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     配送料の負担
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    送料込み（出品者負担）
+                    = @item.shipping
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送元の地域
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    = link_to "東京都", "#", class: "main__show__contents__content__item-box__table__content__tbody__tr__td__links"
+                    = @item.prefecture
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送日の目安
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    1~2日で発送
+                    = @item.deliver_day_id
           .main__show__contents__content__item-box__optional
             %ul.main__show__contents__content__item-box__optional__left
               %li.main__show__contents__content__item-box__optional__left__btn
