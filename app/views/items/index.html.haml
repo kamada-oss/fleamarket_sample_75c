@@ -11,3 +11,8 @@
   %h3 ログイン中
 - else
   %h3 未ログイン
+.main__category
+  %h2 ピックアップカテゴリー
+  .main__category__box
+    .main__category__box__head
+      = link_to "新規投稿商品一覧へ", item_path(@item.ids), class: "title"

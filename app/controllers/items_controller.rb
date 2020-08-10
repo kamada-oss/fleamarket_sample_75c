@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :check_item_details, only: [:post_done]
 
   def index
-    @item = Item.includes(:item_images)
+    @item = Item.all
   end
 
   def new
@@ -14,21 +14,22 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    binding.pry
     if @item.save
-      redirect_to post_done_item_path
+      redirect_to post_done_items_path
     else
       @item.item_images.new
       redirect_to root_path
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+  
   def post_done
-    @item = Item.all
+    @item = Item.where(user_id: 1).last
   end
 
-  def show
-  end
   
   def edit
   end
@@ -74,7 +75,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:item_image,:_destroy, :id])
+    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :item_image]).merge(user_id: 1)
   end
 
   def category_parent_array
@@ -83,6 +84,8 @@ class ItemsController < ApplicationController
   end
   
   def check_item_details
-    @item = Item.all
+    @item = Item.where(user_id: 1).last
   end
+
+
 end

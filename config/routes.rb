@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [:index, :new, :edit] do
+  resources :categories, only: [:index, :new, :show] do
     member do
       get 'parent'
       get 'child'

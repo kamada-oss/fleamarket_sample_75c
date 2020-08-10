@@ -21,7 +21,7 @@
                 = f.fields_for :item_images do |image|
                   #append-js
                     .js-file_group{"data-index" => "#{image.index}"}
-                      = image.file_field :item_image, type: 'file', name: "item_images[images_attributes][][image_url]", value:"", id:"img-file", class: "js-file"
+                      = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file"
                   %i.fas.fa-camera
                   %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
                 -# 商品名の部分
@@ -86,7 +86,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :fee_burdens, Shipping.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
+                = f.select :fee_burden, Item.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
             .sell__container__main__delivery__box__middle
               %label
                 発送元の地域
@@ -94,7 +94,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :prefecture, Shipping.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :prefecture, Item.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
             .sell__container__main__delivery__box__bottom
               %label
                 発送までの日数
@@ -102,7 +102,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :handling_times, Shipping.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :handling_time, Item.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
 
           -# 価格の部分
         .sell__container__main__price
