@@ -11,3 +11,6 @@
   %h3 ログイン中
 - else
   %h3 未ログイン
+- @items.each do |item|
+  = link_to item_path(item.id) do
+    = item.name
