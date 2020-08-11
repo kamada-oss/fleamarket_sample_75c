@@ -1,39 +1,70 @@
 class ItemsController < ApplicationController
+  before_action :category_parent_array, only: [:new, :create, :edit, :update]
+  before_action :check_item_details, only: [:post_done]
+
   def index
     @items = Item.all
   end
 
   def new
     @item = Item.new
+    @item.item_images.new
     @parents = Category.all.order("id ASC").limit(13)
-    @item.item_images.build
-    @item.build_shipping
-    @item.build_brand
   end
 
   def create
     @item = Item.new(item_params)
-    respond_to do |format|
-      if @item.save
-        params[:item_images][:image].each do |image|
-          @item.item_images.create(image: image, item_id: @item.id)
-        end
-        format.html{redirect_to root_path}
-      else
-        @item.item_images.build
-        format.html{render action: 'new'}
-      end
+    if @item.save
+      redirect_to post_done_items_path
+    else
+      @item.item_images.new
+      redirect_to root_path
     end
   end
 
   def show
+    @item = Item.find(params[:id])
+  end
+  
+  def post_done
+    @item = Item.where(user_id: 1).last
   end
 
-  def search
+  
+  def edit
+  end
+
+  def update
+    if item_params[:images_attributes].nil?
+      flash.now[:alert] = '更新できませんでした【画像を1枚以上入れてください】'
+      render :edit
+    else
+      exit_ids = []
+      item_params[:images_attributes].each do |a,b|
+        exit_ids << item_params[images_attributes].dig(:"#{a}", :id).to_i
+      end
+      ids = Image.where(item_id: params[:id]).map{|image| image.id}
+      exit_ids_uniq = exit_ids.exit_ids_uniq
+      delete__db = ids - exit_ids_uniq
+      Image.where(id:delete__db).destroy_all
+      @item.touch
+    end
+  end
+
+  def search_child
     respond_to do |format|
       format.html
       format.json do
         @children = Category.find(params[:parent_id]).children
+      end
+    end
+  end
+
+  def search_grandchild
+    respond_to do |format|
+      format.html
+      format.json do
+        @grandchildren = Category.find(params[:child_id]).children
       end
     end
   end
@@ -44,6 +75,17 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :first_category_id, :second_category_id, :third_category_id, :size, :condition, :fee_burden, item_images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :item_image]).merge(user_id: 1)
   end
+
+  def category_parent_array
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
+    end
+  end
+  
+  def check_item_details
+    @item = Item.where(user_id: 1).last
+  end
+
+
 end
