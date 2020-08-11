@@ -26,6 +26,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def post_done
+    @item = Item.where(user_id: 1).last
+  end
+
   def update
     if item_params[:images_attributes].nil?
       flash.now[:alert] = '更新できませんでした【画像を1枚以上入れてください】'
