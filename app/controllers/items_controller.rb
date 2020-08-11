@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :check_item_details, only: [:post_done]
 
   def index
-    @item = Item.all
+    @items = Item.all
   end
 
   def new
