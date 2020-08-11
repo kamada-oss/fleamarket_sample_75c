@@ -68,7 +68,7 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     配送料の負担
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    -# = @item.shipping
+                    = @item.fee_burden
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送元の地域
@@ -78,7 +78,7 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送日の目安
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    -# = @item.deliver_day_id
+                    = @item.handling_time
           .main__show__contents__content__item-box__optional
             %ul.main__show__contents__content__item-box__optional__left
               %li.main__show__contents__content__item-box__optional__left__btn
