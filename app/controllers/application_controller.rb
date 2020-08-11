@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_category
-    @parents = Category.all.order("id ASC").limit(13)
+    @parents = Category.limit(13)
   end
 
   private
