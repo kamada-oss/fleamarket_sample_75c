@@ -13,7 +13,6 @@ class Item < ApplicationRecord
     "福岡県":40,"佐賀県":41,"長崎県":42,"熊本県":43,"大分県":44,"宮崎県":45,"鹿児島県":46,"沖縄県":47
   }
   enum auction_status: {出品中:1,  売り切れ:2}
-  # belongs_to :user, optional: true
   has_one    :purchase
   belongs_to :category
   belongs_to :brand, optional: true
@@ -25,7 +24,6 @@ class Item < ApplicationRecord
 
   validates :name,                         presence: true,    length: { maximum: 40 } 
   validates :text,                         presence: true,    length: { maximum: 1000 } 
-  # validates :category_id,                  presence: true
   validates :condition,                    presence: true
   validates :prefecture,                   presence: true
   validates :price,                        presence: true, numericality: { only_integer: true , greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
