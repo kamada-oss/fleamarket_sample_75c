@@ -3,6 +3,7 @@
 
   -# メインの部分
   = form_with(model: @item, local: true, multipart: true) do |f|
+    = render 'layouts/error_messages', model: f.object
     .sell__container
       .sell__container__main
         .sell__container__main__wrapper
@@ -56,7 +57,7 @@
                   必須
                 .select--wrap{id: "category__box--parent"}
                   %i.fas.fa-chevron-down
-                  = f.collection_select :category_ids, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_ids][]'
+                  = f.collection_select :category_id, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_id][]'
             .sell__container__main__detail__box__brand
               %label
                 ブランド

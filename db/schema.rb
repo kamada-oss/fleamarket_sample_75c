@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.integer "fee_burden", null: false
     t.integer "prefecture", null: false
     t.integer "handling_time", null: false
+    t.integer "auction_status", default: 1, null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
