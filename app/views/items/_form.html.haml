@@ -3,11 +3,11 @@
 
   -# メインの部分
   = form_with(model: @item, local: true, multipart: true) do |f|
+    = render 'layouts/error_messages', model: f.object
     .sell__container
       .sell__container__main
         .sell__container__main__wrapper
           %h2.sell__container__main__wrapper__head 商品の情報を入力
-
 
           -# 画像投稿フォーム
         .sell__container__main__sell-upload
@@ -16,19 +16,15 @@
           %span.form-require
             必須
           %p 最大10枚までアップロードできます
-          .sell__container__main__sell-upload__image
-            .sell__container__main__sell-upload__image__box
-              .sell__container__main__sell-upload__image__box__inside
-                .sell__container__main__sell-upload__image__box__inside__file
-                  %label{class: "input-box__image"}
-                    = icon('fas', 'camera')
-                    = f.file_field :item_image, class: "input-box__file"
-                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-
-
-                  -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
-
-
+          #image-box-1
+            %label.input-box__image{for: "img-file"}
+              .sell__container__main__sell-upload__file#image-box__container
+                = f.fields_for :item_images do |image|
+                  #append-js
+                    .js-file_group{"data-index" => "#{image.index}"}
+                      = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file"
+                  %i.fas.fa-camera
+                  %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
                 -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
@@ -46,7 +42,7 @@
                   商品の説明
                   %span.form-require
                     必須
-                = f.text_area :explanation,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+                = f.text_area :text,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
               -# 入力がされていない時のエラー文を追記する。= render partial: 'error-messages', locals: {product: f.object, column: 'name'}
 
             -# 商品の詳細部分
@@ -61,8 +57,7 @@
                   必須
                 .select--wrap{id: "category__box--parent"}
                   %i.fas.fa-chevron-down
-                  = f.collection_select :category_ids, @parents, :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent-form", name: 'item[category_ids][]'
-                  -# Category.all.limit(13), :id, :name,{prompt:"---"},{class:"select--wrap-cat1__default-category1", id: "parent_form"}
+                  = f.collection_select :category_id, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_id][]'
             .sell__container__main__detail__box__brand
               %label
                 ブランド
@@ -70,7 +65,7 @@
                   任意
                 .select--wrap
                   = f.fields_for :brand do |b|
-                    = f.text_field :name, placeholder: '例）シャネル'
+                    = f.text_field :brand_name, placeholder: '例）シャネル'
             .sell__container__main__detail__box__condition
               %label
                 商品の状態
@@ -78,7 +73,7 @@
                   必須
                 .select--wrap
                   %i.fas.fa-chevron-down
-                  = f.select :conditions, Item.conditions.keys,{prompt:"選択してください"}, {class: "select-default"}
+                  = f.select :condition, Item.conditions.keys,{prompt:"選択してください"}, {class: "select-default"}
 
           -# 配送についての部分
         .sell__container__main__delivery
@@ -92,7 +87,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :fee_burdens, Item.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
+                = f.select :fee_burden, Item.fee_burdens.keys, {prompt: "選択してください"}, {class: "select-default"}
             .sell__container__main__delivery__box__middle
               %label
                 発送元の地域
@@ -100,7 +95,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :areas, Item.areas.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :prefecture, Item.prefectures.keys, {prompt: "選択してください"},{class: "select-default"}
             .sell__container__main__delivery__box__bottom
               %label
                 発送までの日数
@@ -108,7 +103,7 @@
                   必須
               .select--wrap
                 %i.fas.fa-chevron-down
-                = f.select :handling_times, Item.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
+                = f.select :handling_time, Item.handling_times.keys, {prompt: "選択してください"},{class: "select-default"}
 
           -# 価格の部分
         .sell__container__main__price
@@ -124,18 +119,18 @@
             .sell__container__main__price__form__right
               ¥
             .input--price
-              = f.text_field :price, class:"input--price__default",placeholder: "例) 300"
+              = f.number_field :price, class:"input--price__default",placeholder: "例) 300"
           .sell__container__main__price__postage
             .sell__container__main__price__postage__message
               %label.postage-tax
                 販売手数料（10%)
-              .sell__container__main__price__postage__price-info
+              .sell__container__main__price__postage__price-info#tax-text
                 ー
           .sell__container__main__price__profit
             .sell__container__main__price__profit__message
               %label.profit
                 販売利益
-              .sell__container__main__price__profit__price-info
+              .sell__container__main__price__profit__price-info#profit-text
                 ー
             
           -# 出品する,下記に保存,もどるのボタンの部分
