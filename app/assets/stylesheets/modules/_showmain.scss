@@ -1,2 +1,33 @@
-.showmain
-  
+.bread
+
+.showMain{
+  padding: 40px;
+  margin: 0 auto;
+  &__left {
+    float: left;
+    &__contentRight {
+      width: 700px;
+      margin: 0 auto;
+
+      &__title {
+        background-color: #fff;
+        border-radius: 5px;
+      &__titlebox {
+        border-radius: 5px 5px 0  0;
+        padding: 16px 10px 8px;
+        background-color: #3CCACE;
+        color: #FFF;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+      }
+
+        &__list {
+          margin: 30px 0px;
+          text-decoration: none;
+
+          }
+      }
+    }
+  }
+}
