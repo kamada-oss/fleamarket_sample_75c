@@ -7,6 +7,19 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      item:
+        item_images: 出品画像
+        name: 商品名
+        text: 商品の説明
+        condition: 商品の状態
+        fee_burden: 配送料の負担
+        prefecture: 発送元の地域
+        handling_time: 発送までの日数
+        price: 販売価格
+        category: カテゴリー
+
+
   date:
     abbr_day_names:
     - 日

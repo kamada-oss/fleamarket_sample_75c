@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
       redirect_to post_done_items_path
     else
       @item.item_images.new
-      redirect_to root_path
+      render :new
     end
   end
 
