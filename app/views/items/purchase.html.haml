@@ -33,12 +33,19 @@
       .body__purchase__payment__topic
         支払い方法
       .body__purchase__payment__info
-        .body__purchase__payment__info__way
-          クレジットカード
-        .body__purchase__payment__info__number
-          *********
-        .body__purchase__payment__info__expiration-date
-          有効期限
+        - if @card.blank?
+          %p ※クレジットカードの登録が完了しておりません。
+        - else
+          .body__purchase__payment__info__way
+            クレジットカード
+          .body__purchase__payment__info__number
+            -# - @card_info.each do |card|
+            -#   = card
+            *********
+          .body__purchase__payment__info__expiration-date
+            -# - @card_info.each do |card|
+            -#   = card.description
+            有効期限
 
     -# 配送先
     .body__purchase__shipping--address
@@ -46,11 +53,17 @@
         配送先
       .body__purchase__shipping--address__info
         .body__purchase__shipping--address__info__address-number
-          000-0000
+          〒
+          = @deliver.zip_code
+        .body__purchase__shipping--address__info__city
+          = @deliver.prefecture
+          = @deliver.city
         .body__purchase__shipping--address__info__address
-          東京都XXXX区◯◯◯◯町△△△△-△△△△-△△△△番地
+          = @deliver.address1
+          = @deliver.address2
         .body__purchase__shipping--address__info__name
-          増永拓郎様
+          = @deliver.family_name
+          = @deliver.first_name
 
     -# 購入確定ボタン
     .body__purchase__confirmation
@@ -60,14 +73,12 @@
         - else
           %p ※必要事項を今一度ご確認ください。
       .body__purchase__confirmation__purchase
-        -# = form_with url: card_new_path, class:"purchase-btn" do
-        -#   %script{type: "text/javascript", src: "https://checkout.pay.jp",class:"purchase-btn", "data-text": "購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
         - if @card.blank?
           = form_tag card_pay_path, method: :post do
             :plain
             %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
         - else
-          = link_to card_new_path, class: "purchase-btn" do
+          = link_to card_show_path, class: "purchase-btn" do
             購入する
 
 -# フッター

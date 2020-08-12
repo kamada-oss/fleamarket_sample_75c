@@ -41,7 +41,13 @@ class ItemsController < ApplicationController
 
   def purchase
     user = User.first
-    card = Card.find_by(user_id: user.id)
+    @card = Card.find_by(user_id: user.id)
+    @deliver = DeliverAddress.find_by(user_id: user.id)
+    # @deliver = DeliverAddress.find_by(user_id: current_user.id)
+
+    # ↓【作成中】カード情報の一部を呼び出すメソッド
+    Payjp.api_key = "sk_test_886ce1cfed869e14416594bb"
+    @card_info = Payjp::Customer.all
   end
 
   private

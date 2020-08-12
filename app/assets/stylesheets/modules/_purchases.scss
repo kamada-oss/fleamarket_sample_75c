@@ -82,19 +82,19 @@
         @include about_font(14px, false, false, 20px 0 0 20px);
       }
       &__info {
-        @include about_font(14px, false, false, 20px 0 0 20px);
+        @include about_font(14px, false, false, 20px 0 0 35px);
       }
 
     // 配送先
     }
     &__shipping--address{
-      @include detail_space(150px, 60%, auto);
+      @include detail_space(170px, 60%, auto);
       border-bottom: 1px solid #EEEEEE;
       &__topic {
         @include about_font(14px, false, false, 20px 0 0 20px);
       }
       &__info {
-        @include about_font(14px, false, false, 20px 0 0 20px);
+        @include about_font(14px, false, false, 20px 0 0 35px);
       }
     }
 
