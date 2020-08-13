@@ -13,4 +13,5 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
+  resources :mypage, only: [:show, :edit]
 end
