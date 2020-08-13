@@ -1,0 +1,43 @@
+.block {
+  background-image: image-url("bg-topMiddleDl-pict.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 0 0 5px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+    
+    &__in-box {
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+    &__title {
+      font-size: 27px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    &__text {
+      font-size: 18px;
+      margin: 20px 0 30px;
+      line-height: 1.5;
+    }
+    &__icon {
+      width: 180px;
+      display: flex;
+      box-sizing: border-box;
+      &__appBtn {
+        &__link {
+          margin-right: 10px;
+          width: 180px;
+        }
+      }
+      &__gooleBtn {
+        &__link {
+          margin-right: 10px;
+          width: 180px;
+        }
+      }
+    }
+  }
+}
