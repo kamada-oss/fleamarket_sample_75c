@@ -27,7 +27,7 @@
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
           - if user_signed_in?
-            - unless current_user.id
+            - unless current_user.id == @item.user_id
               .main__show__contents__content__item-box__purchase
                 = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
@@ -92,7 +92,7 @@
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
                   = icon('fa','flag', class: "main__show__contents__content__item-box__optional__right__btn__link__icon")
                   不適切な商品の通報
-        - if user_signed_in? && current_user.id
+        - if user_signed_in? && current_user.id == @item.user_id
           .main__show__contents__content__item-user
             .main__show__contents__content__item-user__edit
               = link_to "商品の編集", "#", class: "main__show__contents__content__item-user__edit__link"
