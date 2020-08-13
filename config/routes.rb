@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'card/new'
   get 'card/show'
   post 'card/pay'
+  get 'items/purchase'
   root 'items#index'
   resources :items, only: [:index, :new, :create, :show, :edit, :update] do
     collection do

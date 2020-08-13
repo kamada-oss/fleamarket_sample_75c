@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item  = Item.find(params[:id])
   end
   
   def post_done
@@ -70,14 +70,14 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    user = User.first
-    @card = Card.find_by(user_id: user.id)
-    @deliver = DeliverAddress.find_by(user_id: user.id)
-    # @deliver = DeliverAddress.find_by(user_id: current_user.id)
+    user = User.find_by(id: current_user.id)
+    @card = Card.find_by(user_id: current_user.id)
+    @deliver = DeliverAddress.find_by(user_id: current_user.id)
 
     # ↓【作成中】カード情報の一部を呼び出すメソッド
-    Payjp.api_key = "sk_test_886ce1cfed869e14416594bb"
-    @card_info = Payjp::Customer.all
+    # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    # @card_info = Payjp::Customer.all
+    # @card_info = Payjp::Customer.find(user_id: current_user.id)
   end
 
   private
