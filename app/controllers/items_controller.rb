@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    unless @item.brand_id.nil?
+      @brand = Brand.find(@item.brand_id)
+    end
   end
 
   def post_done
