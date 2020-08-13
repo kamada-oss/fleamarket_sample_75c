@@ -112,7 +112,11 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "item_id", null: false
+    t.bigint "saler_id", null: false
+    t.bigint "buyer_id", null: false
+    t.index ["buyer_id"], name: "index_purchases_on_buyer_id"
     t.index ["item_id"], name: "index_purchases_on_item_id"
+    t.index ["saler_id"], name: "index_purchases_on_saler_id"
   end
 
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -150,4 +154,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "purchases", "users", column: "buyer_id"
+  add_foreign_key "purchases", "users", column: "saler_id"
 end
