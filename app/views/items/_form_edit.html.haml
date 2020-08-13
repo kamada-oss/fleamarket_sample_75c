@@ -3,12 +3,11 @@
 
   -# メインの部分
   = form_with(model: @item, local: true, multipart: true) do |f|
+    = render 'layouts/error_messages', model: f.object
     .sell__container
       .sell__container__main
         .sell__container__main__wrapper
           %h2.sell__container__main__wrapper__head 商品の情報を入力
-
-
           -# 画像投稿フォーム
         .sell__container__main__sell-upload
           %label
@@ -24,8 +23,6 @@
                     = icon('fas', 'camera')
                     = f.file_field :item_image, class: "input-box__file"
                     %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-
-
                   -# 画像投稿フォームを整理したらcameraアイコンの設置箇所を正す
 
 
@@ -46,7 +43,7 @@
                   商品の説明
                   %span.form-require
                     必須
-                = f.text_area :explanation,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+                = f.text_area :text,class: 'sell__container__main__form__explanation__upper__default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
               -# 入力がされていない時のエラー文を追記する。= render partial: 'error-messages', locals: {product: f.object, column: 'name'}
 
             -# 商品の詳細部分

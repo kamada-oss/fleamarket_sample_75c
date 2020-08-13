@@ -99,13 +99,9 @@
 |brand_id|references|null: false, foreign_key: true|
 |condition|integer|null: false|
 |price|integer|null: false|
-|saler_id|references|null: false, foreign_key: true|
-|buyer_id|references|null: false, foreign_key: true|
-|size_id|references|null: false, foreign_key: true|
-|delivery_way_id|string|null: false, foreign_key: true|
-|delivery_day_id|string|null: false, foreign_key: true|
-|shipping_id|references|null: false, foreign_key: true|
-|prefecture|string|null: false|
+|prefecture|integer|null: false|
+|fee_burden|integer|null: false|
+|handling_time|integer|null:false|
 
 ### Association
 - has_many :users, through: :purchases
@@ -113,9 +109,6 @@
 - belongs_to :brand, optional: true
 - has_many :likes, depedent: :destroy
 - has_many :comments
-- has_one :shipping, dependent: :destroy
-- accepts_nested_attributes_for :shipping
-- belongs_to :size, optional: true
 - has_many :item_images, dependent: :destroy
 - accepts_nested_attributes_for :item_images, allow_destroy: true
 
@@ -155,38 +148,6 @@
 - has_ancestry
 
 ## brandsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-
-## shippingsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|fee_burden|boolean|null: false|
-|area|integer|null: false|
-|handling_time|integer|null: false|
-|item_id|references|null: false, foreign_key: true|
-
-### Association
-- belongs_to :item, optional: true
-
-
-## delivery_days テーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|day|date|null: false|
-
-### Association
-- has_many :items
-
-## delivery_ways テーブル
 
 |Column|Type|Options|
 |------|----|-------|
