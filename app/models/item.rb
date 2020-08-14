@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   }
   enum auction_status: {出品中:1,  売り切れ:2}
   has_one    :purchase
+  belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
   has_many   :likes, dependent: :destroy

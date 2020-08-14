@@ -11,15 +11,15 @@
             %h2= @item.name
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
-              %li.main__show__contents__content__item-box__body__photo__content
-                = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__upper"
-                %ul.main__show__contents__content__item-box__body__photo__content__lawer
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample2.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample3.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+              - @item.item_images.each do |i|
+                - if i.item_image.present?
+                  %li.main__show__contents__content__item-box__body__photo__content
+                    = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
+                    %ul.main__show__contents__content__item-box__body__photo__content__lawer
+                      - if @item.item_images.present?
+                        - @item.item_images.each do |i|
+                          %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
+                            = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
             .main__show__contents__content__item-box__price__item-price
               = "¥#{@item.price}"
@@ -39,7 +39,7 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     出品者
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    user.name
+                    = @item.user.nickname
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     カテゴリー
