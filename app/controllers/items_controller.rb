@@ -27,14 +27,13 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-  end
-  
-  def post_done
-    @item = Item.where(user_id: 1).last
+    unless @item.brand_id.nil?
+      @brand = Brand.find(@item.brand_id)
+    end
   end
 
-  
-  def edit
+  def post_done
+    @item = Item.where(user_id: 1).last
   end
 
   def update

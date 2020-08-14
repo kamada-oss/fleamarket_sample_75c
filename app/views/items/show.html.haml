@@ -11,23 +11,27 @@
             %h2= @item.name
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
-              %li.main__show__contents__content__item-box__body__photo__content
-                = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__upper"
-                %ul.main__show__contents__content__item-box__body__photo__content__lawer
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample1.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample2.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
-                  %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box
-                    = image_tag "sample/sample3.png", class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+              - @item.item_images.each do |i|
+                - if i.item_image.present?
+                  %li.main__show__contents__content__item-box__body__photo__content
+                    = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
+                    %ul.main__show__contents__content__item-box__body__photo__content__lawer
+                      - if @item.item_images.present?
+                        - @item.item_images.each do |i|
+                          %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
+                            = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
             .main__show__contents__content__item-box__price__item-price
-              ¥10000
+              = "¥#{@item.price}"
             .main__show__contents__content__item-box__price__detail
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
+          - if user_signed_in?
+            - unless current_user.id == @item.user_id
+              .main__show__contents__content__item-box__purchase
+                = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
-            まさに「絶品」。濃厚な大人の味わい。 デュクセルソースと40数種スパイスで仕上げた、大人向けの本格的なカレーです。
+            = @item.text
           .main__show__contents__content__item-box__table
             %table.main__show__contents__content__item-box__table__content
               %tbody.main__show__contents__content__item-box__table__content__tbody
@@ -35,7 +39,7 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     出品者
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    user.name
+                    = @item.user.nickname
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     カテゴリー
@@ -49,30 +53,35 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     ブランド
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
+                    - unless @brand.nil?
+                      = @brand.name
+                    - else
+                      なし
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     商品のサイズ
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
+                    = @item.size
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     商品の状態
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    新品/未使用
+                    = @item.condition
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     配送料の負担
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    送料込み（出品者負担）
+                    = @item.fee_burden
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送元の地域
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    = link_to "東京都", "#", class: "main__show__contents__content__item-box__table__content__tbody__tr__td__links"
+                    = link_to "#{@item.prefecture}", "#"
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     発送日の目安
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    1~2日で発送
+                    = @item.handling_time
           .main__show__contents__content__item-box__optional
             %ul.main__show__contents__content__item-box__optional__left
               %li.main__show__contents__content__item-box__optional__left__btn
@@ -83,8 +92,12 @@
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
                   = icon('fa','flag', class: "main__show__contents__content__item-box__optional__right__btn__link__icon")
                   不適切な商品の通報
-        .main__show__contents__content__edit-box
-          = link_to "商品の編集", edit_item_path(@item.id), class: "edit"
+        - if user_signed_in? && current_user.id == @item.user_id
+          .main__show__contents__content__item-user
+            .main__show__contents__content__item-user__edit
+              = link_to "商品の編集", "#", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
+            .main__show__contents__content__item-user__destroy
+              = link_to "この商品を削除する", "#", class: "main__show__contents__content__item-user__destroy__link"
         .main__show__contents__content__comment-box
           %form{action: "#", class: "main__show__contents__content__comment-box__form"}
             %textarea.main__show__contents__content__comment-box__form__textarea
