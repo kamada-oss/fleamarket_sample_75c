@@ -83,6 +83,8 @@
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
                   = icon('fa','flag', class: "main__show__contents__content__item-box__optional__right__btn__link__icon")
                   不適切な商品の通報
+        .main__show__contents__content__edit-box
+          = link_to "商品の編集", edit_item_path(@item.id), class: "edit"
         .main__show__contents__content__comment-box
           %form{action: "#", class: "main__show__contents__content__comment-box__form"}
             %textarea.main__show__contents__content__comment-box__form__textarea

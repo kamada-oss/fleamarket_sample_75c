@@ -1,8 +1,20 @@
-* {
+@mixin input_place(){
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  height: 48px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 56px 0 16px;
+  width: 100%;
+
 }
 
-@mixin select-default{
+@mixin select-default(){
   appearance: none;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -27,6 +39,16 @@
   box-shadow: 0px 0px 0px;
 }
 
+@mixin fa-chevron-down(){
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  z-index: 2;
+  color: #888;
+  font-size: 8px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
 
 // トップページの出品ボタン
 .sell-tab {
@@ -133,14 +155,7 @@ span{
   background: #fff;
   margin-top: 16px;
   .fa-chevron-down {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    z-index: 2;
-    color: #888;
-    font-size: 8px;
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
+    @include fa-chevron-down();
   }
 }
 // 選択の箇所
@@ -148,15 +163,21 @@ span{
   @include select-default
 }
 
-// カテゴリー子要素箇所
-.select--default__category1{
-  @include select-default
+// カテゴリー
+.select_field{
+  margin-top: 16px;
+  @include input_place();
 }
-// カテゴリー孫要素箇所
-.select--wrap__category2{
-  @include select-default
+.category{
+  margin-top: 16px;
 }
+.category__child{
+  margin-top: 16px;
 
+}
+.category__grandchild{
+  margin-top: 16px;
+}
 // 画像投稿ファーム
 .sell{
   background-color: #EEEEEE;
@@ -288,7 +309,9 @@ span{
           }
         }
       }
+
       // 商品詳細
+      
       &__detail{
         display: block;
         padding: 40px;
@@ -445,7 +468,7 @@ span{
   }
 }
 
-// post_done
+// update_done
 .done {
   width: calc(100% - 250px);
   height: 90vh;
@@ -480,4 +503,6 @@ span{
 #fullsize {
   width: 100%;
 }
+
+
 
