@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :category_parent_array, only: [:new, :create, :edit, :update]
   before_action :check_item_details, only: [:post_done]
-
+  before_action :set_item, only:[:destroy, :show]
   def index
     @items = Item.all
   end
@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     unless @item.brand_id.nil?
       @brand = Brand.find(@item.brand_id)
     end
@@ -47,6 +46,13 @@ class ItemsController < ApplicationController
       delete__db = ids - exit_ids_uniq
       Image.where(id:delete__db).destroy_all
       @item.touch
+    end
+  end
+
+  def destroy
+    render :delete unless @item.user_id == current_user.id && @item.destroy
+    if @item.destroy
+      redirect_to root_path
     end
   end
 
@@ -84,6 +90,10 @@ class ItemsController < ApplicationController
   
   def check_item_details
     @item = Item.where(user_id: 1).last
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 
