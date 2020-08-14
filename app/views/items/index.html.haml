@@ -1,4 +1,8 @@
 .main-section
+  - @items.each do |item|
+    = link_to item_path(item.id) do
+      = item.name
+
   = render "sell-tab"
   = render "shared/header"
   = render "shared/mainVisual"
