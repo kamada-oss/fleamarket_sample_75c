@@ -31,5 +31,18 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
-  resources :mypage, only: [:show, :edit]
+  resources :mypage, only: [] do
+    member do
+      get 'good_index'
+      get 'item_exhibiting'
+      get 'item_sold'
+      get 'item_purchased'
+      get 'edit_profile'
+      get 'edit_address'
+      get 'edit_payment'
+      get 'edit_email_password'
+      get 'edit_user_information'
+      get 'logout'
+    end
+  end
 end

@@ -1,3 +1,29 @@
-// Place all the styles related to the mypage controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.mypage-container{
+  display: flex;
+  justify-content: center;
+  background-color: #EEEEEE;
+  padding: 35px;
+}
+.mypage-sidebar{
+  width: 300px;
+  background-color: white;
+  li{
+    border-bottom: solid 1px #EEEEEE;
+    padding: 12px;
+  }
+  &__list{
+    list-style: none;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    &__content{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.mypage-main{
+  width: 500px;
+}

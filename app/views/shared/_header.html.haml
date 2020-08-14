@@ -22,7 +22,7 @@
             = link_to destroy_user_session_path, method: :delete, class: "header__box__lawer__right__login__btn" do
               ログアウト
           %li.header__box__lawer__right__sign-up
-            = link_to mypage_path(current_user), class: "header__box__lawer__right__sign-up__btn" do
+            = link_to good_index_mypage_path(current_user), class: "header__box__lawer__right__sign-up__btn" do
               マイページ
         - else
           %li.header__box__lawer__right__login
