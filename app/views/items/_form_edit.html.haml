@@ -15,10 +15,10 @@
           %span.form-require
             必須
           %p 最大10枚までアップロードできます
-          #image-box-1{class: "#{@item_images.last}"}
+          #image-box-1{class: "#{@item_images.last.id}"}
             - @item_images.each do |img|
               .item-image{id:img.id}
-                = image_tag(img.item_image.url,{width: "188", height: "180"})
+                = image_tag(img.item_image.url,{width: "170", height: "170"})
                 .item-image__operation
                   .item-image__operation--edit__delete__hidden 削除
             %label.input-box__image{for: "img-file"}
@@ -26,7 +26,7 @@
                 #append-js-edit
                   = f.fields_for :item_images do |image|
                     .js-file_group{"data-index" => "#{image.index}"}
-                      = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file-edit",name: "item[images_attributes][#{@item.images.count}][image]", data:{index:""}
+                      = image.file_field :item_image, type: 'file', style:"", value:"#{@item_images.object_id}", id:"img-file", class: "js-file-edit",name: "item[item_images_attributes][#{@item.item_images.count}][image]", data:{index:""}
                 %i.fas.fa-camera
                 %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
 

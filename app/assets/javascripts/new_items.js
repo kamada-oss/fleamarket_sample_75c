@@ -23,7 +23,7 @@ $(function(){
         var html= `<div class='item-image' data-image="${file.name}" data-index="${image_no}">
                     <div class='item-image__content'>
                       <div class='item-image__content--icon'>
-                        <img src=${src} width="150" height="150" >
+                        <img src=${src} width="170" height="170" >
                       </div>
                     </div>
                     <div class='item-image__operetion'>

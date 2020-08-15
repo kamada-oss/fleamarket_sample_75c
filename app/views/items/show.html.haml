@@ -95,7 +95,7 @@
         - if user_signed_in? && current_user.id == @item.user_id
           .main__show__contents__content__item-user
             .main__show__contents__content__item-user__edit
-              = link_to "商品の編集", "#", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
+              = link_to "商品の編集", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
             .main__show__contents__content__item-user__destroy
               = link_to "この商品を削除する", "#", class: "main__show__contents__content__item-user__destroy__link"
         .main__show__contents__content__comment-box

@@ -101,8 +101,10 @@ span{
   background-color: #bfbfbf;
   color: #fff;
 }
-
+// 出品画像
 .input-box__image{
+  margin-top: 0px;
+  margin-left: 10px;
   flex-wrap: wrap;
   .item-image{
     &__content{
