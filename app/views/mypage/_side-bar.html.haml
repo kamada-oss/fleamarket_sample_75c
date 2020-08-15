@@ -5,8 +5,42 @@
         いいね！一覧
         = icon 'fas', 'chevron-right'
     %li
-      = link_to good_index_mypage_path, class:'mypage-sidebar__list__content' do
-        いいね！一覧
+      = link_to new_item_path, class:'mypage-sidebar__list__content' do
+        出品する
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to item_exhibiting_mypage_path, class:'mypage-sidebar__list__content' do
+        出品した商品-出品中
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to item_sold_mypage_path, class:'mypage-sidebar__list__content' do
+        出品した商品-売却済み
+        = icon 'fas', 'chevron-right'
+    %li 
+      = link_to item_purchased_mypage_path, class:'mypage-sidebar__list__content' do
+        購入した商品
+        = icon 'fas', 'chevron-right'
+  %h3 設定
+  %ul.mypage-sidebar__list
+    %li
+      = link_to edit_profile_mypage_path, class:'mypage-sidebar__list__content' do
+        プロフィール
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to edit_address_mypage_path, class:'mypage-sidebar__list__content' do
+        発送元・お届け先住所変更
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to edit_payment_mypage_path, class:'mypage-sidebar__list__content' do
+        支払い方法
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to edit_email_password_mypage_path, class:'mypage-sidebar__list__content' do
+        メール/パスワード
+        = icon 'fas', 'chevron-right'
+    %li
+      = link_to logout_mypage_path, class:'mypage-sidebar__list__content' do
+        ログアウト
         = icon 'fas', 'chevron-right'
     
 

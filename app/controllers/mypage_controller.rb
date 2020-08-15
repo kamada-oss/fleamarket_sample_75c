@@ -1,8 +1,11 @@
 class MypageController < ApplicationController
+  before_action :redirect_to_login_when_not_signed_in
+
   def good_index
   end
 
   def item_exhibiting
+    @items = Item.where(user_id: current_user.id)
   end
 
   def item_sold
@@ -28,4 +31,10 @@ class MypageController < ApplicationController
 
   def logout
   end
+
+
+  private
+    def redirect_to_login_when_not_signed_in
+      redirect_to new_user_session_path unless user_signed_in?
+    end
 end

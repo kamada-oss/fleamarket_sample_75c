@@ -41,7 +41,6 @@ Rails.application.routes.draw do
       get 'edit_address'
       get 'edit_payment'
       get 'edit_email_password'
-      get 'edit_user_information'
       get 'logout'
     end
   end
