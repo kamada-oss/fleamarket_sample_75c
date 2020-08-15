@@ -1,0 +1,9 @@
+= render 'shared/header'
+.mypage-container
+  = render 'side-bar'
+  .mypage-main
+    .mypage-main__header
+      %h3 プロフィール
+    .mypage-main__edit-nickname
+      = image_tag src="member_photo_noimage_thumb.png"
+= render 'shared/footer'

@@ -13,9 +13,18 @@ class MypageController < ApplicationController
   end
 
   def item_purchased
+    @items = Item.where(user_id: 50)
   end
 
   def edit_profile
+  end
+
+  def update_profile
+    if current_user.update(user_pramas)
+      redirect_to edit_profile_mypage_path
+    else
+      render :edit_profile
+    end
   end
 
   def edit_address
@@ -37,5 +46,19 @@ class MypageController < ApplicationController
   private
     def redirect_to_login_when_not_signed_in
       redirect_to new_user_session_path unless user_signed_in?
+    end
+
+    def user_params
+      params.require(:user).permit(
+        :nickname,
+        :email,
+        :password,
+        :password_confirmation,
+        :family_name,
+        :first_name,
+        :family_name_kana,
+        :first_name_kana,
+        :birthday,
+      )
     end
 end

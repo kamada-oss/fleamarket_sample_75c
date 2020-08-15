@@ -123,13 +123,12 @@
       &__text{
         margin-left: 10px;
         &__box-blue{
-
-        }
-        &__box-blue{
           @include item-text-box($furima-color)
         }
+        &__box-red{
+          @include item-text-box(red)
+        }
       }
-
     }
     i{
       line-height: 75px;
@@ -137,7 +136,15 @@
       display:flex;
       margin-right: 10px;
     }
-
-
+  }
+  // 編集
+  &__edit-nickname{
+    height: 200px;
+    width: 100%;
+    background-image: image-url('mizutama.jpg');
+    img{
+      height: 50px;
+      width: 50px;
+    }
   }
 }

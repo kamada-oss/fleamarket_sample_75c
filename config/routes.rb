@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get 'item_sold'
       get 'item_purchased'
       get 'edit_profile'
+      post 'update_profile'
       get 'edit_address'
       get 'edit_payment'
       get 'edit_email_password'
