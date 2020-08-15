@@ -22,11 +22,11 @@
                 .item-image__operation
                   .item-image__operation--edit__delete__hidden 削除
             %label.input-box__image{for: "img-file"}
-              .sell__container__main__sell-upload__file#image-box__container
-                = f.fields_for :item_images do |image|
-                  #append-js
+              #image-box__container{class:"item-num-#{@item_images.length}"}
+                #append-js-edit
+                  = f.fields_for :item_images do |image|
                     .js-file_group{"data-index" => "#{image.index}"}
-                      = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file"
+                      = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file-edit",name: "item[images_attributes][#{@item.images.count}][image]", data:{index:""}
                 %i.fas.fa-camera
                 %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
 
@@ -61,7 +61,6 @@
                 %span.form-require
                   必須
                 .select--wrap{id: "category__box--parent"}
-                  -# = f.collection_select :category_id, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_id][]'
               - if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
                 .append__category
                   .category

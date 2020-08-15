@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   end
 
   def post_done
-    @item = Item.where(user_id: 1).last
+    @item = Item.where(user_id: current_user.id).last
   end
 
   def update
@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: 1)
+    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -101,7 +101,7 @@ class ItemsController < ApplicationController
   end
   
   def check_item_details
-    @item = Item.where(user_id: 1).last
+    @item = Item.where(user_id: current_user.id).last
   end
   
   def show_all_instance
