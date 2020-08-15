@@ -12,7 +12,7 @@
     -# 商品情報
     .body__purchase__item
       .body__purchase__item__image
-        =image_tag 'member_photo_noimage_thumb.png', size: "100x100"
+        = image_tag 'member_photo_noimage_thumb.png', size: "100x100"
       .body__purchase__item__name
         職人が絶賛！？モナコ名物F１プラモデル（車体に２箇所キズあり）
       .body__purchase__item__name__price
@@ -39,13 +39,12 @@
           .body__purchase__payment__info__way
             クレジットカード
           .body__purchase__payment__info__number
-            -# - @card_info.each do |card|
-            -#   = card
-            *********
+            = "**** **** **** " + @default_card_information.last4
           .body__purchase__payment__info__expiration-date
-            -# - @card_info.each do |card|
-            -#   = card.description
-            有効期限
+            = "有効期限:"
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
 
     -# 配送先
     .body__purchase__shipping--address
@@ -63,7 +62,7 @@
           = @deliver.address2
         .body__purchase__shipping--address__info__name
           = @deliver.family_name
-          = @deliver.first_name
+          = @deliver.first_name + " 様"
 
     -# 購入確定ボタン
     .body__purchase__confirmation
@@ -76,9 +75,9 @@
         - if @card.blank?
           = form_tag card_pay_path, method: :post do
             :plain
-            %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
+            %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": ENV["PAYJP_KEY"]}
         - else
-          = link_to card_show_path, class: "purchase-btn" do
+          = link_to card_pay_path, method: :post, class: "purchase-btn" do
             購入する
 
 -# フッター

@@ -10,7 +10,6 @@ class CardController < ApplicationController
   def pay #payjpとCardのデータベース作成を実施します。
     user = User.find_by(id: current_user.id)
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    # Payjp.api_key = "sk_test_886ce1cfed869e14416594bb"
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
@@ -22,7 +21,7 @@ class CardController < ApplicationController
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "show"
+        redirect_to action: "confirm"
       else
         redirect_to action: "pay"
       end
@@ -47,9 +46,22 @@ class CardController < ApplicationController
       redirect_to action: "new"
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      # Payjp.api_key = "sk_test_886ce1cfed869e14416594bb"
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end
+
+  def confirm
+  end
+
+  private
+
+  def get_payjp_info
+    if Rails.env == 'development'
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    else
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
+    end
+  end
+
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'card/new'
   get 'card/show'
+  get 'card/confirm'
   post 'card/pay'
   get 'items/purchase'
   root 'items#index'
