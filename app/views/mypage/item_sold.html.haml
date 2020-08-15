@@ -5,10 +5,10 @@
     .mypage-main__header
       %h3 出品した商品
     %ul.mypage-main__item-status
-      %li.mypage-main__item-status__item-list--select
+      %li.mypage-main__item-status__item-list--non-select
         = link_to item_exhibiting_mypage_path do
           出品中
-      %li.mypage-main__item-status__item-list--non-select
+      %li.mypage-main__item-status__item-list--select
         = link_to item_sold_mypage_path do
           売却済み
     - if @items.any?

@@ -2,6 +2,16 @@
   background-color: $background-color;
   border-top: solid 1.5px $border-color;
 }
+@mixin item-text-box($background-color){
+  margin-top: 10px;
+  width: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: white;
+  background-color: $background-color;
+  border-radius: 0.2em;
+}
 .mypage-container{
   display: flex;
   justify-content: center;
@@ -106,11 +116,18 @@
     &__content{
       color: black;
       margin-right: 350px;
+      display: flex;
       &__img{
         line-height: 74px;
       }
       &__text{
-        
+        margin-left: 10px;
+        &__box-blue{
+
+        }
+        &__box-blue{
+          @include item-text-box($furima-color)
+        }
       }
 
     }

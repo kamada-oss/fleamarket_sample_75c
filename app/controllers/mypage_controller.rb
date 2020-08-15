@@ -9,6 +9,7 @@ class MypageController < ApplicationController
   end
 
   def item_sold
+    @items = Item.where(user_id: 50)
   end
 
   def item_purchased
