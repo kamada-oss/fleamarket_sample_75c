@@ -156,10 +156,10 @@
         = link_to "/items" do
           = image_tag "logo-white.png", class: "footer__sell-page"
 - else 
-.done#fullsize
-  .done__title
-    商品を出品するには新規会員登録またはログインが必要です。
-    .done__backlink
-      = link_to '新規会員登録', registration_user_information_signup_index_path, class: 'link'
-    .done__backlink
-      =link_to 'ログイン', new_user_session_path, class: 'link'
+  .done#fullsize
+    .done__title
+      商品を出品するには新規会員登録またはログインが必要です。
+      .done__backlink
+        = link_to '新規会員登録', registration_user_information_signup_index_path, class: 'link'
+      .done__backlink
+        =link_to 'ログイン', new_user_session_path, class: 'link'
