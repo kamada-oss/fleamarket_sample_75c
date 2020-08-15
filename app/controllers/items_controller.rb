@@ -52,6 +52,8 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
       redirect_to delete_done_items_path
+    else
+      redirect_to item_path(@item)
     end
   end
 
