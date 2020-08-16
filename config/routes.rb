@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'card/new'
-  get 'card/show'
-  get 'card/confirm'
-  post 'card/pay'
   get 'items/purchase'
   root 'items#index'
   resources :items, only: [:index, :new, :create, :show, :edit, :update] do
@@ -34,6 +30,24 @@ Rails.application.routes.draw do
       get 'registration_user_information'
       get 'registration_send_address'
       get 'done'
+    end
+  end
+
+  resources :card, only: [:new, :show, :create] do
+    collection do
+      post 'new'
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+      get 'confirm'
+    end
+  end
+
+  resources :purchases, only: [:index] do
+    collection do
+      get 'index', to: 'purchases#index'
+      post 'pay', to: 'purchases#pay'
+      get 'done', to: 'purchases#done'
     end
   end
 

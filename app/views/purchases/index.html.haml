@@ -34,10 +34,17 @@
         支払い方法
       .body__purchase__payment__info
         - if @card.blank?
-          %p ※クレジットカードの登録が完了しておりません。
+          .body__purchase__payment__info__notice
+            ※クレジットカードの登録が完了しておりません。
+            .body__purchase__payment__info__notice__register
+              = link_to card_index_path do
+                追加する
         - else
           .body__purchase__payment__info__way
             クレジットカード
+            .body__purchase__payment__info__way__delete
+              = link_to delete_card_index_path, method: :post do
+                削除する
           .body__purchase__payment__info__number
             = "**** **** **** " + @default_card_information.last4
           .body__purchase__payment__info__expiration-date
@@ -68,16 +75,18 @@
     .body__purchase__confirmation
       .body__purchase__confirmation__note
         - if @card.blank?
-          %p ※下記よりクレジットカードの登録を行った後購入手続きに進みます。
+          %p ※クレジットカードの登録が完了しておりません。
         - else
           %p ※必要事項を今一度ご確認ください。
       .body__purchase__confirmation__purchase
         - if @card.blank?
-          = form_tag card_pay_path, method: :post do
-            :plain
-            %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": ENV["PAYJP_KEY"]}
+          .body__purchase__confirmation__purchase__dummy
+            購入する
+          -# = form_tag card_pay_path, method: :post do
+          -#   :plain
+          -#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": ENV["PAYJP_KEY"]}
         - else
-          = link_to card_pay_path, method: :post, class: "purchase-btn" do
+          = link_to pay_purchases_path, method: :post, class: "purchase-btn" do
             購入する
 
 -# フッター

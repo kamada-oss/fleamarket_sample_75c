@@ -14,14 +14,13 @@ class CardController < ApplicationController
       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(
-      description: '登録テスト', #なくてもOK
       email: user.email, #なくてもOK
       card: params['payjp-token'],
       metadata: {user_id: user.id}
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "confirm"
+        redirect_to action: "show"
       else
         redirect_to action: "pay"
       end
@@ -52,16 +51,6 @@ class CardController < ApplicationController
   end
 
   def confirm
-  end
-
-  private
-
-  def get_payjp_info
-    if Rails.env == 'development'
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    else
-      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
-    end
   end
 
 end

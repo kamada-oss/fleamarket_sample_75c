@@ -70,11 +70,13 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    user = User.find_by(id: current_user.id)
-    card = Card.find_by(user_id: current_user.id)
-    @deliver = DeliverAddress.find_by(user_id: current_user.id)
-    # customer = Payjp::Customer.retrieve(@card.customer_id)
-    # @default_card_information = customer.cards.retrieve(@card.card_id)
+    # user = User.find_by(id: current_user.id)
+    # @card = Card.find_by(user_id: current_user.id)
+    # @deliver = DeliverAddress.find_by(user_id: current_user.id)
+    # if @card.present?
+    #   customer = Payjp::Customer.retrieve(@card.customer_id)
+    #   @default_card_information = customer.cards.retrieve(@card.card_id)
+    # end
   end
 
   private
