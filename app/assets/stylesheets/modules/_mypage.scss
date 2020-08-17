@@ -12,6 +12,24 @@
   background-color: $background-color;
   border-radius: 0.2em;
 }
+@mixin input-nickname($border-color){
+  width: 30%;
+  height: 50px;
+  font-size: 15px;
+  text-indent: 1em;
+  border: solid 1px $border-color;
+  border-radius: 0.3em;
+  display: block;
+  line-height: 200px;
+}
+
+// formエラー時のディスプレイ崩れを解消
+.field_with_errors {
+  display: contents;
+}
+
+
+
 .mypage-container{
   display: flex;
   justify-content: center;
@@ -23,6 +41,9 @@
   li{
     border-bottom: solid 1px #EEEEEE;
     padding: 12px;
+    &:hover{
+      background-color: #DDDDDD;
+    }
   }
   h3{
     margin-top: 40px;
@@ -126,7 +147,7 @@
           @include item-text-box($furima-color)
         }
         &__box-red{
-          @include item-text-box(red)
+          @include item-text-box($red-btn-color)
         }
       }
     }
@@ -137,14 +158,49 @@
       margin-right: 10px;
     }
   }
-  // 編集
+  // ユーザープロフィール編集
   &__edit-nickname{
     height: 200px;
     width: 100%;
     background-image: image-url('mizutama.jpg');
+    line-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img{
       height: 50px;
       width: 50px;
+      display: block;
+      line-height: 200px;
+    }
+    .input-nickname{
+      @include input-nickname(#EEEEEE)
+    }
+    .input-nickname-error{
+      @include input-nickname($red-btn-color)
+    }
+  }
+  .field{
+    height: 330px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    .input-introduction{
+      margin-top: 30px;
+      width: 95%;
+      height: 200px;
+      border: solid 1px #EEEEEE;
+      text-indent: 1em;
+      border-radius: 0.3em;
+    }
+    .btn-red{
+      width: 95%;
+      height: 50px;
+      background-color: $red-btn-color;
+      color: white;
+      border: solid 1px #EEEEEE;
+      border-radius: 0.3em;
+      margin-top: 20px;
     }
   }
 }

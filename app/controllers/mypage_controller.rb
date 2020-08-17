@@ -17,11 +17,16 @@ class MypageController < ApplicationController
   end
 
   def edit_profile
+    @user = current_user
   end
 
   def update_profile
-    if current_user.update(user_pramas)
-      redirect_to edit_profile_mypage_path
+    @user = current_user
+    @user.update(user_params_introduction)
+    # ニックネームと自己紹介にのみvalidateをかける
+    unless @user.errors.include?(:nickname) or @user.errors.include?(:introduction)
+      @user.save(validate: false)
+      redirect_to edit_profile_mypage_path, notice: 'ユーザープロフィールを更新しました'
     else
       render :edit_profile
     end
@@ -48,17 +53,17 @@ class MypageController < ApplicationController
       redirect_to new_user_session_path unless user_signed_in?
     end
 
-    def user_params
+    def user_params_introduction
       params.require(:user).permit(
         :nickname,
-        :email,
-        :password,
-        :password_confirmation,
-        :family_name,
-        :first_name,
-        :family_name_kana,
-        :first_name_kana,
-        :birthday,
+        :introduction
       )
+    end
+
+    def validate_only_nickname_introduction
+      @user.update(user_params_introduction)
+      if @user.errors.include?(:nickname) or @user.errors.include?(:introduction)
+        render :edit_profile
+      end
     end
 end
