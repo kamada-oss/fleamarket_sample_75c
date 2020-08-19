@@ -62,6 +62,14 @@ class ItemsController < ApplicationController
   def update_done
     @item_update = Item.order("updated_at DESC").first
   end
+  
+  def destroy
+    if @item.destroy
+      redirect_to delete_done_items_path
+    else
+      redirect_to item_path(@item)
+    end
+  end
 
   def search_child
     respond_to do |format|
