@@ -6,7 +6,7 @@
         カテゴリーから探す
       %ul.category__parent.category__list
         - @parents.each do |parent|
-        @paramsという配列をeach分で一つずつ表示して埋め込んでいます。  
+        -# @paramsという配列をeach分で一つずつ表示して埋め込んでいます。  
           %li
             = link_to "#", class: "category__parent--name" do
               = parent.name

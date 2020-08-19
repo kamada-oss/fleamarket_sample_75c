@@ -14,7 +14,30 @@
       %ul.header__box__lawer__left
         %li.header__box__lawer__left__category
           = link_to "カテゴリー", "#", class: "header__box__lawer__left__category__btn"
-            
+            .categories
+              %ul
+                %li
+                  = link_to "#", class: "category__search search__btn" do
+                    %i.fas.fa-bars.category__icon
+                    カテゴリーから探す
+                  %ul.category__parent.category__list
+                    - @parents.each do |parent|
+                    -# @paramsという配列をeach分で一つずつ表示して埋め込んでいます。  
+                      %li
+                        = link_to "#", class: "category__parent--name" do
+                          = parent.name
+                        %ul.category__child.category__list
+                          - parent.children.each do |child|
+                          ancestryを入れると使用することのできるchidlenメソッドを使用して子要素を取得しeachメソッドで一つずつ表示します
+                            %li
+                              = link_to "#", class: "category__child--name" do
+                                = child.name
+                              %ul.category__grandchild.category__list
+                                - child.children.each do |grandchild|
+                                ここも先ほどと一緒です
+                                  %li
+                                    = link_to "#", class: " category__child--name" do
+                                      = grandchild.name 
         %li.header__box__lawer__left__brand
           = link_to "ブランド", "#", class: "header__box__lawer__left__brand__btn"
       %ul.header__box__lawer__right

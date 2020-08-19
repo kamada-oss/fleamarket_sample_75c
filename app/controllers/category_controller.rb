@@ -1,6 +1,7 @@
 class CategoryController < ApplicationController
   before_action :set_category, only: [:parent, :child, :grandchild]
 
+
   def parent
     #親要素の子要素代入
     children = @category.children
