@@ -4,6 +4,9 @@
   -# メインの部分
   = form_with(model: @item, local: true, multipart: true) do |f|
     = render 'layouts/error_messages', model: f.object
+    .notifications
+    - flash.each do |key, value|
+      = content_tag(:div, value, class: key)
     .sell__container
       .sell__container__main
         .sell__container__main__wrapper
@@ -15,21 +18,21 @@
           %span.form-require
             必須
           %p 最大10枚までアップロードできます
-          #image-box-1{class: "#{@item_images.last.id}"}
-            - @item_images.each do |img|
-              .item-image{id:img.id}
-                = image_tag(img.item_image.url,{width: "170", height: "170"})
-                .item-image__operation
-                  .item-image__operation--edit__delete__hidden 削除
-            %label.input-box__image{for: "img-file"}
-              #image-box__container{class:"item-num-#{@item_images.length}"}
-                #append-js-edit
-                  = f.fields_for :item_images do |image|
-                    .js-file_group{"data-index" => "#{image.index}"}
-                      = image.file_field :item_image, type: 'file', style:"", value:"#{@item_images.object_id}", id:"img-file", class: "js-file-edit",name: "item[item_images_attributes][#{@item.item_images.count}][image]", data:{index:""}
+          
+        #image-box-1{class: "#{@item_images.last.id}"}
+          - @item_images.each do |img|
+            .item-image{id:img.id}
+              = image_tag(img.item_image.url,{width: "170", height: "170"})
+              .item-image__operation
+                .item-image__operation--edit__delete__hidden 削除
+          %label.img-label{for: "img-file"}
+            #image-box__container{class:"item-num-#{@item_images.length}"}
+              #append-js-edit
+                = f.fields_for :item_images do |image|
+                  .js-file_group{"data-index" => "#{image.index}"}
+                    = image.file_field :item_image, type: 'file', style:"", value:"#{image.object.id}", id:"img-file", class: "js-file-edit", data:{index:""}
                 %i.fas.fa-camera
                 %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-
                 -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
@@ -60,8 +63,7 @@
                 カテゴリー
                 %span.form-require
                   必須
-                .select--wrap{id: "category__box--parent"}
-              - if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+              - if @category_id == 187 or @category_id == 465 or @category_id == 665 or @category_id == 777 or @category_id == 875 or @category_id == 962
                 .append__category
                   .category
                     %i.fas.fa-chevron-down
@@ -141,18 +143,18 @@
             .sell__container__main__price__form__right
               ¥
             .input--price
-              = f.text_field :price, class:"input--price__default",placeholder: "例) 300"
+              = f.number_field :price, class:"input--price__default",placeholder: "例) 300"
           .sell__container__main__price__postage
             .sell__container__main__price__postage__message
               %label.postage-tax
                 販売手数料（10%)
-              .sell__container__main__price__postage__price-info
+              .sell__container__main__price__postage__price-info#tax-text
                 ー
           .sell__container__main__price__profit
             .sell__container__main__price__profit__message
               %label.profit
                 販売利益
-              .sell__container__main__price__profit__price-info
+              .sell__container__main__price__profit__price-info#profit-text
                 ー
             
           -# 出品する,下記に保存,もどるのボタンの部分

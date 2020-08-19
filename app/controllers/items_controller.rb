@@ -27,31 +27,31 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    unless @item.brand_id.nil?
-      @brand = Brand.find(@item.brand_id)
-    end
   end
 
   def post_done
     @item = Item.where(user_id: current_user.id).last
   end
 
+  def edit
+  end
+
   def update
     if item_params[:item_images_attributes].nil?
-      flash.now[:alert] = '更新できませんでした【画像を1枚以上入れてください】'
+      flash.now[:alert] = '更新できませんでした 【画像を１枚以上入れてください】'
       render :edit
     else
       exit_ids = []
       item_params[:item_images_attributes].each do |a,b|
-        exit_ids << item_params[:item_images_attributes].dig(:"#{a}", :id).to_i
+        exit_ids << item_params[:item_images_attributes].dig(:"#{a}",:id).to_i
       end
-      ids = ItemImage.where(item_id: params[:id]).map{|item_image| item_image.id}
+      ids = ItemImage.where(item_id: params[:id]).map{|image| image.id }
       exit_ids_uniq = exit_ids.uniq
-      delete__db = ids - exit_ids
+      delete__db = ids - exit_ids_uniq
       ItemImage.where(id:delete__db).destroy_all
       @item.touch
       if @item.update(item_params)
-        redirect_to update_done_items_path
+        redirect_to  update_done_items_path
       else
         flash.now[:alert] = '更新できませんでした'
         render :edit
@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :brand_id, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :text, :category_id, :brand_name, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -117,7 +117,7 @@ class ItemsController < ApplicationController
   def category_map
     grandchild = @item.category
     child = grandchild.parent
-    if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+    if @category_id == 187 or @category_id == 465 or @category_id == 665 or @category_id == 777 or @category_id == 875 or @category_id == 962
     else
       @parent_array = []
       @parent_array << @item.category.parent.parent.name
@@ -133,5 +133,4 @@ class ItemsController < ApplicationController
     @grandchild_array << grandchild.name
     @grandchild_array << grandchild.id
   end
-
 end

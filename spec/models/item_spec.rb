@@ -31,7 +31,7 @@ describe Item do
     end
 
     it "ブランド名がなくても登録できること" do
-      item = build(:item, brand_id: "")
+      item = build(:item, brand_name: "")
       item.valid?
       expect(true).to_not be_nil
     end

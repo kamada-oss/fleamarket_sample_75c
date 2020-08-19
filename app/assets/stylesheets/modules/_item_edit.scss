@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 @mixin input_place(){
   appearance: none;
   background-color: #fff;
@@ -49,39 +53,6 @@
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
-
-// トップページの出品ボタン
-.sell-tab {
-  font-size: 22px;
-  height: 160px;
-  width: 160px;
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  text-align: center;
-  z-index: 2;
-  cursor: pointer;
-  &__box{
-    width: 160px;
-    height: 160px;
-    background-color: #3CCACE;
-    border-radius: 50%;
-    &--text{
-      font-size: 22px;
-      color: white;
-      padding-top: 32px;
-      text-decoration: none;
-    }
-    &--logo{
-      font-size: 58px;
-      color: white;
-    }
-  }
-  a.sell-tab__box__text{
-    color: white;
-  }
-}
-
 
 // 出品画面
 
@@ -169,18 +140,51 @@ span{
 .select_field{
   margin-top: 16px;
   @include input_place();
+
 }
 .category{
   margin-top: 16px;
+  position: relative;
+  .fa-chevron-down {
+    @include fa-chevron-down();
+  }
 }
 .category__child{
   margin-top: 16px;
-
+  position: relative;
+  .fa-chevron-down {
+    @include fa-chevron-down();
+  }
+  select{
+    @include input_place();
+  }
 }
 .category__grandchild{
   margin-top: 16px;
+  position: relative;
+  .fa-chevron-down {
+    @include fa-chevron-down();
+  }
 }
 // 画像投稿ファーム
+.item-image{
+  margin-left: 50px;
+  &__operation{
+    width: 50px;
+    margin: 0px;
+  }
+}
+
+.img-label{
+  margin-left: 50px;
+  .item-image{
+    &__content{
+      &--icon{
+        object-fit: contain;
+      }
+    }
+  }
+}
 .sell{
   background-color: #EEEEEE;
   &__container{
@@ -191,6 +195,9 @@ span{
     margin: 0 auto;
     &__main{
       max-width: 700px;
+      &__sell-upload{
+        padding: 0 40px;
+      }
       &__wrapper{
         &__head{
           h2{
@@ -210,8 +217,12 @@ span{
       #image-box-1{
         display: flex;
         flex-wrap: wrap;
+        margin: 16px 0;
         .item-image{
           width: 180px;
+        }
+        label{
+          margin-top: 0px;
         }
         .item-num-0{
           width: 600px;
@@ -253,27 +264,14 @@ span{
           width: 600px;
           @include image_place();
         }
-        .img-label{
-          flex-wrap: wrap;
-          .item-image{
-            &__content{
-              &--icon{
-                object-fit: contain;
-              }
-            }
-          }
-        }
       }
-      &__sell-upload{
-        padding: 40px;
-        &__file{
-          width: 600px;
-          @include image_place();
-          cursor: pointer;
-          .fas-fa-camera{
-            display: inline-block;
-            margin-top: 75px;
-          }
+      &__file{
+        width: 600px;
+        @include image_place();
+        cursor: pointer;
+        .fas-fa-camera{
+          display: inline-block;
+          margin-top: 75px;
         }
       }
       .js-file_group{

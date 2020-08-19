@@ -1,6 +1,7 @@
 $(function(){
   var dataBox = new DataTransfer();
   var file_field = document.getElementById('img-file')
+  
   $('#append-js-edit').on('change','#img-file',function(){
     $.each(this.files, function(i, file){
       //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
@@ -12,7 +13,7 @@ $(function(){
       var image_id = Number($('#image-box-1').attr('class'))
       var append_div_count = Number($('div[id=1]').length) 
       var noreset_id = image_id + append_div_count
-
+      
       fileReader.readAsDataURL(file);
      //画像が10枚になったら超えたらドロップボックスを削除する
       if (num == 10){
@@ -24,21 +25,22 @@ $(function(){
         var html= `<div class='item-image' data-image="${file.name}" data-index="${aaa}" id="${noreset_id-1}">
                     <div class=' item-image__content'>
                       <div class='item-image__content--icon'>
-                        <img src=${src} width="188" height="180" >
+                        <img src=${src} width="170" height="170" >
                       </div>
                     </div>
-                    <div class='item-image__operetion'>
-                      <div class='item-image__operetion--edit__delete__file'>削除</div>
+                    <div class='item-image__operation'>
+                      <div class='item-image__operation--edit__delete__file'>削除</div>
                     </div>
                   </div>`
         const buildFileField1 = (num)=> {
           const html = `<div  class="js-file_group" data-index="${num}" id=1>
                           <input class="js-file-edit" type="file"
-                          name="item[images_attributes][${append_div_count+9}][image]"
+                          name="item[item_images_attributes][${append_div_count+9}][item_image]"
                           id="img-file" data-index="${num}" value="${noreset_id}" >
                         </div>`;
           return html;
         }
+        
         $('.js-file-edit').removeAttr('id');
         //image_box__container要素の前にhtmlを差し込む
         append = $('#append-js-edit').children('div').last().attr('id')
@@ -63,14 +65,16 @@ $(function(){
 
   $(document).ready(function(){
     $('.js-file-edit').removeAttr('id');
+
     var num = $('.item-image').length - 1
     var image_id = Number($('#image-box-1').attr('class'))
     var append_div_count = Number($('div[id=1]').length) 
     var noreset_id = image_id + append_div_count
+
     const buildFileField = (num)=> {
       const html = `<div  class="js-file_group" data-index="${num}" id=1>
                       <input class="js-file-edit" type="file"
-                      name="item[images_attributes][100][image]"
+                      name="item[item_images_attributes][${num}][item_image]"
                       id="img-file" data-index="${num}" value="${noreset_id}" >
                     </div>`;
       return html;
@@ -78,7 +82,7 @@ $(function(){
     $('#append-js-edit').append(buildFileField(num));
   });
 
-  $(document).on("click", '.item-image__operetion--edit__delete__hidden', function(){
+  $(document).on("click", '.item-image__operation--edit__delete__hidden', function(){
     //削除を押されたプレビュー要素を取得
     var target_image = $(this).parent().parent();
     //削除を押されたプレビューimageのfile名を取得
@@ -91,9 +95,9 @@ $(function(){
     var num = $('.item-image').length
     $('#image-box__container').show()
     $('#image-box__container').attr('class', `item-num-${num}`)
-  })
+  });
 
-  $(document).on("click", '.item-image__operetion--edit__delete__file', function(){
+  $(document).on("click", '.item-image__operation--edit__delete__file', function(){
     //削除を押されたプレビュー要素を取得
     var target_image = $(this).parent().parent();
     var target_id = Number($(target_image).attr('id'));
@@ -106,7 +110,7 @@ $(function(){
     var num = $('.item-image').length
     $('#image-box__container').show()
     $('#image-box__container').attr('class', `item-num-${num}`)
-  })
+  });
 
   var dropArea = $(".item-num-0");
   dropArea.on("dragenter", function(e){
@@ -165,17 +169,17 @@ $(function(){
           var html= `<div class='item-image' data-image="${file.name}" data-index="${aaa}">
                       <div class=' item-image__content'>
                         <div class='item-image__content--icon'>
-                          <img src=${src} width="188" height="180" >
+                          <img src=${src} width="170" height="170" >
                         </div>
                       </div>
-                      <div class='item-image__operetion'>
-                        <div class='item-image__operetion--delete'>削除</div>
+                      <div class='item-image__ation'>
+                        <div class='item-image__operation--delete'>削除</div>
                       </div>
                     </div>`
           const buildFileField = (num)=> {
             const html = `<div  class="js-file_group" data-index="${num}">
                             <input class="js-file-edit" type="file"
-                            name="item[images_attributes][${num}][image]"
+                            name="item[item_images_attributes][${num}][item_image]"
                             id="img-file" data-index="${num}">
                           </div>`;
             return html;

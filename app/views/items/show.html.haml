@@ -53,8 +53,8 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     ブランド
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    - unless @brand.nil?
-                      = @brand.name
+                    - unless @item.brand_name.nil?
+                      = @item.brand_name
                     - else
                       なし
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
