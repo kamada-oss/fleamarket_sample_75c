@@ -40,8 +40,10 @@ Rails.application.routes.draw do
       get 'edit_profile'
       post 'update_profile'
       get 'edit_address'
+      post 'update_address'
       get 'edit_payment'
       get 'edit_email_password'
+      post 'update_email_password'
       get 'logout'
     end
   end

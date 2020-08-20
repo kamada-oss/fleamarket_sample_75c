@@ -14,7 +14,8 @@
           = f.text_field :nickname, { class: 'input-nickname-error' ,value: "#{@user.nickname}", placeholder: '例)AYA☆セール中' }
         - else
           = f.text_field :nickname, { class: 'input-nickname' ,value: "#{@user.nickname}", placeholder: '例)AYA☆セール中' }
-      .field
+        = render partial: 'signup/error-messages', locals: {object: @user, column: 'nickname'}
+      .field-introduction
         = f.text_area :introduction, autofocus: true, class: 'input-introduction', value: "#{@user.introduction}",placeholder: '例)こんにちは☆ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪'
         = f.submit '変更する', class: 'btn-default btn-red'
 = render 'shared/footer'

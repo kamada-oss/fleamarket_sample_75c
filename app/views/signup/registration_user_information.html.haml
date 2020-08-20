@@ -31,7 +31,7 @@
           .field__label
             = f.label 'パスワード'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:email)
+          - if @user.errors.include?(:password)
             .field__input-error
               = f.password_field :password, placeholder: '7文字以上'
               = render partial: 'error-messages', locals: {object: @user, column: 'password'}
