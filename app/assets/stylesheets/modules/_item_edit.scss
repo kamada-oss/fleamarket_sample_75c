@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-@mixin input_place(){
+@mixin place(){
   appearance: none;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -32,7 +32,8 @@
   padding: 0 56px 0 16px;
   width: 100%;
 }
-@mixin image_place() {
+
+@mixin image(){
   content: '';
   padding-top: 70px;
   text-align: center;
@@ -133,13 +134,13 @@ span{
 }
 // 選択の箇所
 .select-default{
-  @include select-default
+  @include select-default();
 }
 
 // カテゴリー
 .select_field{
   margin-top: 16px;
-  @include input_place();
+  @include place();
 
 }
 .category{
@@ -156,7 +157,7 @@ span{
     @include fa-chevron-down();
   }
   select{
-    @include input_place();
+    @include place();
   }
 }
 .category__grandchild{
@@ -226,48 +227,48 @@ span{
         }
         .item-num-0{
           width: 600px;
-          @include image_place();
+          @include image();
         }
         .item-num-1{
           width: 400px;
-          @include image_place();
+          @include image();
         }
         .item-num-2{
           width: 200px;
-          @include image_place();
+          @include image();
         }
         .item-num-3{
           width: 600px;
-          @include image_place();
+          @include image();
         }
         .item-num-4{
           width: 400px;
-          @include image_place();
+          @include image();
         }
         .item-num-5{
           width: 200px;
-          @include image_place();
+          @include image();
         }
         .item-num-6{
           width: 600px;
-          @include image_place();
+          @include image();
         }
         .item-num-7{
           width: 400px;
-          @include image_place();
+          @include image();
         }
         .item-num-8{
           width: 200px;
-          @include image_place();
+          @include image();
         }
         .item-num-9{
           width: 600px;
-          @include image_place();
+          @include image();
         }
       }
       &__file{
         width: 600px;
-        @include image_place();
+        @include image();
         cursor: pointer;
         .fas-fa-camera{
           display: inline-block;
