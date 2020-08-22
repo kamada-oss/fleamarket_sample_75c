@@ -52,7 +52,7 @@ class MypageController < ApplicationController
 
   def update_email_password
     if @user.update(user_params_email_password)
-      sign_in User.find(session[:id]) unless user_signed_in?
+      sign_in User.find(session[:@user.id]) unless user_signed_in?
       redirect_to edit_email_password_mypage_path, notice: 'メールアドレスとパスワードを更新しました'
     else
       if @user.password.empty? && @user.errors.exclude?(:email)

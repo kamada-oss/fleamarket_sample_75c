@@ -206,6 +206,8 @@
       @include btn-red(95%);
     }
   }
+
+  // メールアドレス・パスワード変更
   .form{
     background-color: white;
     height: 650px;
@@ -230,6 +232,25 @@
       .btn-red{
         @include btn-red(100%);
       }
+    }
+  }
+
+  &__logout{
+    height: 200px;
+    background-color: white;
+    padding-top: 80px;
+    .btn-logout{
+      background-color: $red-btn-color;
+      width: 50%;
+      margin: auto;
+      display: block;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      height: 40%;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 0.3em;
     }
   }
 }
