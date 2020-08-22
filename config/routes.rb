@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'items/purchase'
   root 'items#index'
   resources :items do
     collection do
