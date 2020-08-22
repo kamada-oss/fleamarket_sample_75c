@@ -6,14 +6,6 @@
   color: #3ccace;
 }
 
-.category__list{
-  position: absolute;
-  height: 560px;
-  background-color: white;
-  z-index: 4;
-  border-right: 1px solid whitesmoke;
-}
-
 .category__child--name{
   width: 100%;
   color: black;
@@ -21,13 +13,23 @@
   padding: 3px 15px;
   font-size: 11px;
   letter-spacing: 2px;
-  @include hover__color(black, lightgray, 1);
+  // @include hover__color(black, lightgray, 1);
 }
 
 .categories{
-  padding-bottom: 10px;
+  &__text{
+    
+  }
+  // padding-bottom: 10px;
   &:hover{
-    .category__parent{
+    &__list{
+      position: absolute;
+      height: 560px;
+      background-color: white;
+      z-index: 4;
+      border-right: 1px solid whitesmoke;
+    }
+    &__parent{
       top: 122px;
       display: block;
       &--name{
@@ -41,14 +43,14 @@
       }
       li {
         &:hover{
-          .category__child{
+          &__child{
             width: 100%;
             display: block;
             top: 0;
             left: 221px;
             li {
               &:hover{
-                .category__grandchild{
+                &__grandchild{
                   width: 300px;
                   display: block;
                   top: 0;
