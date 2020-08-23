@@ -1,0 +1,10 @@
+- if Like.find_by(user_id: current_user.id, item_id: @item.id)
+  = link_to item_like_path(@item, item.id), method: :delete, remote: true, class: "main__show__contents__content__item-box__optional__likes-on" do
+    = icon('fa', 'star', class: "main__show__contents__content__item-box__optional__likes-on__star")
+    .main__show__contents__content__item-box__optional__likes-on__text いいね!
+    .main__show__contents__content__item-box__optional__likes-on__count
+- else
+  = link_to item_likes_path(@item), method: :post, remote: true, class: "main__show__contents__content__item-box__optional__likes-off" do
+    = icon('fa', 'star', class: "main__show__contents__content__item-box__optional__likes-off__star")
+    .main__show__contents__content__item-box__optional__likes-off__text いいね!
+    .main__show__contents__content__item-box__optional__likes-off__count

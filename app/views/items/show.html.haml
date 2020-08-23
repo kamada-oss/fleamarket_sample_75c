@@ -83,10 +83,8 @@
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
                     = @item.handling_time
           .main__show__contents__content__item-box__optional
-            %ul.main__show__contents__content__item-box__optional__left
-              %li.main__show__contents__content__item-box__optional__left__btn
-                = icon('fa', 'star', class: "main__show__contents__content__item-box__optional__left__btn__star")
-                お気に入り 1
+            %ul#main__show__contents__content__item-box__optional__likes
+              = render partial: 'likes/like', locals: { item: @item }
             %ul.main__show__contents__content__item-box__optional__right
               %li.main__show__contents__content__item-box__optional__right__btn
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do
