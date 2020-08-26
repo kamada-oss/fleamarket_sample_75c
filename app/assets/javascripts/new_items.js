@@ -23,17 +23,17 @@ $(function(){
         var html= `<div class='item-image' data-image="${file.name}" data-index="${image_no}">
                     <div class='item-image__content'>
                       <div class='item-image__content--icon'>
-                        <img src=${src} width="150" height="150" >
+                        <img src=${src} width="170" height="170" >
                       </div>
                     </div>
-                    <div class='item-image__operetion'>
-                      <div class='item-image__operetion--delete'>削除</div>
+                    <div class='item-image__operation'>
+                      <div class='item-image__operation--delete'>削除</div>
                     </div>
                   </div>`
         const buildFileField = (num)=> {
           const html = `<div  class="js-file_group" data-index="${num}">
                           <input class="js-file" type="file"
-                          name="item[images_attributes][${num}][image]"
+                          name="item[item_images_attributes][${num}][item_image]"
                           id="img-file" data-index="${num}">
                         </div>`;
           return html;
@@ -49,7 +49,7 @@ $(function(){
     });
   });
   //削除ボタンをクリックすると発火するイベント
-  $(document).on("click", '.item-image__operetion--delete', function(){
+  $(document).on("click", '.item-image__operation--delete', function(){
     //削除を押されたプレビュー要素を取得
     var target_image = $(this).parent().parent();
     //削除を押されたプレビューimageのfile名を取得
@@ -127,14 +127,14 @@ $(function(){
                         <img src=${src} width="188" height="180" >
                       </div>
                     </div>
-                    <div class='item-image__operetion'>
-                      <div class='item-image__operetion--delete'>削除</div>
+                    <div class='item-image__operation'>
+                      <div class='item-image__operation--delete'>削除</div>
                     </div>
                   </div>`
           const buildFileField = (num)=> {
             const html = `<div  class="js-file_group" data-index="${num}">
                             <input class="js-file" type="file"
-                            name="item[images_attributes][${num}][image]"
+                            name="item[item_images_attributes][${num}][item_image]"
                             id="img-file"
                             data-index="${num}">
                           </div>`;

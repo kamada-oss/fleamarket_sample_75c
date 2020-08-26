@@ -53,8 +53,8 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     ブランド
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    - unless @brand.nil?
-                      = @brand.name
+                    - unless @item.brand_name.nil?
+                      = @item.brand_name
                     - else
                       なし
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
@@ -93,7 +93,7 @@
         - if user_signed_in? && current_user.id == @item.user_id
           .main__show__contents__content__item-user
             .main__show__contents__content__item-user__edit
-              = link_to "商品の編集", "#", class: "main__show__contents__content__item-user__edit__link"
+              = link_to "商品の編集", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
             .main__show__contents__content__item-user__destroy
               = link_to "この商品を削除する", item_path(@item), method: :delete, class: "main__show__contents__content__item-user__destroy__link"
         .main__show__contents__content__comment-box
