@@ -1,2 +1,3 @@
 class MypageController < ApplicationController
+  
 end
