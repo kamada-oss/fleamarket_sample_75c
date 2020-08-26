@@ -4,7 +4,6 @@
       .header__box__upper__icon
         = link_to root_path do
           = image_tag "logo.png", class: "header__box__upper__icon__image"
-      -# {追加実装タスク【サーバサイド】商品検索Lv1}実装まで(仮)
       .header__box__upper__search
         .header__box__upper__search__form
           = form_with url: search_items_path, local: true, method: :get, class:"form" do |f|
