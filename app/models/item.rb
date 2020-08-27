@@ -35,5 +35,8 @@ class Item < ApplicationRecord
   validates :auction_status,               presence: true
   validates :category_id,                  presence: true
 
-
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE(?) or text LIKE(?)', "%#{search}%", "%#{search}%"])
+  end
 end

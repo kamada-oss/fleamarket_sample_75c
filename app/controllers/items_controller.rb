@@ -91,6 +91,11 @@ class ItemsController < ApplicationController
   def purchase
   end
 
+  def search
+    @search_items = Item.search(params[:keyword])
+    @keyword = params[:keyword]
+  end
+
 
   private
 
