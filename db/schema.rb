@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_22_052452) do
     t.integer "condition", null: false
     t.integer "price", null: false
     t.bigint "category_id", null: false
-    t.bigint "brand_id"
+    t.string "brand_name"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 2020_08_22_052452) do
     t.integer "prefecture", null: false
     t.integer "handling_time", null: false
     t.integer "auction_status", default: 1, null: false
-    t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
