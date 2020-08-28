@@ -28,13 +28,8 @@ $(function(){
                             </div>`;
     $('.sell__container__main__detail__box__category').append(grandchildSelectHtml);
   }
-  $('.categories').hover(function() {
-    console.log("Hello world");
-  });
-  
   // 子要素のアクション
   $('#parent_form').on('change', function(){
-    // console.log("Hello world");
     var parentValue = document.getElementById('parent_form').value; //選択された親カテゴリーの名前を取得
     if (parentValue != "選択してください"){ //親カテゴリーが初期値でないことを確認
       $('#category__box--children').remove(); //親が変更された時、子以下を削除する
