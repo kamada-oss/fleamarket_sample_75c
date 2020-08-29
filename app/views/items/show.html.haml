@@ -96,17 +96,24 @@
               = link_to "商品の編集", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
             .main__show__contents__content__item-user__destroy
               = link_to "この商品を削除する", item_path(@item), method: :delete, class: "main__show__contents__content__item-user__destroy__link"
-        .main__show__contents__content__comment-box
+        .main__show__contents__content__comment-box 
           .main__show__contents__content__comment-box__list
             - if @comments
               - @comments.each do |comment|
                 .main__show__contents__content__comment-box__list__box
-                  - if comment.user.id == @item.user_id
-                    %span.main__show__contents__content__comment-box__list__box--saler 出品者
-                  - else
-                    %span.main__show__contents__content__comment-box__list__box--name= comment.user.nickname
-                  %span.main__show__contents__content__comment-box__list__box--date= comment.created_at.strftime("%Y-%m-%d %H:%M")
-                  %p.main__show__contents__content__comment-box__list__box--text= comment.text
+                  .main__show__contents__content__comment-box__list__box__name
+                    - if comment.user.id == @item.user_id
+                      .main__show__contents__content__comment-box__list__box__name__saler 出品者
+                    - else
+                      .main__show__contents__content__comment-box__list__box__name__nickname
+                        = comment.user.nickname
+                    - if user_signed_in? && current_user.id == @item.user_id
+                      = link_to '削除する', item_comment_path(comment.item.id, comment.id) ,method: :delete, class: "main__show__contents__content__comment-box__list__box__name__delete"
+                  .main__show__contents__content__comment-box__list__box__message
+                    .main__show__contents__content__comment-box__list__box__message__text
+                      = simple_format(comment.text)
+                    .main__show__contents__content__comment-box__list__box__message__date
+                      = comment.created_at.strftime("%Y-%m-%d %H:%M")
           - if current_user
             = form_with(model: [@item, @comment], local: true, id: "main__show__contents__content__comment-box__form") do |f|
               =f.text_area :text, placeholder: "コメントする", class: "main__show__contents__content__comment-box__form__textarea"
