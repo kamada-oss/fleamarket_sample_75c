@@ -34,7 +34,7 @@ class Item < ApplicationRecord
   validates :fee_burden,                   presence: true
   validates :handling_time,                presence: true
   validates :auction_status,               presence: true
-  validates :category_id,                  presence: true
+  validates :category,                  presence: true
 
   def self.search(search)
     return Item.all unless search
