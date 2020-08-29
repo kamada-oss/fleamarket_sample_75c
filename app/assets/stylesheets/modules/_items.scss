@@ -145,16 +145,16 @@ span{
 }
 // 選択の箇所
 .select-default{
-  @include select-default
+  @include select-default();
 }
 
 // カテゴリー子要素箇所
 .select--default__category1{
-  @include select-default
+  @include select-default();
 }
 // カテゴリー孫要素箇所
 .select--wrap__category2{
-  @include select-default
+  @include select-default();
 }
 
 // 画像投稿ファーム
@@ -188,6 +188,7 @@ span{
         margin: 16px 0;
         display: flex;
         flex-wrap: wrap;
+        position: relative;
         .item-image{
           width: 180px;
         }
@@ -245,12 +246,13 @@ span{
       &__sell-upload{
         padding: 40px;
         &__file{
+          position: relative;
           width: 600px;
           @include image_place();
           cursor: pointer;
-          .fas-fa-camera{
-            display: inline-block;
-            margin-top: 75px;
+          .fas.fa-camera{
+            position: absolute;
+            top: 50%;
           }
         }
       }
