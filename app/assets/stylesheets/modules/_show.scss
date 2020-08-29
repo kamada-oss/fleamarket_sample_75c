@@ -211,10 +211,14 @@
                 }
                 &__delete {
                   color: $main-white-color;
-                  font-size: 14px;
+                  font-size: 10px;
+                  height: 20px;
+                  width: 50px;
                   text-decoration: none;
                   background-color: red;
-                  line-height: 1.5;
+                  line-height: 20px;
+                  border-radius: 0.3em;
+                  font-weight: bold;
                 }
                 &__nickname {
                   font-weight: bold;
