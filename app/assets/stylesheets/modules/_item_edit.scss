@@ -226,53 +226,104 @@ span{
           margin-top: 0px;
         }
         .item-num-0{
+          position: relative;
           width: 600px;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-1{
           width: 400px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-2{
           width: 200px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-3{
           width: 600px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-4{
           width: 400px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-5{
           width: 200px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-6{
           width: 600px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-7{
           width: 400px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-8{
           width: 200px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
         .item-num-9{
           width: 600px;
+          position: relative;
           @include image();
+          .fas.fa-camera{
+            position: absolute;
+            top: 40%;
+          }
         }
       }
       &__file{
+        position: relative;
         width: 600px;
         @include image();
         cursor: pointer;
-        .fas-fa-camera{
-          display: inline-block;
-          margin-top: 75px;
+        .fas.fa-camera{
+          position: absolute;
+          top: 50%;
         }
       }
       .js-file_group{

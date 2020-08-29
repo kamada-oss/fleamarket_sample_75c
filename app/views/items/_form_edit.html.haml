@@ -32,8 +32,7 @@
                   .js-file_group{"data-index" => "#{image.index}"}
                     = image.file_field :item_image, type: 'file', style:"", value:"#{image.object.id}", id:"img-file", class: "js-file-edit",name: "item[item_images_attributes][#{@item.item_images.count}][item_image]", data:{index:""}
               %i.fas.fa-camera
-              %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-              
+                -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
             .sell__container__main__form__group__name
