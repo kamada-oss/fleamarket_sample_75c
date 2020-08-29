@@ -97,16 +97,24 @@
             .main__show__contents__content__item-user__destroy
               = link_to "この商品を削除する", item_path(@item), method: :delete, class: "main__show__contents__content__item-user__destroy__link"
         .main__show__contents__content__comment-box
-          %form{action: "#", class: "main__show__contents__content__comment-box__form"}
-            %textarea.main__show__contents__content__comment-box__form__textarea
-            %p.main__show__contents__content__comment-box__form__message
-              相手のことを考え丁寧なコメントを心がけようコメントを心がけましょう。
-              %br
-              不愉快な言葉遣いなどは利用制限や退会処分となることがあります。
-              %br
-            %button{name: "button", type: "submit", class: "main__show__contents__content__comment-box__form__btn"}
-              = icon('fa', 'comment', class: "main__show__contents__content__comment-box__form__btn__icon")
-              コメントする
+          - if current_user
+            = form_with(model: @comment, local: true, id: "main__show__contents__content__comment-box__form") do |f|
+              =f.text_area :text, placeholder: "コメントする", class: "main__show__contents__content__comment-box__form__textarea"
+              %p.main__show__contents__content__comment-box__form__message
+                相手のことを考え丁寧なコメントを心がけようコメントを心がけましょう。
+                %br
+                不愉快な言葉遣いなどは利用制限や退会処分となることがあります。
+                %br
+              %button{name: "button", type: "submit", class: "main__show__contents__content__comment-box__form__btn"}
+                = icon('fa', 'comment', class: "main__show__contents__content__comment-box__form__btn__icon")
+                コメントする
+          - else
+            .main__show__contents__content__comment-box__signin
+              %p コメントの投稿には、
+              = link_to "ログイン", new_user_session_path, class: "main__show__contents__content__comment-box__signin__logout"
+              または
+              = link_to "新規会員登録", signup_index_path, class: "main__show__contents__content__comment-box__signin__signup"
+              が必要です
       %ul.main__show__contents__links
         %li.main__show__contents__links__left
           = link_to "#", class: "main__show__contents__links__left__link" do

@@ -220,6 +220,18 @@
               border-radius: 100px;
             }
           }
+          &__signin {
+            font-size: 22px;
+            font-weight: bold;
+            &__logout {
+              color: $furima-color;
+              text-decoration: none;
+            }
+            &__signup {
+              color: $furima-color;
+              text-decoration: none;
+            }
+          }
         }
       }
       &__links {
