@@ -101,13 +101,14 @@
             - if @comments
               - @comments.each do |comment|
                 .main__show__contents__content__comment-box__list__box
-                  %span.main__show__contents__content__comment-box__list__box--name= comment.user.nickname
                   - if comment.user.id == @item.user_id
                     %span.main__show__contents__content__comment-box__list__box--saler 出品者
+                  - else
+                    %span.main__show__contents__content__comment-box__list__box--name= comment.user.nickname
                   %span.main__show__contents__content__comment-box__list__box--date= comment.created_at.strftime("%Y-%m-%d %H:%M")
                   %p.main__show__contents__content__comment-box__list__box--text= comment.text
           - if current_user
-            = form_with(model: @comment, local: true, id: "main__show__contents__content__comment-box__form") do |f|
+            = form_with(model: [@item, @comment], local: true, id: "main__show__contents__content__comment-box__form") do |f|
               =f.text_area :text, placeholder: "コメントする", class: "main__show__contents__content__comment-box__form__textarea"
               %p.main__show__contents__content__comment-box__form__message
                 相手のことを考え丁寧なコメントを心がけようコメントを心がけましょう。
