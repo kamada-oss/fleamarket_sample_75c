@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :show_all_instance, only: [:show, :edit, :update, :destroy]
   before_action :check_item_details, only: [:post_done, :update_done]
   before_action :category_map, only: [:edit, :update]
-  before_action :set_ransack, only: [:index]
+  before_action :set_ransack
 
   def index
     @items = Item.all
@@ -147,7 +147,4 @@ class ItemsController < ApplicationController
     @grandchild_array << grandchild.id
   end
 
-  def set_ransack
-    @q = Item.ransack(params[:q])
-  end
 end

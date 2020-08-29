@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   def set_ransack
     @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
 end
 
