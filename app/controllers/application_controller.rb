@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :basic_auth, if: :production?
   before_action :set_category
+  before_action :set_ransack
 
   protected
 
@@ -21,4 +22,9 @@ class ApplicationController < ActionController::Base
   def production?
     Rails.env.production?
   end
+
+  def set_ransack
+    @q = Item.ransack(params[:q])
+  end
 end
+

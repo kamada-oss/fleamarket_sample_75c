@@ -1,0 +1,33 @@
+.main-contents.clearfix
+  .side-search
+  = search_form_for(@q,url: search_items_path) do |f|
+    .side-search_sort
+      = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { onchange: 'this.form.submit()'} ,class:"side-search__sort")
+    .side-search_form
+      .side-search__title
+      %h3 詳細検索
+      .side-search__group
+      .side-search__group__label
+        %p キーワードを追加する
+        = f.search_field :name_cont, placeholder: "例）値下げ",class:"side-search__textarea"
+      .side-search__group
+        .side-search__group__label
+        %p 価格 
+      .side-search__group__forms
+        = f.search_field :price_gteq, placeholder: "¥ Min",class:"side-search__pricerange"
+        %p 〜
+        = f.search_field :price_lteq, placeholder: "¥ Max",class:"side-search__pricerange"
+      .input-form-box
+        %label 商品の状態を指定する
+        = f.select :condition_eq, Item.conditions.keys,{prompt:"選択してください"},class:"side-search__condition"
+      .input-form-box
+        %label 配送料の負担
+        = f.select :fee_burden_eq,Item.fee_burdens.keys,{prompt: "選択してください"},class:"side-search__fee_burden"
+      .input-form-box
+        %label 発送元の地域
+        = f.select :prefecture_eq,Item.prefectures.keys,{prompt:"選択してください"},class:"side-search__fee_burden"
+      
+      .side_search__btn
+        .side_search__btn--grey{ id:"search-clear",class:"side_search__btn--grey"}
+          クリア
+        = f.submit "完了",class:"side_search__btn--red",id:'search_submit'
