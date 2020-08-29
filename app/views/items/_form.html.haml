@@ -24,8 +24,8 @@
                     #append-js
                       .js-file_group{"data-index" => "#{image.index}"}
                         = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file",ame: "item[item_images_attributes][#{@item.item_images.count}][item_image]",data:{index:"0"}
-                  %i.fas.fa-camera
-                  %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+                    %i.fas.fa-camera
+                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
                   -# 商品名の部分
           .sell__container__main__form
             .sell__container__main__form__group
