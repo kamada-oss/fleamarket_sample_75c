@@ -11,15 +11,13 @@
             %h2= @item.name
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
-              - @item.item_images.each do |i|
-                - if i.item_image.present?
-                  %li.main__show__contents__content__item-box__body__photo__content
-                    = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
-                    %ul.main__show__contents__content__item-box__body__photo__content__lawer
-                      - if @item.item_images.present?
-                        - @item.item_images.each do |i|
-                          %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
-                            = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+              %li.main__show__contents__content__item-box__body__photo__content
+                = image_tag @item.item_images.first.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
+                %ul.main__show__contents__content__item-box__body__photo__content__lawer
+                  - if @item.item_images.present?
+                    - @item.item_images.first(4).each do |i|
+                      %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
+                        = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
             .main__show__contents__content__item-box__price__item-price
               = "¥#{@item.price}"
