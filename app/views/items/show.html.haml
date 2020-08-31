@@ -100,7 +100,7 @@
           .main__show__contents__content__comment-box__list
             - if @comments
               - @comments.each do |comment|
-                .main__show__contents__content__comment-box__list__box
+                .main__show__contents__content__comment-box__list__box{data:{index: comment.id}}
                   .main__show__contents__content__comment-box__list__box__name
                     - if comment.user.id == @item.user_id
                       .main__show__contents__content__comment-box__list__box__name__saler 出品者
@@ -108,7 +108,8 @@
                       .main__show__contents__content__comment-box__list__box__name__nickname
                         = comment.user.nickname
                     - if user_signed_in? && current_user.id == @item.user_id
-                      = link_to '削除する', item_comment_path(comment.item.id, comment.id) ,method: :delete, class: "main__show__contents__content__comment-box__list__box__name__delete"
+                      .main__show__contents__content__comment-box__list__box__name__delete{data:{index: comment.id}}
+                        = link_to '削除する', comment_path(comment.id) ,method: :delete
                   .main__show__contents__content__comment-box__list__box__message
                     .main__show__contents__content__comment-box__list__box__message__text
                       = simple_format(comment.text)
@@ -122,7 +123,7 @@
                 %br
                 不愉快な言葉遣いなどは利用制限や退会処分となることがあります。
                 %br
-              %button{name: "button", type: "submit", class: "main__show__contents__content__comment-box__form__btn"}
+              = button_tag type: "submit", class: "main__show__contents__content__comment-box__form__btn" do
                 = icon('fa', 'comment', class: "main__show__contents__content__comment-box__form__btn__icon")
                 コメントする
           - else

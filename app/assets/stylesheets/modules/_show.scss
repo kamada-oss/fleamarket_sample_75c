@@ -210,15 +210,17 @@
                   font-weight: bold;
                 }
                 &__delete {
-                  color: $main-white-color;
                   font-size: 10px;
                   height: 20px;
                   width: 50px;
-                  text-decoration: none;
                   background-color: red;
                   line-height: 20px;
                   border-radius: 0.3em;
                   font-weight: bold;
+                  a {
+                    text-decoration: none;
+                    color: $main-white-color;
+                  }
                 }
                 &__nickname {
                   font-weight: bold;
@@ -260,6 +262,7 @@
               width: 60%;
               font-size: 18px;
               border-radius: 100px;
+              outline: 0;
             }
           }
           &__signin {
