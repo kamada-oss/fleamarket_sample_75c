@@ -31,7 +31,7 @@ describe Item do
     end
 
     it "ブランド名がなくても登録できること" do
-      item = build(:item, brand_id: "")
+      item = build(:item, brand_name: "")
       item.valid?
       expect(true).to_not be_nil
     end
@@ -85,6 +85,38 @@ describe Item do
       item = build(:item, price: int)
       item.valid?
       expect(item.errors[:price][0]).to include("は9999999以下の値にしてください")
+    end
+  end
+
+  describe 'search' do
+    it "keywordがない場合、全ての商品レコードを表示すること" do
+      item = build(:item)
+      keyword = ""
+      expect(described_class.search(keyword).length).to eq 0
+    end
+
+    it "商品名に一致するレコードを検索できること" do
+      item = build(:item, name: "ロボクリン")
+      keyword = "ロボ"
+      expect(described_class.search(keyword).length).to eq 0
+    end
+
+    it "商品名に一致しないレコードは検索できないこと" do
+      item = build(:item, name: "ロボクリン")
+      keyword = "robo"
+      expect(described_class.search(keyword).length).to eq 0
+    end
+
+    it "商品説明に一致するレコードを検索できること" do
+      item = build(:item, text: "ロボです")
+      keyword = "ロボ"
+      expect(described_class.search(keyword).length).to eq 0
+    end
+
+    it "商品説明に一致しないレコードは検索できないこと" do
+      item = build(:item, text: "ロボです")
+      keyword = "robo"
+      expect(described_class.search(keyword).length).to eq 0
     end
   end
 end

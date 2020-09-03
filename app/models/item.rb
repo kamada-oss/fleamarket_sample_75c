@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   }
   enum auction_status: {出品中:1,  売り切れ:2}
   has_one    :purchase
+  belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
   has_many   :likes, dependent: :destroy
@@ -32,6 +33,10 @@ class Item < ApplicationRecord
   validates :fee_burden,                   presence: true
   validates :handling_time,                presence: true
   validates :auction_status,               presence: true
+  validates :category,                  presence: true
 
-
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE(?) or text LIKE(?)', "%#{search}%", "%#{search}%"])
+  end
 end

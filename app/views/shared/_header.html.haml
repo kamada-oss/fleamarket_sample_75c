@@ -4,12 +4,12 @@
       .header__box__upper__icon
         = link_to root_path do
           = image_tag "logo.png", class: "header__box__upper__icon__image"
-      -# {追加実装タスク【サーバサイド】商品検索Lv1}実装まで(仮)
       .header__box__upper__search
-        %form.header__box__upper__search__form
-          %input{type: "text", placeholder: "キーワードから探す", class: "header__box__upper__search__form__input"}
-          %button{type: "submit", class: "header__box__upper__search__form__btn"}
-            = image_tag "icon-search 1.png", class: "header__box__upper__search__form__btn__icon"
+        .header__box__upper__search__form
+          = form_with url: search_items_path, local: true, method: :get, class:"form" do |f|
+            = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__upper__search__form__input"
+            %button{type: "submit", class: "header__box__upper__search__form__btn"}
+              = image_tag "icon-search 1.png", class: "header__box__upper__search__form__btn__icon"
     .header__box__lawer
       %ul.header__box__lawer__left
         %li.header__box__lawer__left__category
@@ -17,7 +17,17 @@
         %li.header__box__lawer__left__brand
           = link_to "ブランド", "#", class: "header__box__lawer__left__brand__btn"
       %ul.header__box__lawer__right
-        %li.header__box__lawer__right__login
-          = link_to "ログイン", "#", class: "header__box__lawer__right__login__btn"
-        %li.header__box__lawer__right__sign-up
-          = link_to "新規会員登録", "#", class: "header__box__lawer__right__sign-up__btn"
+        - if user_signed_in?
+          %li.header__box__lawer__right__login
+            = link_to destroy_user_session_path, method: :delete, class: "header__box__lawer__right__login__btn" do
+              ログアウト
+          %li.header__box__lawer__right__sign-up
+            = link_to '#', class: "header__box__lawer__right__sign-up__btn" do
+              マイページ
+        - else
+          %li.header__box__lawer__right__login
+            = link_to new_user_session_path, class: "header__box__lawer__right__login__btn" do
+              ログイン
+          %li.header__box__lawer__right__sign-up
+            = link_to signup_index_path, class: "header__box__lawer__right__sign-up__btn" do
+              新規登録

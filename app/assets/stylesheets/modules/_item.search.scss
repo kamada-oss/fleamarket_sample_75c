@@ -1,0 +1,150 @@
+@mixin opacity(){
+  &:hover{
+    opacity: 0.5;
+  }
+}
+@mixin flex_align-c(){
+  display: flex;
+  align-items: center;
+}
+
+.item__body {
+  width: 100%;
+  height: 100%;
+
+  &__title {
+    padding-top: 30px;
+    color: #3ccace;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &__lists {
+    width: 95%;
+    margin: 26px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 20px;
+
+    &__list{
+      width: 220px;
+      height: 230px;
+      display: inline-block;
+      @include opacity();
+      position: relative;
+      margin-top: 20px;
+      margin-right: 20px;
+      
+      a{
+        background-color: #fff;
+        display: inline-block;
+        text-decoration: none;
+        position: relative;
+
+        figure{
+          width: 220px;
+          height: 150px;
+          position: relative;
+          overflow: hidden;
+          margin: 0;
+          z-index: auto;
+
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: auto;
+            height: 150px;
+            object-fit: cover;
+          }
+        }
+      }
+      .list__body{
+        color:#333;
+        padding: 16px;
+        height: 80px;
+        width: 220px;
+
+        h3{
+          overflow: hidden;
+          line-height: 1.5;
+          font-size: 16px;
+          text-align: left;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+      .list__price{
+        font-size: 16px;
+        color: #333333;
+        ul{
+          @include flex_align-c();
+          justify-content: space-between;
+          list-style: none;
+          li{
+            color: #333333;
+            .fas{
+              display: inline-block;
+              font-size: inherit;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              font: normal normal normal 14px/1 "Font Awesome 5 Free";
+              &::before{
+                content: "\f005";
+              }
+            }
+          }
+        }
+        p{
+          font-size: 10px;
+          text-align: left;
+          color: #333333;
+          font-weight: normal;
+        }
+      }
+      .list__sold{
+        width: 0;
+        height: 0;
+        border-top: 40px solid #3ccace;
+        border-right: 40px solid transparent;
+        border-bottom: 40px solid transparent;
+        border-left: 40px solid #3ccace;
+        z-index:100;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        &__inner{
+          color: #fff;
+          transform: rotate(-45deg);
+          font-size: 20px;
+          margin:-16px 0px 0px -32px;
+          letter-spacing: 2px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+.item {
+  display: flex;
+  justify-content: center;
+  max-width: 1040px;
+  margin: 0 auto;
+
+  #short {
+    width: 100%;
+    height: 100%;
+  }
+  .item_search {
+    width: 300px;
+    min-height: 100vh;
+    padding: 5px;
+    background-color: #333;
+    color: #ffffff;
+  }
+}
