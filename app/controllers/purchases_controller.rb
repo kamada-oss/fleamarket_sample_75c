@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
     @card = Card.find_by(user_id: current_user.id)
     @deliver = DeliverAddress.find_by(user_id: current_user.id)
     if @card.present?
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
@@ -23,7 +24,7 @@ class PurchasesController < ApplicationController
     # end
   end
 
-  def pay
+  def pay #登録したカードで購入を確定する
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(

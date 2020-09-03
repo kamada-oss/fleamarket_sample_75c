@@ -39,7 +39,6 @@ Rails.application.routes.draw do
       post 'show', to: 'card#show'
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
-      get 'confirm'
     end
   end
 

@@ -50,7 +50,4 @@ class CardController < ApplicationController
     end
   end
 
-  def confirm
-  end
-
 end
