@@ -8,7 +8,7 @@ $(function(){
     $(this).children('.categories__grandchild').css('display', 'block')
   }, function() {
     $(this).children('.categories__grandchild').css('display', 'none')
-    
+  });
   $(".categories li").hover(function() {
       $(">ul:not(:animated)", this).stop(true, true).slideDown("fast");
       $(">カテゴリー", this).addClass("active");
@@ -18,6 +18,3 @@ $(function(){
       
   });
 });
-
-
-

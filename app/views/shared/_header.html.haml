@@ -20,17 +20,17 @@
             %ul.categories__parent
               - @parents.each do |parent|
                 %li.parent__list
-                  = link_to "#", class: "" do
+                  = link_to category_path(parent), class: "" do
                     = parent.name
                   %ul.categories__child{data:parent.id}
                     - parent.children.each do |child|
                       %li.child__list
-                        = link_to "#", class: "" do
+                        = link_to category_path(child), class: "" do
                           = child.name
                         %ul.categories__grandchild{data:child.id}
                           - child.children.each do |grandchild|
                             %li.grandchild__list
-                              = link_to "#", class: "" do
+                              = link_to category_path(grandchild), class: "" do
                                 = grandchild.name 
         %li.header__box__lawer__left__brand
           = link_to "ブランド", "#", class: "header__box__lawer__left__brand__btn"
