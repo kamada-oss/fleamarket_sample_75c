@@ -108,8 +108,8 @@
                       .main__show__contents__content__comment-box__list__box__name__nickname
                         = comment.user.nickname
                     - if user_signed_in? && current_user.id == @item.user_id
-                      .main__show__contents__content__comment-box__list__box__name__delete{data:{index: comment.id}}
-                        = link_to '削除する', comment_path(comment.id) ,method: :delete
+                      .main__show__contents__content__comment-box__list__box__name__delete
+                        = link_to '削除する', comment_path(comment.id) ,method: :delete, data:{index: comment.id}, class: "main__show__contents__content__comment-box__list__box__name__delete__btn"
                   .main__show__contents__content__comment-box__list__box__message
                     .main__show__contents__content__comment-box__list__box__message__text
                       = simple_format(comment.text)

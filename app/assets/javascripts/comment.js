@@ -9,8 +9,10 @@ $(function(){
           <div class="main__show__contents__content__comment-box__list__box__name__saler">
             出品者
           </div>
-          <div class="main__show__contents__content__comment-box__list__box__name__delete" data-index=${comment.id}>
-            <a rel="nofollow" data-method="delete" href="/comments/${comment.id}">削除する</a>
+          <div class="main__show__contents__content__comment-box__list__box__name__delete">
+            <a data-index=${comment.id} class="main__show__contents__content__comment-box__list__box__name__delete__btn" rel="nofollow" data-method="delete" href="/comments/${comment.id}">
+              削除する
+            </a>
           </div>
         </div>
         <div class='main__show__contents__content__comment-box__list__box__message'>
@@ -59,7 +61,6 @@ $(function(){
       var html = buildHTML(data);
       $('.main__show__contents__content__comment-box__list').append(html);
       $('.main__show__contents__content__comment-box__form__textarea').val('');
-      $('.main__show__contents__content__comment-box__list').animate({ scrollTop: $('.main__show__contents__content__comment-box__list')[0].scrollHeight});
       $('.main__show__contents__content__comment-box__form__btn').prop('disabled', false);
     })
     .fail(function(){
@@ -67,7 +68,7 @@ $(function(){
     });
   });
 
-  $(".main__show__contents__content__comment-box__list").on('click','.main__show__contents__content__comment-box__list__box__name__delete',function(e){
+  $(".main__show__contents__content__comment-box__list").on('click','.main__show__contents__content__comment-box__list__box__name__delete__btn',function(e){
     e.preventDefault()
     var index = $(this).data("index");
     $(`.main__show__contents__content__comment-box__list__box[data-index=${index}]`).remove();
