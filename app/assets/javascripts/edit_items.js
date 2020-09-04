@@ -1,127 +1,115 @@
 $(function(){
-  var dataBox = new DataTransfer();
-  var file_field = document.getElementById('img-file')
-  
-  $('#append-js-edit').on('change','#img-file',function(){
-    $.each(this.files, function(i, file){
-      //FileReaderのreadAsDataURLで指定したFileオブジェクトを読み込む
-      var fileReader = new FileReader();
-      //DataTransferオブジェクトに対して、fileを追加
-      dataBox.items.add(file)
-      var num = $('.item-image').length + 1 + i
-      var aaa = $('.item-image').length + i
-      var image_id = Number($('#image-box-1').attr('class'))
-      var append_div_count = Number($('div[id=1]').length) 
-      var noreset_id = image_id + append_div_count
-      fileReader.readAsDataURL(file);
-     //画像が10枚になったら超えたらドロップボックスを削除する
-      if (num == 10){
-        $('#image-box__container').css('display', 'none')
-      }
-      //読み込みが完了すると、srcにfileのURLを格納
-      fileReader.onloadend = function() {
-        var src = fileReader.result
-        var html= `<div class='item-image' data-image="${file.name}" data-index="${aaa}" id="${noreset_id-1}">
-                    <div class=' item-image__content'>
-                      <div class='item-image__content--icon'>
-                        <img src=${src} width="170" height="170" >
-                      </div>
+  function buildHTML(count) {
+    var html = `<div class="item-image" id="preview-box__${count}">
+                  <img src="" height="170" width="170" alt="preview" >
+                  <div class="item-image__operation">
+                    <div class="item-image__operation--edit__delete__hidden" id="delete_btn_${count}">削除</div>
                     </div>
-                    <div class='item-image__operation'>
-                      <div class='item-image__operation--edit__delete__file'>削除</div>
-                    </div>
-                  </div>`
-        const buildFileField1 = (num)=> {
-          const html = `<div  class="js-file_group" data-index="${num}" id=1>
-                          <input class="js-file-edit" type="file"
-                          name="item[item_images_attributes][${append_div_count+9}][item_image]"
-                          id="img-file" data-index="${num}" value="${noreset_id}" >
-                        </div>`;
-          return html;
-        }
-        
-        $('.js-file-edit').removeAttr('id');
-        //image_box__container要素の前にhtmlを差し込む
-        append = $('#append-js-edit').children('div').last().attr('id')
-        append_num = Number(append)
-
-        $('.img-label').before(html);
-
-        $('#append-js-edit').append(buildFileField1(num));
-      };
-      //image-box__containerのクラスを変更し、CSSでドロップボックスの大きさを変えてやる。
-      $('#image-box__container').attr('class', `item-num-${num}`)
-    });
-  });
-  
+                  </div>
+                </div>`
+    return html;
+  }
+  //商品編集ページへ遷移した際のアクション
+  if (window.location.href.match(/\/items\/\d+\/edit/)){
+    //登録済み画像のプレビューの表示
+    var prevContent = $('.item-image').prev();
+    labelWidth = (770 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+    $('.label-content').css('width', labelWidth);
+    //プレビューにidを追加
+    $('.item-image').each(function(index, box){
+      $(box).attr('id', `preview-box__${index}`);
+    })
+    //削除ボタンにidを追加
+    $('.item-image__operation--edit__delete__hidden').each(function(index, box){
+      $(box).attr('id', `delete_btn_${index}`);
+    })
+    var count = $('.item-image').length;
+    //プレビューが10枚あるときは投稿ボックスを消す
+    if (count == 10) {
+      $('.label-content').hide();
+    }
+  }
+  // 投稿ボックスの横幅調整
+  function setLabel(){
+    var prevContent = $('.label-content').prev();
+    labelWidth = (620 - $(prevContent).css('width'));
+    $('.label-content').css('width', labelWidth);
+  }
   // 10枚登録されていた場合にドロップボックスを消す
   $(document).ready(function(){
     var image_num = $('.item-image').length
     if (image_num==10){
-      $('#image-box__container').css('display', 'none')
+      $('.label-content').css('display', 'none')
     }
   });
 
-  $(document).ready(function(){
-    $('.js-file-edit').removeAttr('id');
+  // 画像をアップロードする際のアクション
+  $(document).on('change', '.hidden-field', function(){
+    console.log("OK1")
+    setLabel();
+    var id = $(this).attr('id').replace(/[^0-9]/g, '');
 
-    var num = $('.item-image').length - 1
-    var image_id = Number($('#image-box-1').attr('class'))
-    var append_div_count = Number($('div[id=1]').length) 
-    var noreset_id = image_id + append_div_count
-
-    const buildFileField = (num)=> {
-      const html = `<div  class="js-file_group" data-index="${num}" id=1>
-                      <input class="js-file-edit" type="file"
-                      name="item[item_images_attributes][${num}][item_image]"
-                      id="img-file" data-index="${num}" value="${noreset_id}" >
-                    </div>`;
-      return html;
+    $('.label-box').attr({id: `label-box--${id}`, for: `item_item_images_attributes_${id}_item_image`});
+    var file = this.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+      console.log("OK2")
+      var image = this.result;
+      if ($(`#preview-box__${id}`).length == 0){
+        console.log("OK3")
+        var count = $('.item-image').length;
+        var html = buildHTML(id);
+        var prevContent = $('.label-content').prev();
+        $(prevContent).append(html);
+      }
+      // 画像を追加
+      $(`#preview-box__${id} img`).attr('src', `${image}`);
+      var count = $('.item-image').length;
+      console.log(count);
+      // 画像が10個会ったら投稿ボックスを消す
+      if (count == 10){
+        console.log("OK4")
+        $('.label-content').hide();
+      }
+      if ($(`#item_item_images_attributes_${id}__destroy`)){
+        console.log("OK5")
+        $(`#item_item_images_attributes_${id}__destroy`).prop('checked', false);
+      }
+      setLabel();
+      if (count < 10){
+        console.log("OK6")
+        $('.label-box').attr({id: `label-box--${count}`, for: `item_item_images_attributes_${count}_item_image`});
+      }
     }
-    $('#append-js-edit').append(buildFileField(num));
   });
 
-  $(document).on("click", '.item-image__operation--edit__delete__hidden', function(){
-    //削除を押されたプレビュー要素を取得
-    var target_image = $(this).parent().parent();
-    //削除を押されたプレビューimageのfile名を取得
-    var target_id = $(target_image).attr('id');
-    var target_image_file = $('input[value="'+target_id+'"][type=hidden]');
-    //プレビューを削除
-    target_image.remove()
-    target_image_file.remove()
-    //image-box__containerクラスをもつdivタグのクラスを削除のたびに変更
-    var num = $('.item-image').length
-    $('#image-box__container').show()
-    $('#image-box__container').attr('class', `item-num-${num}`)
+  $(document).on('click', '.item-image__operation--edit__delete__hidden', function() {
+    var count = $('.item-image').length;
+    setLabel(count);
+    var id = $(this).attr('id').replace(/[^0-9]/g, '');
+    $(`#preview-box__${id}`).remove();
+    //削除用チェックボックスの有無を判定
+    if ($(`#item_item_images_attributes_${id}__destroy`).length == 0) {
+      $(`#item_item_images_attributes_${id}_item_image`).val("");
+      var count = $('.item-image').length;
+      //10個めが消されたら投稿ボックスを表示
+      if (count == 9) {
+        $('.label-content').show();
+      }
+      setLabel(count);
+      if(id < 10){
+        $('.label-box').attr({id: `label-box--${id}`,for: `item_item_images_attributes_${id}_item_image`});
+      }
+    } else {
+      //投稿編集時
+      $(`#item_item_images_attributes_${id}__destroy`).prop('checked',true);
+      //10個めが消されたら投稿ボックスを表示
+      setLabel();
+      //ラベルのidとforの値を変更
+      if(id < 10){
+        $('.label-box').attr({id: `label-box--${id}`,for: `item_item_images_attributes_${id}_item_image`});
+      }
+    }
   });
-
-  $(document).on("click", '.item-image__operation--edit__delete__file', function(){
-    //削除を押されたプレビュー要素を取得
-    var target_image = $(this).parent().parent();
-    var target_id = Number($(target_image).attr('id'));
-    //削除を押されたプレビューimageのfile名を取得
-    var target_image_file = $('#append-js-edit').children('div').children('input[value="'+target_id+'"][type=file]');
-    //プレビューを削除
-    target_image.remove()
-    target_image_file.remove()
-    //image-box__containerクラスをもつdivタグのクラスを削除のたびに変更
-    var num = $('.item-image').length
-    $('#image-box__container').show()
-    $('#image-box__container').attr('class', `item-num-${num}`)
-  });
-  
-    // windowにdropした時の挙動をキャンセル
-    $(document).on("dragenter", function(e){
-      e.stopPropagation();
-      e.preventDefault();
-    });
-    $(document).on("dragover", function(e){
-      e.stopPropagation();
-      e.preventDefault();
-    });
-    $(document).on("drop", function(e){
-      e.stopPropagation();
-      e.preventDefault();
-    });
 });
