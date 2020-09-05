@@ -20,9 +20,10 @@ class CardController < ApplicationController
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "show"
+        item = Item.find(session[:item_id])
+        redirect_to purchase_path(item)
       else
-        redirect_to action: "pay"
+        redirect_to action: "new"
       end
     end
   end
@@ -36,7 +37,8 @@ class CardController < ApplicationController
       customer.delete
       card.delete
     end
-      redirect_to action: "new"
+      item = Item.find(session[:item_id])
+      redirect_to purchase_path(item)
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します

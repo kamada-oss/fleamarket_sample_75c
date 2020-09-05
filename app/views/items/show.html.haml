@@ -24,7 +24,7 @@
             .main__show__contents__content__item-box__price__detail
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
-          - if user_signed_in?
+          - if user_signed_in? && @item.auction_status == "出品中"
             - unless current_user.id == @item.user_id
               .main__show__contents__content__item-box__purchase
                 = link_to "購入画面に進む", purchase_path(@item.id), class: "main__show__contents__content__item-box__purchase__link"

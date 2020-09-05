@@ -1,8 +1,9 @@
-.topic
-  購入が確定しました。
--# .back
--#   = link_to purchase_path do
--#     購入確認画面へ戻る。
-.top
-  = link_to signup_index_path do
-    トップページへ戻る。
+= render "shared/header"
+.done#fullsize
+  .done__title
+    商品を購入致しました。
+  .done__backlink
+    = link_to 'トップページへ戻る', root_path, class: 'link'
+
+= render "items/sell-tab"
+= render "shared/footer"
