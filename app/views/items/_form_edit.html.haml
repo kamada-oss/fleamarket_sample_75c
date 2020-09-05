@@ -18,20 +18,23 @@
           %span.form-require
             必須
           %p 最大10枚までアップロードできます
-          
-        #image-box-1{class: "#{@item_images.last.id}"}
-          - @item_images.each do |img|
-            .item-image{id:img.id}
-              = image_tag(img.item_image.url,{width: "170", height: "170"})
-              .item-image__operation
-                .item-image__operation--edit__delete__hidden 削除
-          %label.img-label{for: "img-file"}
-            #image-box__container{class:"item-num-#{@item_images.length}"}
-              #append-js-edit
-                = f.fields_for :item_images do |image|
-                  .js-file_group{"data-index" => "#{image.index}"}
-                    = image.file_field :item_image, type: 'file', style:"", value:"#{image.object.id}", id:"img-file", class: "js-file-edit",name: "item[item_images_attributes][#{@item.item_images.count}][item_image]", data:{index:""}
+        .sell__container__main__post
+          .prev-content
+            - @item_images.each do |img|
+              .item-image
+                = image_tag "#{img.item_image}", width: "170", height: "170", alt: "preview"
+                .item-image__operation
+                  .item-image__operation--edit__delete__hidden 削除
+          .label-content
+            = f.label :"item_images_attributes_#{@item_images.length}_item_image", class: "label-box", id: "label-box--#{@item_images.length}" do
               %i.fas.fa-camera
+          .hidden-content
+            = f.fields_for :item_images do |image|
+              = image.file_field :item_image, class: "hidden-field"
+              - if image.object.persisted?
+                = image.check_box:_destroy, class: "hidden-checkbox"
+            - @item_images.length.upto(9) do |i|
+              %input{name: "item[item_images_attributes][#{i}][item_image]", id: "item_item_images_attributes_#{i}_item_image", class:"hidden-field", type:"file"}
                 -# 商品名の部分
         .sell__container__main__form
           .sell__container__main__form__group
@@ -165,7 +168,7 @@
               %br また、出品をもちまして加盟店規約に同意したことになります。
           = f.submit "変更する", class: "sell__container__main__btn__confirm"
           .sell__container__main__btn__back
-            キャンセル
+            =link_to 'キャンセル', item_path
   .sell__footer
     %ul.sell__footer__nav
       .sell__footer__nav__li
