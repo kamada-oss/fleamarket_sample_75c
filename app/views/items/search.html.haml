@@ -10,7 +10,7 @@
           .item__body__lists__list
             = link_to item_path(item.id) do
               %figure.list__img
-                = image_tag item.item_image.first.item_image.url
+                = image_tag item.item_images.first.item_image.url if item.item_images.first.present?
               .list__body
                 %h3.name
                   = item.name
@@ -30,7 +30,7 @@
           .item__body__lists__list
             = link_to item_path(item.id) do
               %figure.list__img
-                = image_tag item.item_images.first.item_image.url
+                = image_tag item.item_images.first.item_image.url if item.item_images.first.present?
               .list__body
                 %h3.name
                   = item.name
