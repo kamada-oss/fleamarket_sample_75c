@@ -78,23 +78,29 @@
     &__payment {
       @include detail_space(150px, 60%, auto);
       border-bottom: 1px solid #EEEEEE;
+      position: relative;
       &__topic {
         @include about_font(14px, false, false, 20px 0 0 20px);
       }
       &__info {
-        @include about_font(14px, false, false, 20px 0 0 20px);
+        @include about_font(14px, false, false, 20px 0 0 35px);
       }
+      .body__purchase__payment__info__way__delete {
+        right: 30px;
+        bottom: 10px;
+        position: absolute;
+      }
+    }
 
     // 配送先
-    }
     &__shipping--address{
-      @include detail_space(150px, 60%, auto);
+      @include detail_space(170px, 60%, auto);
       border-bottom: 1px solid #EEEEEE;
       &__topic {
         @include about_font(14px, false, false, 20px 0 0 20px);
       }
       &__info {
-        @include about_font(14px, false, false, 20px 0 0 20px);
+        @include about_font(14px, false, false, 20px 0 0 35px);
       }
     }
 
@@ -115,6 +121,14 @@
         text-decoration: none;
         border-radius: 10px;
         padding: 10px 89px;
+      }
+      .body__purchase__confirmation__purchase__dummy {
+        @include about_font(18px, center, 50px, false);
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 0 89px;
       }
     }
   }
