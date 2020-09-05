@@ -1,6 +1,3 @@
--# = form_tag action: :pay, method: :post do
--#   :plain
--#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "購入する", "data-key": "pk_test_07152a77260b38c5464b6e22"}
 
 = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
   %label カード番号
@@ -41,29 +38,4 @@
   = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
   #card_token
   = submit_tag "追加する", id: "token_submit"
-
-  -# .card_token
-  -#   = link_to card_create_path method: :post, id: "token_submit" do
-  -#     追加する
-    -# = form_tag card_create_path, method: :post do
-      -#   :plain
-        -#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報を登録する", "data-key": ENV["PAYJP_KEY"]}
-
--# %form
--#   .form-group
--#     %label{:for => "inputCardNumber"} カード番号
--#     %input#card_number.form-control{:placeholder => "カード番号", :type => "text"}/
--#   .form-group
--#     %label{:for => "inputCVV"} CVV/セキュリティコード
--#     %input#cvv.form-control{:placeholder => "CVV", :type => "text"}/
--#   .form-group
--#     %label{:for => "inputExp"} 有効期限
--#     .row
--#       .col-md-6
--#         %input#exp_year.form-control{:placeholder => "年", :type => "text"}/
--#       .col-md-6
--#         %input#exp_month.form-control{:placeholder => "月", :type => "text"}/
--#   %button#token トークン化
--# / 今回はHTML上に結果を表示します
--# 生成されたトークン：
--# #card_token
+  
