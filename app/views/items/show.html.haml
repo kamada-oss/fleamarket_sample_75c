@@ -100,7 +100,7 @@
           .main__show__contents__content__comment-box__list
             - if @comments
               - @comments.each do |comment|
-                .main__show__contents__content__comment-box__list__box{data:{index: comment.id}}
+                .main__show__contents__content__comment-box__list__box#box[comment]
                   .main__show__contents__content__comment-box__list__box__name
                     - if comment.user.id == @item.user_id
                       .main__show__contents__content__comment-box__list__box__name__saler 出品者
@@ -109,7 +109,8 @@
                         = comment.user.nickname
                     - if user_signed_in? && current_user.id == @item.user_id
                       .main__show__contents__content__comment-box__list__box__name__delete
-                        = link_to '削除する', comment_path(comment.id) ,method: :delete, data:{index: comment.id}, class: "main__show__contents__content__comment-box__list__box__name__delete__btn"
+                        = link_to '削除する', item_comment_path(@item.id, comment.id) ,method: :delete, remote: true
+                        -# = link_to '削除する', "/items/#{@item.id}/comments/#{comment.id}",method: :delete, remote: true, data:{index: comment.id}
                   .main__show__contents__content__comment-box__list__box__message
                     .main__show__contents__content__comment-box__list__box__message__text
                       = simple_format(comment.text)

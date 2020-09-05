@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
+    @item = @comment.item
     @user_of_item = @comment.item.user_id
     if @comment.save
       respond_to do |format|
@@ -13,7 +14,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    @comment.destroy!
+
   end
 
   private
