@@ -43,7 +43,7 @@ $(function(){
         </div>
       </div>`
       return html;
-    };
+    }
   }
   $('#main__show__contents__content__comment-box__form').on('submit', function(e){
     e.preventDefault();
