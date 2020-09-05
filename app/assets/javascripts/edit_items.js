@@ -45,7 +45,6 @@ $(function(){
 
   // 画像をアップロードする際のアクション
   $(document).on('change', '.hidden-field', function(){
-    console.log("OK1")
     setLabel();
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
 
@@ -54,10 +53,8 @@ $(function(){
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function(){
-      console.log("OK2")
       var image = this.result;
       if ($(`#preview-box__${id}`).length == 0){
-        console.log("OK3")
         var count = $('.item-image').length;
         var html = buildHTML(id);
         var prevContent = $('.label-content').prev();
@@ -69,16 +66,13 @@ $(function(){
       console.log(count);
       // 画像が10個会ったら投稿ボックスを消す
       if (count == 10){
-        console.log("OK4")
         $('.label-content').hide();
       }
       if ($(`#item_item_images_attributes_${id}__destroy`)){
-        console.log("OK5")
         $(`#item_item_images_attributes_${id}__destroy`).prop('checked', false);
       }
       setLabel();
       if (count < 10){
-        console.log("OK6")
         $('.label-box').attr({id: `label-box--${count}`, for: `item_item_images_attributes_${count}_item_image`});
       }
     }
