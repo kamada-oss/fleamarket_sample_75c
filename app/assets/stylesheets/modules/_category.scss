@@ -1,7 +1,8 @@
 .categories{
   // display: none;
   position: absolute;
-  z-index: 5;
+  width: 100px;
+  z-index: 2;
   left:0px;
   &__text{
     a{
@@ -10,6 +11,10 @@
       }
     } 
   }
+}
+a {
+  text-decoration: none;
+  display: inline-block;
 }
 
 ul.categories__parent{

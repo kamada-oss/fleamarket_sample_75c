@@ -6,15 +6,32 @@
   .products-index
     .title
       = "#{@category.name}の商品一覧"
-      .title__border
     .category_wrapper
       .category_links
-      - @category_links.each do |category|
-        = link_to category.name, category_path(category)
-    - if @items
-      %ul.lists
-        - @items.each do |item|
-          = image_tag item.item_images.first.item_image.url
-          = link_to item.name, item_path(item)
+        - @category_links.each do |category|
+          = link_to category.name, "#", class: "category_link"
+
+    .containerBrand__product__lists
+      = link_to "#", class: "containerBrand__product__lists__link" do
+        %figure.containerBrand__product__lists__link__images
+          = image_tag "a007.png", class: "containerBrand__product__lists__link__images__image"
+        .containerBrand__product__lists__link__body
+          .containerBrand__product__lists__link__body__name
+            ee
+          .containerBrand__product__lists__link__body__detail
+            .containerBrand__product__lists__link__body__detail__price
+              1000円
+            .containerBrand__product__lists__link__body__detail__icon
+              = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
+              .containerBrand__product__lists__link__body__detail__icon__text
+                &nbsp1
+          .containerBrand__product__lists__link__body__tax （税込）
+
+
+    -# - if @items
+    -#   %ul.lists
+    -#     - @items.each do |item|
+    -#       = image_tag item.item_images.first.item_image.url
+    -#       = link_to item.name, item_path(item)
 
 = render '/shared/footer'
