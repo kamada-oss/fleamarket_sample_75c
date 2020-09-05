@@ -12,21 +12,22 @@
     -# 商品情報
     .body__purchase__item
       .body__purchase__item__image
-        = image_tag 'member_photo_noimage_thumb.png', size: "100x100"
+        = image_tag @item.item_images.first.item_image.url, size: "100x100"
       .body__purchase__item__name
-        職人が絶賛！？モナコ名物F１プラモデル（車体に２箇所キズあり）
+        -# 職人が絶賛！？モナコ名物F１プラモデル（車体に２箇所キズあり）
+        = @item.name
       .body__purchase__item__name__price
         .body__purchase__item__name__price__tax
           送料込み (税込)
         .body__purchase__item__name__price__sum
-          3,000円
+          = "¥#{@item.price}"
 
     -# 金額情報
     .body__purchase__price
       .body__purchase__price__text
         支払い金額
       .body__purchase__price__amount
-        3,000円
+        = "¥#{@item.price}"
 
     -# 支払い方法
     .body__purchase__payment
@@ -86,7 +87,7 @@
           -#   :plain
           -#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": ENV["PAYJP_KEY"]}
         - else
-          = link_to pay_purchases_path, method: :post, class: "purchase-btn" do
+          = link_to pay_purchase_path, method: :post, class: "purchase-btn" do
             購入する
 
 -# フッター

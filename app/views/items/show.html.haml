@@ -27,7 +27,7 @@
           - if user_signed_in?
             - unless current_user.id == @item.user_id
               .main__show__contents__content__item-box__purchase
-                = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
+                = link_to "購入画面に進む", purchase_path(@item.id), class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
             = @item.text
           .main__show__contents__content__item-box__table
@@ -51,8 +51,8 @@
                   %th.main__show__contents__content__item-box__table__content__tbody__tr__th
                     ブランド
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
-                    - unless @item.brand_name.nil?
-                      = @item.brand_name
+                    - unless @item.brand_id.nil?
+                      = @item.brand_id
                     - else
                       なし
                 %tr.main__show__contents__content__item-box__table__content__tbody__tr
