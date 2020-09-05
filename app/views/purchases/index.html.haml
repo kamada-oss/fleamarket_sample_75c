@@ -14,7 +14,6 @@
       .body__purchase__item__image
         = image_tag @item.item_images.first.item_image.url, size: "100x100"
       .body__purchase__item__name
-        -# 職人が絶賛！？モナコ名物F１プラモデル（車体に２箇所キズあり）
         = @item.name
       .body__purchase__item__name__price
         .body__purchase__item__name__price__tax
@@ -83,9 +82,6 @@
         - if @card.blank?
           .body__purchase__confirmation__purchase__dummy
             購入する
-          -# = form_tag card_pay_path, method: :post do
-          -#   :plain
-          -#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "カード情報登録後に購入する", "data-key": ENV["PAYJP_KEY"]}
         - else
           = link_to pay_purchase_path, method: :post, class: "purchase-btn" do
             購入する
