@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :show_all_instance, only: [:show, :edit, :update, :destroy]
   before_action :check_item_details, only: [:post_done, :update_done]
   before_action :category_map, only: [:edit, :update]
+  before_action :set_ransack
 
   def index
     @items = Item.all
@@ -35,28 +36,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item.item_images.new
   end
 
   def update
-    if item_params[:item_images_attributes].nil?
-      flash.now[:alert] = '更新できませんでした 【画像を１枚以上入れてください】'
-      render :edit
+    @item.touch
+    if @item.update(item_params)
+      redirect_to  update_done_items_path
     else
-      exit_ids = []
-      item_params[:item_images_attributes].each do |a,b|
-        exit_ids << item_params[:item_images_attributes].dig(:"#{a}",:id).to_i
-      end
-      ids = ItemImage.where(item_id: params[:id]).map{|image| image.id }
-      exit_ids_uniq = exit_ids.uniq
-      delete__db = ids - exit_ids_uniq
-      ItemImage.where(id:delete__db).destroy_all
-      @item.touch
-      if @item.update(item_params)
-        redirect_to  update_done_items_path
-      else
-        flash.now[:alert] = '更新できませんでした'
-        render :edit
-      end
+      flash.now[:alert] = '更新できませんでした'
+      render :edit
     end
   end
 
@@ -102,7 +91,11 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :brand_name, :price, :condition, :fee_burden, :prefecture, :handling_time, item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: current_user.id)
+    params.require(:item).permit(
+      :name, :text, :category_id, 
+      :brand_name, :price, :condition, 
+      :fee_burden, :prefecture, :handling_time, 
+      item_images_attributes: [:id, :_destroy, :item_image]).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -147,4 +140,5 @@ class ItemsController < ApplicationController
     @grandchild_array << grandchild.name
     @grandchild_array << grandchild.id
   end
+
 end

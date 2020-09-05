@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'items/purchase'
   root 'items#index'
-  resources :items do
+  
+  resources :items, only: [:new, :show, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     collection do
       get 'search_child', defaults: { format: 'json' }
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :comments, only: :destroy
 
   resources :categories, only: [:index, :new, :show] do
     member do
