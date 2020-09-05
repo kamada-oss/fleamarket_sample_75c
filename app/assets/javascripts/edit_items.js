@@ -63,7 +63,6 @@ $(function(){
       // 画像を追加
       $(`#preview-box__${id} img`).attr('src', `${image}`);
       var count = $('.item-image').length;
-      console.log(count);
       // 画像が10個会ったら投稿ボックスを消す
       if (count == 10){
         $('.label-content').hide();
