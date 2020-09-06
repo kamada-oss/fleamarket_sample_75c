@@ -19,13 +19,12 @@
             %p 最大10枚までアップロードできます
             #image-box-1
               %label.input-box__image{for: "img-file"}
-                .sell__container__main__sell-upload__file#image-box__container
+                .item-num-0#image-box__container
                   = f.fields_for :item_images do |image|
                     #append-js
                       .js-file_group{"data-index" => "#{image.index}"}
-                        = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file"
-                    %i.fas.fa-camera
-                    %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+                        = image.file_field :item_image, type: 'file', style:"", value:"", id:"img-file", class: "js-file",name: "item[item_images_attributes][#{@item.item_images.count}][item_image]",data:{index:"0"}
+                  %i.fas.fa-camera
                   -# 商品名の部分
           .sell__container__main__form
             .sell__container__main__form__group
@@ -155,11 +154,11 @@
       .sell__footer__logo
         = link_to "/items" do
           = image_tag "logo-white.png", class: "footer__sell-page"
-- else 
+- else
   .done#fullsize
     .done__title
-      商品を出品するには新規会員登録またはログインが必要です。
-      .done__backlink
-        = link_to '新規会員登録', registration_user_information_signup_index_path, class: 'link'
-      .done__backlink
-        =link_to 'ログイン', new_user_session_path, class: 'link'
+      商品を出品するには新規会員登録またはログインが必要です
+    .done__backlink
+      = link_to '新規会員登録', registration_user_information_signup_index_path, class: 'link'
+    .done__backlink
+      = link_to 'ログイン', new_user_session_path, class: 'link'

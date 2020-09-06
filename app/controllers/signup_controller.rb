@@ -9,6 +9,7 @@ class SignupController < ApplicationController
   end
 
   def registration_send_address
+    sns_auth
     @user = User.new(user_params)
     if @user.valid?
       @send_address = DeliverAddress.new
@@ -93,6 +94,14 @@ class SignupController < ApplicationController
     def redirect_to_root_when_signed_in
       if user_signed_in?
         redirect_to root_path
+      end
+    end
+
+    def sns_auth
+      if params[:sns_auth] == 'true'
+        pass = Devise.friendly_token
+        params[:user][:password] = pass
+        params[:user][:password_confirmation] = pass
       end
     end
 end

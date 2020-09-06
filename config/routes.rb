@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'items/purchase'
   root 'items#index'
-  resources :items do
+  resources :items, only: [:new, :show, :create, :edit, :update, :destroy] do
     collection do
       get 'search_child', defaults: { format: 'json' }
       get 'search_grandchild', defaults: { format: 'json' }
@@ -24,12 +24,29 @@ Rails.application.routes.draw do
       get 'purchase'
     end
   end
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
   resources :signup, only: [:index, :create] do
     collection do
       get 'registration_user_information'
       get 'registration_send_address'
       get 'done'
+    end
+  end
+
+  resources :card, only: [:new, :show, :create] do
+    collection do
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
+  end
+
+  resources :purchases, only: [:new, :create, :show] do
+    member do
+      post 'pay', to: 'purchases#pay'
+      get 'done', to: 'purchases#done'
     end
   end
 
