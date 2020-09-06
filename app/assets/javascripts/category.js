@@ -4,7 +4,6 @@ $(function(){
   });
   $(".categories li ul").hide();
   $(".categories__child li").hover(function() {
-    console.log("test")
     $(this).children('.categories__grandchild').css('display', 'block')
   }, function() {
     $(this).children('.categories__grandchild').css('display', 'none')

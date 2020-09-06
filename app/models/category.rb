@@ -19,5 +19,6 @@ class Category < ApplicationRecord
   #   else
   #     return self.items
     # end
+必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
   end
 end
