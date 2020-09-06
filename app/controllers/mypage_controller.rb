@@ -6,11 +6,11 @@ class MypageController < ApplicationController
   end
 
   def item_exhibiting
-    @items = Item.where(user_id: @user.id)
+    @items = Item.where(user_id: @user.id, auction_status: 1)
   end
 
   def item_sold
-    @items = Item.where(user_id: 50)
+    @items = Item.where(user_id: @user.id, auction_status: 2)
   end
 
   def item_purchased
