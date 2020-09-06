@@ -7,7 +7,6 @@ class CategoryController < ApplicationController
     @items = @category.set_items
     @parents = Category.where(ancestry: nil)
     @Items = Item.where(category_id: Category.roots[1].subtree_ids)
-    # @items = @items.where(buyer_id: nil).order("created_at DESC")
   end
 
 
