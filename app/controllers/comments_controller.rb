@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @item = @comment.item
-    @user_of_item = @comment.item.user
+    @user_of_item = @comment.item.user_id
     if @comment.save
       respond_to do |format|
         format.json
       end
     else
-      render item_path(comment.item)
+      render item_path(@comment)
     end
   end
 
