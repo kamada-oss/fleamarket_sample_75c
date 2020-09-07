@@ -1,6 +1,7 @@
 class MypageController < ApplicationController
-  before_action :redirect_to_login_when_not_signed_in
   before_action :get_user
+  before_action :redirect_to_login_when_not_signed_in
+  before_action :redirect_to_root_when_wrong_user
 
   def good_index
   end
@@ -115,5 +116,9 @@ class MypageController < ApplicationController
         :address2,
         :phone_number
       )
+    end
+
+    def redirect_to_root_when_wrong_user
+      redirect_to root_path unless @user == current_user
     end
 end
