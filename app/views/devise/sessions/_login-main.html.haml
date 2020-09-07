@@ -5,15 +5,12 @@
     = link_to '/signup/registration_user_information', class: 'login-index-main__head--btn-registration' do
       新規会員登録
   .signup-index-main__inner
-    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-google' do
+    = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-google' do
       = image_tag src='google.png'
-      Googleで登録する
-    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-facebook' do
+      Googleでログインする
+    = link_to user_facebook_omniauth_authorize_path, method: :post, class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-facebook' do
       = icon 'fab', 'facebook-square'
-      Facebookで登録する
-    = link_to '#', class: 'signup-index-main__inner--btn-default signup-index-main__inner--btn-apple' do
-      = icon 'fab', 'apple'
-      Appleで登録する
+      Facebookでログインする
   .signup-registration-main__inner
     .login_error_text
       = flash[:alert]

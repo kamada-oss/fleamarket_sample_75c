@@ -55,7 +55,7 @@
         display: flex;
         &__category {
           display: flex;
-          line-height: 38px;
+          line-height: 32px;
           padding: 0;
           &__btn {
             color: #333;
@@ -65,9 +65,9 @@
           }
         }
         &__brand {
-          display: flex;
-          line-height: 38px;
-          padding: 0 0 0 16px;
+          position: absolute;
+          left: 120px;
+          width: 150px;
           &__btn {
             color: #333;
             text-decoration: none;

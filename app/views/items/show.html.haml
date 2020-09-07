@@ -11,25 +11,23 @@
             %h2= @item.name
           .main__show__contents__content__item-box__body
             %ul.main__show__contents__content__item-box__body__photo
-              - @item.item_images.each do |i|
-                - if i.item_image.present?
-                  %li.main__show__contents__content__item-box__body__photo__content
-                    = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
-                    %ul.main__show__contents__content__item-box__body__photo__content__lawer
-                      - if @item.item_images.present?
-                        - @item.item_images.each do |i|
-                          %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
-                            = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
+              %li.main__show__contents__content__item-box__body__photo__content
+                = image_tag @item.item_images.first.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__upper"
+                %ul.main__show__contents__content__item-box__body__photo__content__lawer
+                  - if @item.item_images.present?
+                    - @item.item_images.first(4).each do |i|
+                      %li.main__show__contents__content__item-box__body__photo__content__lawer__image-box{ style: 'width:140px'}
+                        = image_tag i.item_image.url, class: "main__show__contents__content__item-box__body__photo__content__lawer__image-box__image"
           .main__show__contents__content__item-box__price
             .main__show__contents__content__item-box__price__item-price
               = "¥#{@item.price}"
             .main__show__contents__content__item-box__price__detail
               .main__show__contents__content__item-box__price__detail__tax
                 (税込)送料込み
-          - if user_signed_in?
+          - if user_signed_in? && @item.auction_status == "出品中"
             - unless current_user.id == @item.user_id
               .main__show__contents__content__item-box__purchase
-                = link_to "購入画面に進む", purchase_items_path, class: "main__show__contents__content__item-box__purchase__link"
+                = link_to "購入画面に進む", purchase_path(@item.id), class: "main__show__contents__content__item-box__purchase__link"
           .main__show__contents__content__item-box__detail
             = @item.text
           .main__show__contents__content__item-box__table
@@ -98,17 +96,43 @@
               = link_to "商品の編集", edit_item_path(@item.id), class: "main__show__contents__content__item-user__edit__link"
             .main__show__contents__content__item-user__destroy
               = link_to "この商品を削除する", item_path(@item), method: :delete, class: "main__show__contents__content__item-user__destroy__link"
-        .main__show__contents__content__comment-box
-          %form{action: "#", class: "main__show__contents__content__comment-box__form"}
-            %textarea.main__show__contents__content__comment-box__form__textarea
-            %p.main__show__contents__content__comment-box__form__message
-              相手のことを考え丁寧なコメントを心がけようコメントを心がけましょう。
-              %br
-              不愉快な言葉遣いなどは利用制限や退会処分となることがあります。
-              %br
-            %button{name: "button", type: "submit", class: "main__show__contents__content__comment-box__form__btn"}
-              = icon('fa', 'comment', class: "main__show__contents__content__comment-box__form__btn__icon")
-              コメントする
+        .main__show__contents__content__comment-box 
+          .main__show__contents__content__comment-box__list
+            - if @comments
+              - @comments.each do |comment|
+                .main__show__contents__content__comment-box__list__box#box[comment]
+                  .main__show__contents__content__comment-box__list__box__name
+                    - if comment.user.id == @item.user_id
+                      .main__show__contents__content__comment-box__list__box__name__saler 出品者
+                    - else
+                      .main__show__contents__content__comment-box__list__box__name__nickname
+                        = comment.user.nickname
+                    - if user_signed_in? && current_user.id == @item.user_id
+                      .main__show__contents__content__comment-box__list__box__name__delete
+                        = link_to '削除する', item_comment_path(@item.id, comment.id) ,method: :delete, remote: true, class: "main__show__contents__content__comment-box__list__box__name__delete__btn"
+                  .main__show__contents__content__comment-box__list__box__message
+                    .main__show__contents__content__comment-box__list__box__message__text
+                      = simple_format(comment.text)
+                    .main__show__contents__content__comment-box__list__box__message__date
+                      = comment.created_at.strftime("%Y-%m-%d %H:%M")
+          - if current_user
+            = form_with(model: [@item, @comment], local: true, id: "main__show__contents__content__comment-box__form") do |f|
+              =f.text_area :text, placeholder: "コメントする", class: "main__show__contents__content__comment-box__form__textarea"
+              %p.main__show__contents__content__comment-box__form__message
+                相手のことを考え丁寧なコメントを心がけようコメントを心がけましょう。
+                %br
+                不愉快な言葉遣いなどは利用制限や退会処分となることがあります。
+                %br
+              = button_tag type: "submit", class: "main__show__contents__content__comment-box__form__btn" do
+                = icon('fa', 'comment', class: "main__show__contents__content__comment-box__form__btn__icon")
+                コメントする
+          - else
+            .main__show__contents__content__comment-box__signin
+              %p コメントの投稿には、
+              = link_to "ログイン", new_user_session_path, class: "main__show__contents__content__comment-box__signin__logout"
+              または
+              = link_to "新規会員登録", signup_index_path, class: "main__show__contents__content__comment-box__signin__signup"
+              が必要です
       %ul.main__show__contents__links
         %li.main__show__contents__links__left
           = link_to "#", class: "main__show__contents__links__left__link" do

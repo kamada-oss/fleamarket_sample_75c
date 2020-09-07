@@ -1,5 +1,14 @@
 class CategoryController < ApplicationController
-  before_action :set_category, only: [:parent, :child, :grandchild]
+  before_action :set_category, only: [:parent, :child, :grandchild, :show]
+
+
+
+  def show
+    @items = @category.set_items
+    @parents = Category.where(ancestry: nil)
+    @Items = Item.where(category_id: Category.roots[1].subtree_ids)
+  end
+
 
   def parent
     #親要素の子要素代入
@@ -37,5 +46,10 @@ class CategoryController < ApplicationController
   def set_category
   #パラメーターに入ってくカテゴリーidを基にクリックされたカテゴリーのレコードを取得
     @category = Category.find(params[:id])
+    if @category.has_children?
+      @category_links = @category.children
+    else
+      @category_links = @category.siblings
+    end
   end
 end
