@@ -4,14 +4,15 @@
   .mypage-main
     .mypage-main__header
       %h3 購入した商品
-    - if @items.any?
-      - @items.each do |item|
+    - if @purchases.any?
+      - @purchases.each do |purchase|
+        - item = purchase.item
         = link_to item, class:'mypage-main__item' do
           .mypage-main__item__content
             = image_tag "#{item.item_images.first.item_image}", class:'mypage-main__item__content__img'
             .mypage-main__item__content__text
               = item.name
-              %h5.mypage-main__item__content__text__box-blue 出品中
+              %h5.mypage-main__item__content__text__box-blue 購入済
           = icon 'fas', 'chevron-right'
     - else
       .mypage-main__img

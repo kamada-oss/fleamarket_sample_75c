@@ -15,7 +15,7 @@ class MypageController < ApplicationController
   end
 
   def item_purchased
-    @items = Item.where(user_id: 50)
+    @purchases = Purchase.where(buyer_id: @user.id).includes(:item)
   end
 
   def edit_profile
