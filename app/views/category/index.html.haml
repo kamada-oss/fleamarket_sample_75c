@@ -1,0 +1,10 @@
+%h1 カテゴリー一覧
+%ul.categories
+  - @parents.each do |parent|
+    %li.parents= link_to "#{parent.name}", category_path(parent)
+    %ul.caregories__children
+      - parent.children.each do |child|
+        %li.childern= link_to "#{child.name}", category_path(child)
+        %ul.categories__grandchildren
+          - child.children.each do |grandchild|
+            %li= link_to "#{grandchild.name}", category_path(grandchild)
