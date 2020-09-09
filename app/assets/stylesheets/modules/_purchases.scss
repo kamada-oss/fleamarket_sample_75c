@@ -76,7 +76,7 @@
     // 支払い方法
     }
     &__payment {
-      @include detail_space(150px, 60%, auto);
+      @include detail_space(180px, 60%, auto);
       border-bottom: 1px solid #EEEEEE;
       position: relative;
       &__topic {
