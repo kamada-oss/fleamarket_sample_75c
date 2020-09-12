@@ -2,6 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :likes, dependent: :destroy
+  has_many :likes, through: :likes, source: :item
   has_many :comments
   has_one  :deliver_address
   accepts_nested_attributes_for :deliver_address
