@@ -31,6 +31,7 @@
 - has_many :items, through: :purchases
 - has_many :purchases
 - has_one :card
+- has_many :sns_credentials
 
 ## deliver_addressテーブル
 
@@ -118,7 +119,6 @@
 |------|----|-------|
 |image_url|string|null: false|
 |item_id|references|null: false, foreign_key: true|
-|user_id|references|null: falsem foreign_key: true|
 
 ### Association
 - belongs_to :item, optional: true
@@ -129,7 +129,6 @@
 |------|----|-------|
 |name|string|null: false|
 |ancestry|string||
-|path|text|null: false|
 
 ### Association
 - has_many :items
