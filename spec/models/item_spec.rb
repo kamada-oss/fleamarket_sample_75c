@@ -27,7 +27,7 @@ describe Item do
     it "カテゴリーがない場合は登録できないこと" do
       item = build(:item, category_id: "")
       item.valid?
-      expect(item.errors[:category_id]).to include("を入力してください")
+      expect(item.errors[:category]).to include("を入力してください")
     end
 
     it "ブランド名がなくても登録できること" do
