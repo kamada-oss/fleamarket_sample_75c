@@ -2,28 +2,58 @@ crumb :root do
   link "トップページ", root_path
 end
 
-crumb :signup_index do
-  link "新規登録一覧", signup_index_path
-  parent :root
-end
-
 crumb :item do |item|
   link item.name, item_path(item)
   parent :root
 end
 
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
+# マイページ
+crumb :good_index do |user|
+  link "マイページ", good_index_mypage_path(user)
+  parent :root
+end
 
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
+crumb :item_exhibiting do |user|
+  link "出品した商品-出品中", item_exhibiting_mypage_path(user)
+  parent :good_index, user
+end
 
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+crumb :item_sold do |user|
+  link "出品した商品-売却済み", item_sold_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :item_purchased do |user|
+  link "購入した商品", item_purchased_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :edit_profile do |user|
+  link "プロフィール", edit_profile_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :edit_address do |user|
+  link "発送元・お届け先住所変更", edit_address_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :edit_address do |user|
+  link "発送元・お届け先住所変更", edit_address_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :edit_payment do |user|
+  link "支払い方法", edit_payment_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :edit_email_password do |user|
+  link "メール/パスワード", edit_email_password_mypage_path(user)
+  parent :good_index, user
+end
+
+crumb :logout do |user|
+  link "ログアウト", logout_mypage_path(user)
+  parent :good_index, user
+end
