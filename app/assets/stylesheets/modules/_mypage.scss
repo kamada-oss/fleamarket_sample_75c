@@ -254,4 +254,47 @@
       border-radius: 0.3em;
     }
   }
+
+  &__card{
+    height: 450px;
+    background-color: white;
+    width: 100%;
+    padding-left: 30%;
+    .field{
+      input{
+        width: 50%;
+        height: 50px;
+        font-size: 15px;
+        text-indent: 1em;
+        border: solid 1px #EEEEEE;
+        border-radius: 0.3em;
+        line-height: 200px;
+      }
+      &__label{
+        padding: 30px 0 10px 0;
+        &__form-require{
+          background-color: $red-btn-color;
+          color: white;
+        }
+      }
+      select{
+        width: 20%;
+        height: 30px;
+        border: solid 1px #EEEEEE;
+      }
+      .select_name{
+        background-color: white;
+        color: gray;
+      }
+    }
+    .red_btn{
+      margin-top: 30px;
+      width: 50%;
+      height: 50px;
+      background-color: $red-btn-color;
+      border: solid 1px #EEEEEE;
+      color: white;
+      border-radius: 0.3em;
+    }
+  }
 }

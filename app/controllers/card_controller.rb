@@ -19,8 +19,13 @@ class CardController < ApplicationController
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        item = Item.find(session[:item_id])
-        redirect_to purchase_path(item)
+        if session[:item_id].present?
+          item = Item.find(session[:item_id])
+          session[:item_id] = nil
+          redirect_to purchase_path(item)
+        else
+          redirect_to edit_payment_mypage_path(current_user), notice: 'クレジットカードの登録が完了しました'
+        end
       else
         redirect_to action: "new"
       end

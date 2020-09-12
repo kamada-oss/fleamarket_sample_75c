@@ -1,7 +1,9 @@
 class MypageController < ApplicationController
+  require "payjp"
   before_action :get_user
   before_action :redirect_to_login_when_not_signed_in
   before_action :redirect_to_root_when_wrong_user
+  before_action :delete_session_item_id, only: [:edit_payment]
 
   def good_index
   end
@@ -46,6 +48,12 @@ class MypageController < ApplicationController
   end
 
   def edit_payment
+    @card = Card.find_by(user_id: @user.id)
+    if @card.present?
+      Payjp.api_key = Rails.application.credentials[:payjp][:payjp_private_key]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
+    end
   end
 
   def edit_email_password
@@ -120,5 +128,12 @@ class MypageController < ApplicationController
 
     def redirect_to_root_when_wrong_user
       redirect_to root_path unless @user == current_user
+    end
+
+    def delete_session_item_id
+      # アイテム購入画面の遷移を防ぐ為、sessionを削除
+      if session[:item_id].present?
+        session[:item_id] = nil
+      end
     end
 end
