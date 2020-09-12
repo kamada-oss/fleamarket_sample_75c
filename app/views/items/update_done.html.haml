@@ -1,0 +1,10 @@
+= render "shared/header"
+.done#fullsize
+  .done__title
+    商品情報を更新しました
+  .done__backlink
+    = link_to 'トップページへ戻る', root_path, class: 'link'
+  .done__backlink
+    = link_to '更新した商品を確認する', item_path(@item_update), class: 'link'
+= render "sell-tab"
+= render "shared/footer"

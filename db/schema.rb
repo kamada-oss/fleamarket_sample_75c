@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_122916) do
+ActiveRecord::Schema.define(version: 2020_08_29_054737) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
     t.integer "zip_code", null: false
-    t.string "prefecture", null: false
+    t.integer "prefecture", null: false
     t.string "city", null: false
     t.string "address1", null: false
     t.string "address2"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.integer "condition", null: false
     t.integer "price", null: false
     t.bigint "category_id", null: false
-    t.bigint "brand_id"
+    t.string "brand_name"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.integer "prefecture", null: false
     t.integer "handling_time", null: false
     t.integer "auction_status", default: 1, null: false
-    t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -135,6 +134,15 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
     t.index ["ancestry"], name: "index_sizes_on_ancestry"
   end
 
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -156,4 +164,5 @@ ActiveRecord::Schema.define(version: 2020_08_10_122916) do
 
   add_foreign_key "purchases", "users", column: "buyer_id"
   add_foreign_key "purchases", "users", column: "saler_id"
+  add_foreign_key "sns_credentials", "users"
 end

@@ -41,6 +41,9 @@ gem 'devise'
 gem 'font-awesome-sass'
 gem 'fog-aws'
 gem "gretel"
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,6 +58,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails' 
   gem 'rails-controller-testing'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -85,3 +89,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'font-awesome-sass'
+gem 'payjp'
+gem 'ransack'

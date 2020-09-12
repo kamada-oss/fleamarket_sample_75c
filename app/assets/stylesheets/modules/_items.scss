@@ -63,14 +63,6 @@
 
 // 出品画面
 
-// h3{
-//   color: rgb(136, 136, 136);
-//   font-size: 14px;
-//   font-weight: 600;
-//   line-height: 1.4em;
-//   margin-bottom: 0px;
-// }
-
 label{
   font-size: 14px;
   font-weight: 600;
@@ -87,14 +79,6 @@ span{
   background-color: #bfbfbf;
   color: #fff;
 }
-
-// p{
-//   display: block;
-//   margin-bottom: 0px;
-//   margin-inline-start: 0px;
-//   margin-inline-end: 0px;
-//   margin-top: 0px;
-// }
 
 .input-box__image{
   flex-wrap: wrap;
@@ -161,16 +145,16 @@ span{
 }
 // 選択の箇所
 .select-default{
-  @include select-default
+  @include select-default();
 }
 
 // カテゴリー子要素箇所
 .select--default__category1{
-  @include select-default
+  @include select-default();
 }
 // カテゴリー孫要素箇所
 .select--wrap__category2{
-  @include select-default
+  @include select-default();
 }
 
 // 画像投稿ファーム
@@ -201,8 +185,10 @@ span{
         }
       }
       #image-box-1{
+        margin: 16px 0;
         display: flex;
         flex-wrap: wrap;
+        position: relative;
         .item-image{
           width: 180px;
         }
@@ -246,16 +232,27 @@ span{
           width: 600px;
           @include image_place();
         }
+        .img-label{
+          flex-wrap: wrap;
+          .item-image{
+            &__content{
+              &--icon{
+                object-fit: contain;
+              }
+            }
+          }
+        }
       }
       &__sell-upload{
         padding: 40px;
         &__file{
+          position: relative;
           width: 600px;
           @include image_place();
           cursor: pointer;
-          .fas-fa-camera{
-            display: inline-block;
-            margin-top: 75px;
+          .fas.fa-camera{
+            position: absolute;
+            top: 50%;
           }
         }
       }
@@ -268,7 +265,6 @@ span{
       &__form{
         display: block;
         padding: 40px;
-        vertical-align: baseline;
         border-top: 1px solid #eee;
         &__group{
           &__input{
@@ -299,7 +295,6 @@ span{
       &__detail{
         display: block;
         padding: 40px;
-        vertical-align: baseline;
         border-top: 1px solid #eee;
         &__subhead{
           h3{
@@ -312,8 +307,6 @@ span{
         }
         &__box{
           margin-top: 32px;
-          &__category{
-          }
           // ブランド
           &__brand{
             margin-top: 32px;

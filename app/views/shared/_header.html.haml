@@ -4,16 +4,34 @@
       .header__box__upper__icon
         = link_to root_path do
           = image_tag "logo.png", class: "header__box__upper__icon__image"
-      -# {追加実装タスク【サーバサイド】商品検索Lv1}実装まで(仮)
       .header__box__upper__search
-        %form.header__box__upper__search__form
-          %input{type: "text", placeholder: "キーワードから探す", class: "header__box__upper__search__form__input"}
-          %button{type: "submit", class: "header__box__upper__search__form__btn"}
-            = image_tag "icon-search 1.png", class: "header__box__upper__search__form__btn__icon"
+        .header__box__upper__search__form
+          = form_with url: search_items_path, local: true, method: :get, class:"form" do |f|
+            = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__upper__search__form__input"
+            %button{type: "submit", class: "header__box__upper__search__form__btn"}
+              = image_tag "icon-search 1.png", class: "header__box__upper__search__form__btn__icon"
     .header__box__lawer
       %ul.header__box__lawer__left
         %li.header__box__lawer__left__category
-          = link_to "カテゴリー", "#", class: "header__box__lawer__left__category__btn"
+          .categories
+            = link_to "#", class: "categories__text" do
+              %i.fas.fa-bars.category__icon
+              カテゴリー
+            %ul.categories__parent
+              - @parents.each do |parent|
+                %li.parent__list
+                  = link_to category_path(parent), class: "" do
+                    = parent.name
+                  %ul.categories__child{data:parent.id}
+                    - parent.children.each do |child|
+                      %li.child__list
+                        = link_to category_path(child), class: "" do
+                          = child.name
+                        %ul.categories__grandchild{data:child.id}
+                          - child.children.each do |grandchild|
+                            %li.grandchild__list
+                              = link_to category_path(grandchild), class: "" do
+                                = grandchild.name 
         %li.header__box__lawer__left__brand
           = link_to "ブランド", "#", class: "header__box__lawer__left__brand__btn"
       %ul.header__box__lawer__right
@@ -22,7 +40,7 @@
             = link_to destroy_user_session_path, method: :delete, class: "header__box__lawer__right__login__btn" do
               ログアウト
           %li.header__box__lawer__right__sign-up
-            = link_to '#', class: "header__box__lawer__right__sign-up__btn" do
+            = link_to good_index_mypage_path(current_user), class: "header__box__lawer__right__sign-up__btn" do
               マイページ
         - else
           %li.header__box__lawer__right__login
@@ -31,3 +49,4 @@
           %li.header__box__lawer__right__sign-up
             = link_to signup_index_path, class: "header__box__lawer__right__sign-up__btn" do
               新規登録
+      

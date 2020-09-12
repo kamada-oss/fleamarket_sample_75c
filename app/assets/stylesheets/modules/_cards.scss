@@ -1,0 +1,38 @@
+.body {
+  height: 100%;
+  width: 100%;
+  background-color: #EEEEEE;
+  justify-content: center;
+  &__contents {
+    width: 60%;
+    background-color: white;
+    &__topic {
+      height: 100px;
+      line-height: 100px;
+      font-size: 24px;
+      text-align: center;
+      border-bottom: 1px solid #EEEEEE;
+    }
+    &__form {
+      height: 100%;
+      font-size: 20px;
+      text-align: center;
+      &__image {
+        height: 50px;
+        margin-top: 30px;
+      }
+      &__card-number {
+        margin: 30px 0;
+      }
+      #token_submit {
+        margin: 40px 0;
+      }
+    }
+  }
+}
+
+.body__contents__info {
+  height: 130px;
+  margin: 10px 0;
+  text-align: center;
+}

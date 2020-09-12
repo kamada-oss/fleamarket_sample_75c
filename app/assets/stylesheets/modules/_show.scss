@@ -64,6 +64,16 @@
               display:block;
               width:100%;
             }
+            &__link-soldout {
+              text-decoration: none;
+              line-height: 60px;
+              color: $main-white-color;
+              font-size: 25px;
+              font-weight: bold;
+              display:block;
+              width:100%;
+              background-color: red;
+            }
           }
           &__price {
             margin: 24px 0 24px;
@@ -196,6 +206,50 @@
           background-color: $main-white-color;
           margin: 10px 0;
           text-align: center;
+          &__list {
+            padding: 24px;
+            &__box {
+              border: 1px solid #dedede;
+              padding: 16px;
+              margin: 15px;
+              &__name {
+                display: flex;
+                justify-content: space-between;
+                &__saler {
+                  color: $furima-color;
+                  font-weight: bold;
+                }
+                &__delete {
+                  font-size: 10px;
+                  height: 20px;
+                  width: 50px;
+                  background-color: red;
+                  line-height: 20px;
+                  border-radius: 0.3em;
+                  font-weight: bold;
+                  &__btn {
+                    text-decoration: none;
+                    color: $main-white-color;
+                  }
+                }
+                &__nickname {
+                  font-weight: bold;
+                }
+              }
+              &__message {
+                &__text {
+                  text-align: center;
+                  background-color: #EEEEEE;
+                  line-height: 1.5;
+                }
+                &__date {
+                  color: #dedede;
+                  text-align: left;
+                  font-size: 14px;
+                }
+              }
+            }
+          }
           &__form {
             display: block;
             &__textarea {
@@ -218,6 +272,19 @@
               width: 60%;
               font-size: 18px;
               border-radius: 100px;
+              outline: 0;
+            }
+          }
+          &__signin {
+            font-size: 22px;
+            font-weight: bold;
+            &__logout {
+              color: $furima-color;
+              text-decoration: none;
+            }
+            &__signup {
+              color: $furima-color;
+              text-decoration: none;
             }
           }
         }
