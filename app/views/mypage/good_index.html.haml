@@ -1,0 +1,10 @@
+= render 'shared/header'
+.mypage-container
+  = render 'side-bar'
+  .mypage-main
+    .mypage-main__header
+      %h3 いいね！一覧
+    .mypage-main__img
+      = image_tag src="logo.png"
+      %h4 いいね！がありません
+= render 'shared/footer'
