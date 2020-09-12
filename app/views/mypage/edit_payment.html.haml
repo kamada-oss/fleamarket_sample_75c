@@ -8,5 +8,8 @@
     .mypage-main__header
       %h3 支払い方法
     .mypage-main__card
-      = render 'pay_form'
+      -if @card.present?
+        = render 'pay_show'
+      -else
+        = render 'pay_form'
 = render 'shared/footer'

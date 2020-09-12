@@ -256,10 +256,14 @@
   }
 
   &__card{
-    height: 450px;
+    height: 460px;
     background-color: white;
     width: 100%;
     padding-left: 30%;
+    // カード情報入力フォーム
+    &__img{
+      padding-top: 5px;
+    }
     .field{
       input{
         width: 50%;
@@ -295,6 +299,41 @@
       border: solid 1px #EEEEEE;
       color: white;
       border-radius: 0.3em;
+    }
+    // カード情報表示
+    &__show{
+      &__title{
+        font-weight: bold;
+        padding: 50px 0 10px 0;
+      }
+      &__info{
+        width: 50%;
+        padding: 25px 0 25px 20px;
+        border: solid 1px #EEEEEE;
+        border-radius: 0.3em;
+        background: linear-gradient(0deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E 85%, #757575 90% 100%);
+        &__number{
+          padding-top: 5px;
+        }
+        &__limit{
+          padding-top: 5px;
+        }
+      }
+      &__delete-btn{
+        width: 50%;
+        text-align: center;
+        margin-top: 30px;
+        
+        a{
+          background-color: $red-btn-color;
+          display: block;
+          text-decoration: none;
+          color: white;
+          border-radius: 0.3em;
+          height: 30px;
+          line-height: 30px;
+        }
+      }
     }
   }
 }

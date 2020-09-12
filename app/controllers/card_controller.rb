@@ -39,8 +39,13 @@ class CardController < ApplicationController
       customer.delete
       @card.delete
     end
+    if session[:item_id].present?
       item = Item.find(session[:item_id])
+      session[:item_id] = nil
       redirect_to purchase_path(item)
+    else
+      redirect_to edit_payment_mypage_path(current_user), notice: 'クレジットカードの削除が完了しました'
+    end
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します

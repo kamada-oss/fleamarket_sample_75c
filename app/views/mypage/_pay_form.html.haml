@@ -5,6 +5,12 @@
       %span.field__label__form-require 必須
     .filed__input
       = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number", autofocus: true
+  .mypage-main__card__img
+    = image_tag "cards/visa.png", size: "45x30"
+    = image_tag "cards/master.png", size: "45x30"
+    = image_tag "cards/jcb.png", size: "45x30"
+    = image_tag "cards/amex.png", size: "45x30"
+    = image_tag "cards/diners.png", size: "45x30"    
   .field
     .field__label
       %label 有効期限
