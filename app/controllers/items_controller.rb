@@ -80,8 +80,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def purchase
-  # end
+  def purchase
+  end
 
   def select_category_index
     # カテゴリ名を取得するために@categoryにレコードをとってくる
