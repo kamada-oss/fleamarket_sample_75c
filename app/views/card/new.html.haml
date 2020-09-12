@@ -4,10 +4,14 @@
 .body
   .body__contents
     .body__contents__topic
-      支払い方法
+      クレジットカード登録
     .body__contents__form
       .body__contents__form__image
-        -# = image_tag visa.png, size: "30x30"
+        = image_tag "cards/visa.png", size: "45x30"
+        = image_tag "cards/master.png", size: "45x30"
+        = image_tag "cards/jcb.png", size: "45x30"
+        = image_tag "cards/amex.png", size: "45x30"
+        = image_tag "cards/diners.png", size: "45x30"
       .body__contents__form__image__card-number
         = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
           %label カード番号
