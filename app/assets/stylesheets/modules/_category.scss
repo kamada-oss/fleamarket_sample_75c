@@ -1,8 +1,14 @@
 .categories{
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 6px;
+  }
   position: absolute;
   width: 100px;
   z-index: 2;
   left:0px;
+  margin: -6px;
   &__text{
     a{
       &:hover {
@@ -11,11 +17,7 @@
     } 
   }
 }
-a {
-  text-decoration: none;
-  display: inline-block;
-  margin: 6px;
-}
+
 
 ul.categories__parent{
   display: none;
