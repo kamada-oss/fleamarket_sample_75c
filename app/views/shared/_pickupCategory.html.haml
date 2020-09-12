@@ -7,7 +7,7 @@
     .containerCategory__product
       
       -# .containerCategory__product__lists
-      -#   = link_to items_path(id: 1), class: "containerCategory__product__lists__link" do
+      -#   = link_to "#", class: "containerCategory__product__lists__link" do
       -#     %figure.containerCategory__product__lists__link__images
       -#       = image_tag "a007.png", class: "containerCategory__product__lists__link__images__image"
       -#     .containerCategory__product__lists__link__body
@@ -86,17 +86,17 @@
       -#             &nbsp1
       -#       .containerCategory__product__lists__link__body__tax （税込）
 
-        - @items.each do |product|
-          = link_to items_path(product), class: "listBtn" do
-            %figure.product__images
-              = image_tag items.images[0].name.url, alt: "image_url",size: "200x150", class:"new-img"
-            .containerCategory__product--lists__list--body
-              %h3.product--name
-                = items.name
-              .containerCategory__product--lists__list--body__details
-                %ul.details__menu
-                  %li
-                    = items.price
-                    円
-                  %li ★
-              %p.taxIncluded （税込）
+      - @items.each do |product|
+        = link_to items_path(product), class: "listBtn" do
+          %figure.product__images
+            = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"new-img"
+          .containerCategory__product--lists__list--body
+            %h3.product--name
+              = product.name
+            .containerCategory__product--lists__list--body__details
+              %ul.details__menu
+                %li
+                  = product.price
+                  円
+                %li ★
+            %p.taxIncluded （税込）

@@ -86,18 +86,18 @@
       -#             &nbsp1
       -#       .containerBrand__product__lists__link__body__tax （税込）
             
-        - @items.each do |product|
-          = link_to items_path(product), class: "listBtn" do
-            %figure.product__images
-              = image_tag items.images[0].name.url, alt: "image_url",size: "200x150", class:"new-img"
-            .containerBrand__product--lists__list--body
-              %h3.product--name
-                = items.name
-              .containerBrand__product--lists__list--body__details
-                %ul.details__menu
-                  %li
-                    = items.price
-                    円
-                  %li ★
-              %p.taxIncluded （税込）
-       
+      - @items.each do |product|
+        = link_to items_path(product), class: "listBtn" do
+          %figure.product__images
+            = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"new-img"
+          .containerBrand__product--lists__list--body
+            %h3.product--name
+              = product.name
+            .containerBrand__product--lists__list--body__details
+              %ul.details__menu
+                %li
+                  = product.price
+                  円
+                %li ★
+            %p.taxIncluded （税込）
+    

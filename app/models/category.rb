@@ -2,11 +2,12 @@ class Category < ApplicationRecord
   has_many :items
   has_ancestry
 
-  def set_items
+  # def set_items
 
   #   if self.root?
   #     start_id = self.indirects.first.indirects
   #     end_id = self.indirects.last.indirects
+
   #     items = Item.where(category_id: start_id..end_id)
   #     return items
 
@@ -18,7 +19,7 @@ class Category < ApplicationRecord
       
   #   else
   #     return self.items
-    # end
+  #   end
 # 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
-  end
+#   end
 end
