@@ -85,7 +85,6 @@ class ItemsController < ApplicationController
     @keyword = params[:keyword]
   end
 
-
   private
 
   def item_params
@@ -122,7 +121,9 @@ class ItemsController < ApplicationController
   def category_map
     grandchild = @item.category
     child = grandchild.parent
-    if @category_id == 187 or @category_id == 465 or @category_id == 665 or @category_id == 777 or @category_id == 875 or @category_id == 962
+    if @category_id == 187 or 
+      @category_id == 465 or @category_id == 665 or
+       @category_id == 777 or @category_id == 875 or @category_id == 962
     else
       @parent_array = []
       @parent_array << @item.category.parent.parent.name
@@ -139,4 +140,28 @@ class ItemsController < ApplicationController
     @grandchild_array << grandchild.id
   end
 
+  def search_params
+    params.require(:q).permit(
+      :name_or_text_count,
+      :category_id,
+      :price_gteq,
+      :price_lteq,
+      category_id_in: [],
+      condition_id_in: [],
+      fee_burden_flag_in: []
+    )
+  end
+
+  def search_params_for_trading_status
+    params.require(:q).permit(
+      :name_or_explanation_cont,
+      :category_id,
+      :price_gteq,
+      :price_lteq,
+      category_id_in: [],
+      condition_id_in: [],
+      fee_burden_flag_in: [],
+      auction_status_id_in: [],
+    )
+  end
 end

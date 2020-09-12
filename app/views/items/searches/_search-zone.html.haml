@@ -2,7 +2,7 @@
   .search-content
     .sc-side
       .sc-side__sort
-        %select{name: :sort_order, class: 'sort-order .sc-side__sort__select'}
+        %select{name: :sort_order, class: 'sc-side__sort__select'}
           %option{value: "location.pathname", name: "location.pathname"}
             並び替え
           %option{value: "price-asc"}
@@ -20,7 +20,106 @@
             -# キーワードの検索条件
           .sc-side__detail__field
             %h5.sc-side__detail__field__label
-              %i.fas-fa-plus
+              %i.fas.fa-plus
               = f.label :name_or_text_cont, 'キーワードを追加する'
             .sc-side__detail__field__form
               = f.text_field :name_or_text_cont, placeholder: '例)'
+              -# カテゴリーの検索条件
+          .sc-side__detail__field
+            %h5.sc-side__detail__field__label
+              %i.fas.fa-list-ul
+              = f.label :category_id, 'カテゴリーを選択する'
+            .sc-side__detail__field__form
+              %ul.field__input--category_search
+                %li
+                  = f.collection_select :category_id, Category.all.limit(13), :id, :name,{prompt: "選択してください"}, class: "select-default", id: "parent_form", name: 'item[category_id][]'
+                -# %li
+                -#   - if @category_child.present?
+                -#     = f.select :category_id, options_for_select(@category_child_array, @category_child.id),{include_blank: "選択してください"}, {id: 'children_category_search'}
+                -#   - else
+                -#     = f.select :category_id, @category_child_array, {include_blank: "選択してください"}, {id: 'child_form'}
+            -#       - if @category_grandchild_array.present?
+            -#       %li#grandchildren_category_checkboxes.checkbox-list
+            -#         .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+            -#           .sc-side__detail__field__form--checkbox__btn
+            -#             %input{type: 'checkbox', id: 'grandchildren_category_all', class: 'js-checkbox-all'}
+            -#           .sc-side__detail__field__form--checkbox__label
+            -#             = label_tag :grandchildren_category_all, 'すべて'
+            -#         = f.collection_check_boxes :category_id_in, @category_grandchild_array, :id, :name, include_hidden: false do |b|
+            -#           .sc-side__detail__field__form--checkbox
+            -#             .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+            -#               = b.check_box
+            -#             .sc-side__detail__field__form--checkbox__label
+            -#               = b.label { b.text}
+                - else
+                  %li
+                    = f.select :category_id, @search_parents, {include_blank: "選択してください"}, {id: 'parent_category_search'}
+            -# 価格の検索条件
+          .sc-side__detail__field
+            %h5.sc-side__detail__field__label
+              %i.fas.fa-search-dollar
+              = f.label :price, '価格'
+            .sc-side__detail__field__form
+              = f.text_field :price, placeholder: '選択してください'
+              -# = select_tag :price_range, options_from_collection_for_select(PriceRange.all, :id, :name), { prompt: "選択してください"}
+            -# .sc-side__detail__field__form.price-range
+            -#   = f.number_field :price_gteq, placeholder: "¥ Min", class: 'price-range__input'
+            -#   .price-range__swang 〜
+            -#   = f.number_field :price_lteq, placeholder: "¥ Max", class: 'price-range__input'
+            -# -# 商品の状態の検索条件
+          .sc-side__detail__field
+            %h5.sc-side__detail__field__label
+              %i.fas.fa-star
+              = f.label :condition_id_eq, '商品の状態'
+            .sc-side__detail__field__form.checkbox-list
+              .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+                .sc-side__detail__field__form--checkbox__btn
+                  %input{type: 'checkbox', id: 'condition_all', class: 'js-checkbox-all'}
+                .sc-side__detail__field__form--checkbox__label
+                  = label_tag :condition_all, 'すべて'
+              -# = f.collection_check_boxes :condition_in, Item.conditions.keys, include_hidden: false do |b|
+              -#   .sc-side__detail__field__form--checkbox
+              -#     .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+              -#       = b.check_box
+              -#     .sc-side__detail__field__form--checkbox__label
+              -#       = b.label { b.text}
+            -# 配送料の検索条件
+          .sc-side__detail__field
+            %h5.sc-side__detail__field__label
+              %i.fas.fa-truck
+              = f.label :fee_burden_flag, '配送料の負担'
+            -# .sc-side__detail__field__form.checkbox-list
+            -#   .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+            -#     .sc-side__detail__field__form--checkbox__btn
+            -#       %input{type: 'checkbox', id: 'fee_burden_flag_all', class: 'js-checkbox-all'}
+            -#     .sc-side__detail__field__form--checkbox__label
+            -#       = label_tag :fee_burden_flag_all, 'すべて'
+            -#   = f.collection_check_boxes :fee_burden_flag_in, DeliveryCharge.all, :id, :name, include_hidden: false do |b|
+            -#     .sc-side__detail__field__form--checkbox
+            -#       .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+            -#         = b.check_box
+            -#       .sc-side__detail__field__form--checkbox__label
+            -#         = b.label { b.text}
+            -# 販売状況の検索条件
+          .sc-side__detail__field
+            %h5.sc-side__detail__field__label
+              %i.fas.fa-shopping-cart
+              = f.label :trading_status_id_in, '販売状況'
+            -# .sc-side__detail__field__form.checkbox-list
+            -#   .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+            -#     .sc-side__detail__field__form--checkbox__btn
+            -#       %input{type: 'checkbox', id: 'trading_status_all', class: 'js-checkbox-all'}
+            -#     .sc-side__detail__field__form--checkbox__label
+            -#       = label_tag :trading_status_all, 'すべて'
+            -#   = f.collection_check_boxes :trading_status_id_in, @trading_status, :id, :name, include_hidden: false do |b|
+            -#     .sc-side__detail__field__form--checkbox
+            -#       .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+            -#         = b.check_box
+            -#       .sc-side__detail__field__form--checkbox__label
+            -#         = b.label { b.text.gsub('売却済み', '売り切れ')}
+            -# 検索実行ボタン/クリアボタン
+          .sc-side__detail__field.search-action
+            .search-action__box
+              = button_tag 'クリア',type: 'button', id: 'js_conditions_clear', class: 'search-action__box__btn'
+            .search-action__box
+              = f.submit '完了', id: 'detail_search_btn', class: 'search-action__box__btn'

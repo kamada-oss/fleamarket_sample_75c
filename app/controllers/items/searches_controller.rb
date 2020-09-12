@@ -12,6 +12,9 @@ class Items::SearchesController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:sorts, :search_order, :name_cont, :brand_name_cont, :condition_eq, :fee_burden_eq, :category_id_eq, :prefecture_eq, :price_lteq, :price_gteq)
+    params.require(:q).permit(
+      :sorts, :search_order, :name_cont,
+      :brand_name_cont, :condition_eq, :fee_burden_eq,
+      :category_id_eq, :prefecture_eq, :price_lteq, :price_gteq)
   end
 end
