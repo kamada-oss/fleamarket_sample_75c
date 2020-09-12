@@ -64,6 +64,16 @@
               display:block;
               width:100%;
             }
+            &__link-soldout {
+              text-decoration: none;
+              line-height: 60px;
+              color: $main-white-color;
+              font-size: 25px;
+              font-weight: bold;
+              display:block;
+              width:100%;
+              background-color: red;
+            }
           }
           &__price {
             margin: 24px 0 24px;
