@@ -42,7 +42,7 @@
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |zip_code|integer|null: false|
-|prefecture|string|null: false|
+|prefecture|integer|null: false|
 |city|string|null: false|
 |address1|string|null: false|
 |address2|string||
@@ -86,8 +86,7 @@
 
 ### Association
 - belongs_to :item
-- belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
-- belongs_to :saler, class_name: 'User', foreign_key: 'saler_id'
+- belongs_to :saler, class_name: 'User'
 
 
 ## itemsテーブル
@@ -97,19 +96,22 @@
 |name|string|null: false|
 |text|text|null: false|
 |category_id|references|null: false, foreign_key: true|
-|brand_id|references|null: false, foreign_key: true|
+|brand_name|string|null: false|
 |condition|integer|null: false|
 |price|integer|null: false|
 |prefecture|integer|null: false|
 |fee_burden|integer|null: false|
 |handling_time|integer|null:false|
+|auction_status|integer|null:false,_suffix: true, default:"1"|
 
 ### Association
-- has_many :users, through: :purchases
+- has_one    :purchase, dependent: :destroy
+- belongs_to :user
 - belongs_to :category
 - belongs_to :brand, optional: true
 - has_many :likes, depedent: :destroy
 - has_many :comments
+- belongs_to :size, optional: true
 - has_many :item_images, dependent: :destroy
 - accepts_nested_attributes_for :item_images, allow_destroy: true
 
@@ -121,7 +123,7 @@
 |item_id|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :item, optional: true
+- belongs_to :item
 
 ## categoriesテーブル
 
