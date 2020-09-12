@@ -9,7 +9,7 @@
           .field__label
             = f.label 'お名前(全角)'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:family_name) or @send_address.errors.include?(:first_name)
+          - if @send_address.errors.include?(:family_name) or @send_address.errors.include?(:first_name)
             .field__input-name-error
               .field__input-name-error--left
                 = f.text_field :family_name, placeholder: '例）山田'
@@ -27,7 +27,7 @@
           .field__label
             = f.label 'お名前カナ(全角)'
             %span.field__label__form-require 必須
-          - if @user.errors.include?(:family_name_kana) or @send_address.errors.include?(:first_name_kana)
+          - if @send_address.errors.include?(:family_name_kana) or @send_address.errors.include?(:first_name_kana)
             .field__input-name-error
               .field__input-name-error--left
                 = f.text_field :family_name_kana, placeholder: '例）ヤマダ'
