@@ -77,6 +77,17 @@
   margin: 0 0 2px 4px;
 }
 
+// フォームのエラーメッセージ表示
+.error-message{
+  ul{
+    li{
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: $red-btn-color;
+    }
+  }
+}
+
 
 .signup-container {
   height: 100%;
@@ -302,15 +313,6 @@
             width: 48%;
             input {
               @include form-box($red-btn-color);
-            }
-          }
-        }
-        .error-message{
-          ul{
-            li{
-              margin-top: 10px;
-              font-size: 0.9em;
-              color: $red-btn-color;
             }
           }
         }

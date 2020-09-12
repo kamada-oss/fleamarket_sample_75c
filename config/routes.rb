@@ -38,6 +38,22 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
+  resources :mypage, only: [] do
+    member do
+      get 'good_index'
+      get 'item_exhibiting'
+      get 'item_sold'
+      get 'item_purchased'
+      get 'edit_profile'
+      post 'update_profile'
+      get 'edit_address'
+      post 'update_address'
+      get 'edit_payment'
+      get 'edit_email_password'
+      post 'update_email_password'
+      get 'logout'
+    end
+  end
 
   resources :card, only: [:new, :show, :create] do
     collection do
