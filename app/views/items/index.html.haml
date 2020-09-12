@@ -3,14 +3,7 @@
 - @items.each do |item|
   = link_to item_path(item.id) do
     = item.name
-.like-list いいね!一覧
-- if @likes.present?
-  - @likes.each do |like|
-    = link_to item_path(like.item.id) do
-      = like.item.name
-- else 
-  いいね!に追加した商品はありません
-  
+
 = render "shared/header"
 = render "shared/mainVisual"
 = render "shared/topIntroduction"
