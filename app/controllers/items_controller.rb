@@ -128,7 +128,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:category_id])
+    @item = Item.find(params[:id])
   end
 
   def category_parent_array

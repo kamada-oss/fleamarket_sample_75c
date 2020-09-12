@@ -87,7 +87,7 @@
       -#       .containerBrand__product__lists__link__body__tax （税込）
             
       - @items.each do |product|
-        = link_to items_path(product), class: "listBtn" do
+        = link_to item_path(product), class: "listBtn" do
           %figure.product__images
             = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"new-img"
           .containerBrand__product--lists__list--body
