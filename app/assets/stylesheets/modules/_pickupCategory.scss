@@ -29,8 +29,6 @@
     &__lists{
       width: 220px;
       text-decoration: none;
-      // margin: 0px auto;
-      // width: calc(1 / 5 * 100%);
       box-sizing:border-box;
       &__link {
         text-decoration: none;
@@ -81,39 +79,3 @@
     }
   }
 }
-// .products__head{
-//   text-decoration: none;
-// }
-
-// .listBtn{
-//   text-decoration: none;
-//   display: inline-block;
-//   background-color: white;
-// }
-// .product--name{
-//   overflow: hidden;
-//   line-height: 1.5;
-//   font-size: 16px;
-//   text-align: left;
-// }
-// .product__images{
-//   width: 220px;
-//   height: 150px;
-//   position: relative;
-//   overflow: hidden;
-//   margin: 0;
-//   z-index: auto;
-//   display: flex;
-//   &--image{
-//     
-//   }
-// }
-// .details__menu{
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-// }
-// .taxIncluded{
-//   font-size: 10px;
-//   text-align: left;
-// }

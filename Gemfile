@@ -57,6 +57,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails' 
   gem 'rails-controller-testing'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -87,5 +88,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'font-awesome-sass'
-gem 'ransack'
 gem 'active_hash'
+gem 'payjp'
+gem 'ransack'
