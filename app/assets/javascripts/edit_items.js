@@ -12,13 +12,15 @@ $(function(){
   //商品編集ページへ遷移した際のアクション
   if (window.location.href.match(/\/items\/\d+\/edit/)){
     //登録済み画像のプレビューの表示
-    var prevContent = $('.item-image').prev();
+    var prevContent = $('.item-image').parent();
+    console.log($(prevContent));
+    console.log($(prevContent).css('width'));
     labelWidth = (770 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
-    $('.label-content').css('width', labelWidth);
-    //プレビューにidを追加
     $('.item-image').each(function(index, box){
       $(box).attr('id', `preview-box__${index}`);
     })
+    $('.label-content').css('width', labelWidth);
+    //プレビューにidを追加
     //削除ボタンにidを追加
     $('.item-image__operation--edit__delete__hidden').each(function(index, box){
       $(box).attr('id', `delete_btn_${index}`);
@@ -47,7 +49,6 @@ $(function(){
   $(document).on('change', '.hidden-field', function(){
     setLabel();
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
-
     $('.label-box').attr({id: `label-box--${id}`, for: `item_item_images_attributes_${id}_item_image`});
     var file = this.files[0];
     var reader = new FileReader();
