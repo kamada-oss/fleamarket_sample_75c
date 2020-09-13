@@ -141,16 +141,57 @@
           &__optional {
             display: flex;
             justify-content: space-between;
-            &__left {
-              margin: 10px 0 0;
-              display: flex;
-              list-style: none;
-              &__btn {
-                margin-right: auto;
-                padding: 6px 10px;
+            &__likes {
+              &--on {
+                padding: 11px 10px;
+                border-radius: 40px;
+                color: red;
+                border: 1px solid #ffb340;
+                display: flex;
+                line-height: 16px;
+                text-decoration: none;
+                &__heart {
+                  padding-right: 5px;
+                }
+                &__text {
+                  padding-right: 5px;
+                }
+                &__count {
+                  color: $main-black-color;
+                }
+              }
+              &--off {
+                padding: 11px 10px;
                 border-radius: 40px;
                 color: $furima-color;
                 border: 1px solid #ffb340;
+                display: flex;
+                line-height: 16px;
+                text-decoration: none;
+                &__heart {
+                  padding-right: 5px;
+                }
+                &__text {
+                  padding-right: 5px;
+                }
+                &__count {
+                  color: $main-black-color;
+                }
+              }
+              &-logout {
+                padding: 11px 10px;
+                border-radius: 40px;
+                color: $furima-color;
+                border: 1px solid #ffb340;
+                display: flex;
+                line-height: 16px;
+                text-decoration: none;
+                &__heart {
+                  padding-right: 5px;
+                }
+                &__text {
+                  padding-right: 5px;
+                }
               }
             }
             &__right {
