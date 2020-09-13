@@ -13,12 +13,12 @@ $(function(){
   if (window.location.href.match(/\/items\/\d+\/edit/)){
     //登録済み画像のプレビューの表示
     var prevContent = $('.item-image').parent();
-    labelWidth = (770 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+    labelWidth = (850 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+    $('.label-content').css('width', labelWidth);
+    //プレビューにidを追加
     $('.item-image').each(function(index, box){
       $(box).attr('id', `preview-box__${index}`);
     })
-    $('.label-content').css('width', labelWidth);
-    //プレビューにidを追加
     //削除ボタンにidを追加
     $('.item-image__operation--edit__delete__hidden').each(function(index, box){
       $(box).attr('id', `delete_btn_${index}`);
