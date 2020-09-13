@@ -13,8 +13,6 @@ $(function(){
   if (window.location.href.match(/\/items\/\d+\/edit/)){
     //登録済み画像のプレビューの表示
     var prevContent = $('.item-image').parent();
-    console.log($(prevContent));
-    console.log($(prevContent).css('width'));
     labelWidth = (770 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
     $('.item-image').each(function(index, box){
       $(box).attr('id', `preview-box__${index}`);
