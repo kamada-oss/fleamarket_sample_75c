@@ -1,7 +1,6 @@
 = render '/shared/header'
--# 追加実装タスク【サーバサイド】パンくず実装時、使用
--# = render '/shared/nav-box'
-
+- breadcrumb :item, @item
+= render "layouts/breadcrumbs"
 .main
   .main__show
     .main__show__contents
@@ -28,6 +27,9 @@
             - unless current_user.id == @item.user_id
               .main__show__contents__content__item-box__purchase
                 = link_to "購入画面に進む", purchase_path(@item.id), class: "main__show__contents__content__item-box__purchase__link"
+          - if @item.auction_status == "売り切れ"
+            .main__show__contents__content__item-box__purchase
+              = link_to "売り切れました", "#", class: "main__show__contents__content__item-box__purchase__link-soldout"
           .main__show__contents__content__item-box__detail
             = @item.text
           .main__show__contents__content__item-box__table
@@ -81,10 +83,8 @@
                   %td.main__show__contents__content__item-box__table__content__tbody__tr__td
                     = @item.handling_time
           .main__show__contents__content__item-box__optional
-            %ul.main__show__contents__content__item-box__optional__left
-              %li.main__show__contents__content__item-box__optional__left__btn
-                = icon('fa', 'star', class: "main__show__contents__content__item-box__optional__left__btn__star")
-                お気に入り 1
+            %ul#main__show__contents__content__item-box__optional__likes
+              = render partial: 'likes/like', locals: { item: @item }
             %ul.main__show__contents__content__item-box__optional__right
               %li.main__show__contents__content__item-box__optional__right__btn
                 = link_to "#", class: "main__show__contents__content__item-box__optional__right__btn__link" do

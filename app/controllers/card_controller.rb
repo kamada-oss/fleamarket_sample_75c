@@ -19,8 +19,13 @@ class CardController < ApplicationController
       ) #念の為metadataにuser_idを入れましたがなくてもOK
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        item = Item.find(session[:item_id])
-        redirect_to purchase_path(item)
+        if session[:item_id].present?
+          item = Item.find(session[:item_id])
+          session[:item_id] = nil
+          redirect_to purchase_path(item)
+        else
+          redirect_to edit_payment_mypage_path(current_user), notice: 'クレジットカードの登録が完了しました'
+        end
       else
         redirect_to action: "new"
       end
@@ -34,8 +39,13 @@ class CardController < ApplicationController
       customer.delete
       @card.delete
     end
+    if session[:item_id].present?
       item = Item.find(session[:item_id])
+      session[:item_id] = nil
       redirect_to purchase_path(item)
+    else
+      redirect_to edit_payment_mypage_path(current_user), notice: 'クレジットカードの削除が完了しました'
+    end
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
@@ -45,6 +55,19 @@ class CardController < ApplicationController
       Payjp.api_key = Rails.application.credentials[:payjp][:payjp_private_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
+      @card_brand = @default_card_information.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.png"
+      when "JCB"
+        @card_src = "jcb.png"
+      when "MasterCard"
+        @card_src = "master.png"
+      when "American Express"
+        @card_src = "amex.png"
+      when "Diners Club"
+        @card_src = "diners.png"
+      end
     end
   end
 

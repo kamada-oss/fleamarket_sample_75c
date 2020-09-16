@@ -13,11 +13,12 @@ class Item < ApplicationRecord
     "福岡県":40,"佐賀県":41,"長崎県":42,"熊本県":43,"大分県":44,"宮崎県":45,"鹿児島県":46,"沖縄県":47
   }
   enum auction_status: {出品中:1,  売り切れ:2}
-  has_one    :purchase
+  has_one    :purchase, dependent: :destroy
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
   has_many   :likes, dependent: :destroy
+  has_many   :likes, through: :likes, source: :user
   has_many   :comments
   belongs_to :size, optional: true
   has_many   :item_images, dependent: :destroy

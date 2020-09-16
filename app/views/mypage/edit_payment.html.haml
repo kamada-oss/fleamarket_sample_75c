@@ -1,0 +1,17 @@
+= render 'shared/header'
+- breadcrumb :edit_payment, @user
+= render "layouts/breadcrumbs"
+.notifications
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: key)
+.mypage-container
+  = render 'side-bar'
+  .mypage-main
+    .mypage-main__header
+      %h3 支払い方法
+    .mypage-main__card
+      -if @card.present?
+        = render 'pay_show'
+      -else
+        = render 'pay_form'
+= render 'shared/footer'
