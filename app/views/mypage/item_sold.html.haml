@@ -1,0 +1,29 @@
+= render 'shared/header'
+- breadcrumb :item_sold, @user
+= render "layouts/breadcrumbs"
+.mypage-container
+  = render 'side-bar'
+  .mypage-main
+    .mypage-main__header
+      %h3 出品した商品
+    %ul.mypage-main__item-status
+      %li.mypage-main__item-status__item-list--non-select
+        = link_to item_exhibiting_mypage_path do
+          出品中
+      %li.mypage-main__item-status__item-list--select
+        = link_to item_sold_mypage_path do
+          売却済み
+    - if @items.any?
+      - @items.each do |item|
+        = link_to item, class:'mypage-main__item' do
+          .mypage-main__item__content
+            = image_tag "#{item.item_images.first.item_image}", class:'mypage-main__item__content__img'
+            .mypage-main__item__content__text
+              = item.name
+              %h5.mypage-main__item__content__text__box-red 売却済
+          = icon 'fas', 'chevron-right'
+    - else
+      .mypage-main__img
+        = image_tag src="logo.png"
+        %h4 出品中の商品がありません
+= render 'shared/footer'

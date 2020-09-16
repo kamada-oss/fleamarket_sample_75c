@@ -1,3 +1,339 @@
-// Place all the styles related to the mypage controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin item-menu($background-color, $border-color){
+  background-color: $background-color;
+  border-top: solid 1.5px $border-color;
+}
+@mixin item-text-box($background-color){
+  margin-top: 10px;
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: white;
+  background-color: $background-color;
+  border-radius: 0.2em;
+}
+@mixin input-nickname($border-color){
+  width: 30%;
+  height: 50px;
+  font-size: 15px;
+  text-indent: 1em;
+  border: solid 1px $border-color;
+  border-radius: 0.3em;
+  display: block;
+  line-height: 200px;
+}
+@mixin btn-red($width-per){
+  width: $width-per;
+  height: 50px;
+  background-color: $red-btn-color;
+  color: white;
+  border: solid 1px #EEEEEE;
+  border-radius: 0.3em;
+  margin-top: 20px;
+}
+
+// formエラー時のディスプレイ崩れを解消
+.field_with_errors {
+  display: contents;
+}
+
+
+
+.mypage-container{
+  display: flex;
+  justify-content: center;
+  background-color: #EEEEEE;
+  padding: 35px;
+}
+.mypage-sidebar{
+  width: 300px;
+  li{
+    border-bottom: solid 1px #EEEEEE;
+    padding: 12px;
+    &:hover{
+      background-color: #DDDDDD;
+    }
+  }
+  h3{
+    margin-top: 40px;
+    font-weight: bold;
+  }
+  &__list{
+    list-style: none;
+    background-color: white;
+    a{
+      text-decoration: none;
+      color: black;
+      font-size: 0.9em;
+    }
+    &__content{
+      display: flex;
+      justify-content: space-between;
+      i{
+        color: gray;
+      }
+    }
+  }
+}
+
+.mypage-main{
+  width: 700px;
+  margin-left: 50px;
+  // ヘッダー
+  &__header{
+    border-bottom: solid 1px #EEEEEE;
+    height: 75px;
+    line-height: 75px;
+    background-color: white;
+    h3{
+      font-weight: bold;
+      padding-left: 20px;
+    }
+  }
+  // グレーロゴ
+  &__img{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    background-color: white;
+    img {
+      width: 200px;
+      height: 60px;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      margin-top: 50px;
+    }
+    h4{
+      opacity: 0.5;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  }
+  // リストサブタトル
+  &__item-status{
+    display: flex;
+    &__item-list{
+      &--select{
+        @include item-menu(white, $furima-color);
+      }
+      &--non-select{
+        @include item-menu(#DDDDDD, #DDDDDD);
+      }
+    }
+    li{
+      width: 50%;
+      text-align: center;
+      height: 50px;
+      a{
+        text-decoration: none;
+        display: block;
+        color: black;
+        font-weight: bold;
+        line-height: 50px;
+      }
+    }
+  }
+  // 対象アイテム
+  &__item{
+    display: block;
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: solid 1px #EEEEEE;
+    height: 75px;
+    background-color: white;
+    text-decoration: none;
+    margin: 0;
+    &__content{
+      color: black;
+      margin-right: 350px;
+      display: flex;
+      &__img{
+        line-height: 74px;
+      }
+      &__text{
+        margin-left: 10px;
+        &__box-blue{
+          @include item-text-box($furima-color)
+        }
+        &__box-red{
+          @include item-text-box($red-btn-color)
+        }
+      }
+    }
+    i{
+      line-height: 75px;
+      color: gray;
+      display:flex;
+      margin-right: 10px;
+    }
+  }
+  // ユーザープロフィール編集
+  &__edit-nickname{
+    height: 200px;
+    width: 100%;
+    background-image: image-url('mizutama.jpg');
+    line-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      height: 50px;
+      width: 50px;
+      display: block;
+      line-height: 200px;
+    }
+    .input-nickname{
+      @include input-nickname(#EEEEEE)
+    }
+    .input-nickname-error{
+      @include input-nickname($red-btn-color)
+    }
+  }
+  .field-introduction{
+    height: 330px;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    .input-introduction{
+      margin-top: 30px;
+      width: 95%;
+      height: 200px;
+      border: solid 1px #EEEEEE;
+      text-indent: 1em;
+      border-radius: 0.3em;
+    }
+    .btn-red{
+      @include btn-red(95%);
+    }
+  }
+
+  // メールアドレス・パスワード変更
+  .form{
+    background-color: white;
+    height: 650px;
+    padding-top: 1px;
+    .field{
+      margin: auto;
+      display: block;
+      width: 50%;
+      &__label{
+        margin-top: 50px;
+      }
+      &__input{
+        input{
+          @include form-box(#EEEEEE);
+        } 
+      }
+      &__input-error{
+        input{
+          @include form-box($red-btn-color);
+        }
+      }
+      .btn-red{
+        @include btn-red(100%);
+      }
+    }
+  }
+
+  &__logout{
+    height: 200px;
+    background-color: white;
+    padding-top: 80px;
+    .btn-logout{
+      background-color: $red-btn-color;
+      width: 50%;
+      margin: auto;
+      display: block;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      height: 40%;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 0.3em;
+    }
+  }
+
+  &__card{
+    height: 460px;
+    background-color: white;
+    width: 100%;
+    padding-left: 30%;
+    // カード情報入力フォーム
+    &__img{
+      padding-top: 5px;
+    }
+    .field{
+      input{
+        width: 50%;
+        height: 50px;
+        font-size: 15px;
+        text-indent: 1em;
+        border: solid 1px #EEEEEE;
+        border-radius: 0.3em;
+        line-height: 200px;
+      }
+      &__label{
+        padding: 30px 0 10px 0;
+        &__form-require{
+          background-color: $red-btn-color;
+          color: white;
+        }
+      }
+      select{
+        width: 20%;
+        height: 30px;
+        border: solid 1px #EEEEEE;
+      }
+      .select_name{
+        background-color: white;
+        color: gray;
+      }
+    }
+    .red_btn{
+      margin-top: 30px;
+      width: 50%;
+      height: 50px;
+      background-color: $red-btn-color;
+      border: solid 1px #EEEEEE;
+      color: white;
+      border-radius: 0.3em;
+    }
+    // カード情報表示
+    &__show{
+      &__title{
+        font-weight: bold;
+        padding: 50px 0 10px 0;
+      }
+      &__info{
+        width: 50%;
+        padding: 25px 0 25px 20px;
+        border: solid 1px #EEEEEE;
+        border-radius: 0.3em;
+        background: linear-gradient(0deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E 85%, #757575 90% 100%);
+        &__number{
+          padding-top: 5px;
+        }
+        &__limit{
+          padding-top: 5px;
+        }
+      }
+      &__delete-btn{
+        width: 50%;
+        text-align: center;
+        margin-top: 30px;
+        
+        a{
+          background-color: $red-btn-color;
+          display: block;
+          text-decoration: none;
+          color: white;
+          border-radius: 0.3em;
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}

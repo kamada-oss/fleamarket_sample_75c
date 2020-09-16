@@ -15,10 +15,12 @@ class Item < ApplicationRecord
   enum auction_status: {出品中:1,  売り切れ:2}
   enum trading_status: {販売中:1, 取引中:2, 売却済:3, 下書き:4}
   has_one    :purchase
+  has_one    :purchase, dependent: :destroy
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
   has_many   :likes, dependent: :destroy
+  has_many   :likes, through: :likes, source: :user
   has_many   :comments
   belongs_to :size, optional: true
   has_many   :item_images, dependent: :destroy
