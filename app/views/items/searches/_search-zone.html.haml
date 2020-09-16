@@ -66,7 +66,7 @@
             -#   = f.number_field :price_gteq, placeholder: "¥ Min", class: 'price-range__input'
             -#   .price-range__swang 〜
             -#   = f.number_field :price_lteq, placeholder: "¥ Max", class: 'price-range__input'
-            -# -# 商品の状態の検索条件
+            -# 商品の状態の検索条件
           .sc-side__detail__field
             %h5.sc-side__detail__field__label
               %i.fas.fa-star
@@ -77,34 +77,59 @@
                   %input{type: 'checkbox', id: 'condition_all', class: 'js-checkbox-all'}
                 .sc-side__detail__field__form--checkbox__label
                   = label_tag :condition_all, 'すべて'
-              -# = f.collection_check_boxes :condition_in, Item.conditions.keys, include_hidden: false do |b|
-              -#   .sc-side__detail__field__form--checkbox
-              -#     .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
-              -#       = b.check_box
-              -#     .sc-side__detail__field__form--checkbox__label
-              -#       = b.label { b.text}
+              = f.collection_check_boxes :condition_in, Item.conditions, :last, :first, include_hidden: false do |b|
+                .sc-side__detail__field__form--checkbox
+                  .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+                    = b.check_box
+                  .sc-side__detail__field__form--checkbox__label
+                    = b.label { b.text}
+                    
             -# 配送料の検索条件
           .sc-side__detail__field
             %h5.sc-side__detail__field__label
               %i.fas.fa-truck
               = f.label :fee_burden_flag, '配送料の負担'
+              
+            .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+              .sc-side__detail__field__form--checkbox__btn
+                %input{type: 'checkbox', id: 'fee_burden_flag_all', class: 'js-checkbox-all'}
+              .sc-side__detail__field__form--checkbox__label
+                = label_tag :fee_burden_flag_all, 'すべて'
+
+            .sc-side__detail__field__form.checkbox-list
+              = f.collection_check_boxes :fee_burden_in, Item.fee_burdens, :last, :first, include_hidden: false do |b|
+                .sc-side__detail__field__form--checkbox
+                  .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+                    = b.check_box
+                  .sc-side__detail__field__form--checkbox__label
+                    = b.label { b.text}
+
             -# .sc-side__detail__field__form.checkbox-list
-            -#   .sc-side__detail__field__form--checkbox.js_search_checkbox-all
-            -#     .sc-side__detail__field__form--checkbox__btn
-            -#       %input{type: 'checkbox', id: 'fee_burden_flag_all', class: 'js-checkbox-all'}
-            -#     .sc-side__detail__field__form--checkbox__label
-            -#       = label_tag :fee_burden_flag_all, 'すべて'
+              .sc-side__detail__field__form--checkbox.js_search_checkbox-all
+                .sc-side__detail__field__form--checkbox__btn
+                  %input{type: 'checkbox', id: 'fee_burden_flag_all', class: 'js-checkbox-all'}
+                .sc-side__detail__field__form--checkbox__label
+                  = label_tag :fee_burden_flag_all, 'すべて'
             -#   = f.collection_check_boxes :fee_burden_flag_in, DeliveryCharge.all, :id, :name, include_hidden: false do |b|
             -#     .sc-side__detail__field__form--checkbox
             -#       .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
             -#         = b.check_box
             -#       .sc-side__detail__field__form--checkbox__label
             -#         = b.label { b.text}
+
             -# 販売状況の検索条件
           .sc-side__detail__field
             %h5.sc-side__detail__field__label
               %i.fas.fa-shopping-cart
               = f.label :trading_status_id_in, '販売状況'
+            .sc-side__detail__field__form.checkbox-list
+              = f.collection_check_boxes :auction_status_in, Item.auction_statuses, :last, :first, include_hidden: false do |b|
+                .sc-side__detail__field__form--checkbox
+                  .sc-side__detail__field__form--checkbox__btn.js_search_checkbox
+                    = b.check_box
+                  .sc-side__detail__field__form--checkbox__label
+                    = b.label { b.text.gsub('出品中', '販売中')}
+
             -# .sc-side__detail__field__form.checkbox-list
             -#   .sc-side__detail__field__form--checkbox.js_search_checkbox-all
             -#     .sc-side__detail__field__form--checkbox__btn
@@ -117,6 +142,7 @@
             -#         = b.check_box
             -#       .sc-side__detail__field__form--checkbox__label
             -#         = b.label { b.text.gsub('売却済み', '売り切れ')}
+
             -# 検索実行ボタン/クリアボタン
           .sc-side__detail__field.search-action
             .search-action__box
