@@ -32,4 +32,41 @@
       }
     }
   }
+
+
+    .category__link__product__lists {
+      margin: 30px auto;
+      text-decoration: none;
+      .category__link__product__lists__link__images {
+        width: 220px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        z-index: auto;
+        .category__link__product__lists__link__body {
+          background-color: white;
+          color: #333;
+          padding: 16px;
+          overflow: hidden;
+          line-height: 1.5;
+          font-size: 16px;
+          text-align: left;
+          }
+          .category__link__product__lists__body__name__detail {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .category__link__product__lists__name__details__p {
+              font-size: 10px;
+              text-align: left;
+            }
+          }
+      }
+    }
+  
 }
+    
+  
+

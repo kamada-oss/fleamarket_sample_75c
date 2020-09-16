@@ -23,14 +23,35 @@
     -#           .containerBrand__product__lists__link__body__detail__icon__text
     -#             &nbsp1
     -#       .containerBrand__product__lists__link__body__tax （税込）
-
+  .category__link__product__lists
     - if @items
-      %ul.lists
+      .category__link__product__lists__link__images
         - @items.each do |item|
+          .category__link__product__lists__link__body
           = image_tag item.item_images.first.item_image.url
-          = link_to item.name, item_path(item)
+          .category__link__product__lists__link__body__detail
+            = link_to item.name, item_path(item)
+          .category__link__product__lists__name__details__p
 
     -# 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
+
+    -# .containerCategory__product
+    -#   - @items.each do |product|
+    -#     = link_to item_path(product), class: "containerCategory__product__lists__link" do
+    -#       %figure.containerCategory__product__lists__link__images
+    -#         = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"containerBrand__product__lists__link__images__image"
+    -#       .containerCategory__product__lists__link__body
+    -#         .containerCategory__product__lists__link__body__name
+    -#           = product.name
+    -#         .containerCategory__product__lists__link__body__detail
+    -#           .containerCategory__product__lists__link__body__detail__price
+    -#             = product.price
+    -#             円
+    -#           .containerCategory__product__lists__link__body__detail__icon
+    -#             ★
+    -#         .containerCategory__product__lists__link__body__tax （税込）
+    
+
 
 
 = render '/shared/footer'
