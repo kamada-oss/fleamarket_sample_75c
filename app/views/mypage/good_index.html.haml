@@ -1,10 +1,23 @@
 = render 'shared/header'
+- breadcrumb :good_index, @user
+= render "layouts/breadcrumbs"
 .mypage-container
   = render 'side-bar'
   .mypage-main
     .mypage-main__header
       %h3 いいね！一覧
-    .mypage-main__img
-      = image_tag src="logo.png"
-      %h4 いいね！がありません
+    - if @likes.any?
+      - @likes.each do |like|
+        - item = like.item
+        = link_to item, class:'mypage-main__item' do
+          .mypage-main__item__content
+            = image_tag "#{item.item_images.first.item_image}", class:'mypage-main__item__content__img'
+            .mypage-main__item__content__text
+              = item.name
+              %h5.mypage-main__item__content__text__box-red いいね済
+          = icon 'fas', 'chevron-right'
+    - else
+      .mypage-main__img
+        = image_tag src="logo.png"
+        %h4 購入した商品がありません
 = render 'shared/footer'

@@ -1,11 +1,12 @@
 class MypageController < ApplicationController
   require "payjp"
-  before_action :get_user
+  before_action :set_user
   before_action :redirect_to_login_when_not_signed_in
   before_action :redirect_to_root_when_wrong_user
   before_action :delete_session_item_id, only: [:edit_payment]
 
   def good_index
+    @likes = Like.where(user_id: @user.id)
   end
 
   def item_exhibiting
@@ -98,7 +99,7 @@ class MypageController < ApplicationController
       redirect_to new_user_session_path unless user_signed_in?
     end
 
-    def get_user
+    def set_user
       @user = User.find(params[:id])
     end
 
