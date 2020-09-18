@@ -5,9 +5,9 @@ class Category < ApplicationRecord
   def set_items
 
     if self.root?
-      category_id = self.p.id
+      category_id = self.root.id
       category_ids = self.root.id
-      items = Item.where(category_id: sibling_ids)
+      items = Item.where(category_id: indirect_ids)
 
       return items
 

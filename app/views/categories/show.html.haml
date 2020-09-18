@@ -23,15 +23,24 @@
     -#           .containerBrand__product__lists__link__body__detail__icon__text
     -#             &nbsp1
     -#       .containerBrand__product__lists__link__body__tax （税込）
-  .category__link__product__lists
-    - if @items
-      .category__link__product__lists__link__images
+  .category__link__product
+    .category__link__product__lists
+      - if @items
         - @items.each do |item|
-          .category__link__product__lists__link__body
-          = image_tag item.item_images.first.item_image.url
-          .category__link__product__lists__link__body__detail
-            = link_to item.name, item_path(item)
-          .category__link__product__lists__name__details__p
+          = link_to item_path(item), class: "category__link__product__lists__link" do
+            .category__link__product__lists__link__images
+              = image_tag item.item_images.first.item_image.url, alt: "image_url",size: "200x150", class:".category__link__product__lists__link__images__image"
+            .category__link__product__lists__link__body
+              .category__link__product__lists__link__body__name
+                = item.name
+              .category__link__product__lists__link__body__detail
+                .category__link__product__lists__link__body__detail__price
+                  = item.price
+                  円
+                .category__link__product__lists__link__body__detail__icon
+                  ★
+              .category__link__product__lists__link__body__tax  (税込)
+                
 
     -# 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
 

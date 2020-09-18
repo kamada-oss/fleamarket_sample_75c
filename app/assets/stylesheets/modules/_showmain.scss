@@ -1,4 +1,5 @@
 .products-container {
+  height: 500px;
   padding: 40px;
   margin: 0 auto;
   background-color: #EEEEEE;
@@ -34,39 +35,59 @@
   }
 
 
+  .category__link__product {
+    width: 780px;
+    margin: 26px auto;
     .category__link__product__lists {
-      margin: 30px auto;
+      width: 220px;
       text-decoration: none;
-      .category__link__product__lists__link__images {
-        width: 220px;
-        height: 150px;
-        position: relative;
-        overflow: hidden;
-        margin: 0;
-        z-index: auto;
+      box-sizing:border-box;
+      display: flex;
+      .category__link__product__lists__link {
+        text-decoration: none;
+        .category__link__product__lists__link__images {
+          width: 220px;
+          height: 150px;
+          position: relative;
+          margin: 0;
+          .category__link__product__lists__link__images__image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: auto;
+            height: 150px;
+            object-fit: cover;
+          }
+        }
         .category__link__product__lists__link__body {
           background-color: white;
-          color: #333;
+          color: black;
           padding: 16px;
-          overflow: hidden;
-          line-height: 1.5;
           font-size: 16px;
-          text-align: left;
+          .category__link__product__lists__link__body__name {
+            overflow: hidden;
+            line-height: 1.5;
+            font-size: 16px;
+            text-align: left;
           }
-          .category__link__product__lists__body__name__detail {
+          .category__link__product__lists__link__body__detail {
             font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .category__link__product__lists__name__details__p {
-              font-size: 10px;
-              text-align: left;
+            .category__link__product__lists__link__body__detail__icon {
+              display: flex;
             }
           }
+          .category__link__product__lists__link__body__tax {
+            font-size: 10px;
+            text-align: left;
+          }
+        }
       }
     }
-  
+  }
 }
-    
-  
-
