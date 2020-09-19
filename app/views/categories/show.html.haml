@@ -7,22 +7,6 @@
       .category_links
         - @category_links.each do |category|
           = link_to category.name, "#", class: "category_link"
-
-    -# .containerBrand__product__lists
-    -#   = link_to "#", class: "containerBrand__product__lists__link" do
-    -#     %figure.containerBrand__product__lists__link__images
-    -#       = image_tag "a007.png", class: "containerBrand__product__lists__link__images__image"
-    -#     .containerBrand__product__lists__link__body
-    -#       .containerBrand__product__lists__link__body__name
-    -#         ee
-    -#       .containerBrand__product__lists__link__body__detail
-    -#         .containerBrand__product__lists__link__body__detail__price
-    -#           1000円
-    -#         .containerBrand__product__lists__link__body__detail__icon
-    -#           = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-    -#           .containerBrand__product__lists__link__body__detail__icon__text
-    -#             &nbsp1
-    -#       .containerBrand__product__lists__link__body__tax （税込）
   .category__link__product
     .category__link__product__lists
       - if @items
@@ -41,26 +25,5 @@
                   ★
               .category__link__product__lists__link__body__tax  (税込)
                 
-
-    -# 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
-
-    -# .containerCategory__product
-    -#   - @items.each do |product|
-    -#     = link_to item_path(product), class: "containerCategory__product__lists__link" do
-    -#       %figure.containerCategory__product__lists__link__images
-    -#         = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"containerBrand__product__lists__link__images__image"
-    -#       .containerCategory__product__lists__link__body
-    -#         .containerCategory__product__lists__link__body__name
-    -#           = product.name
-    -#         .containerCategory__product__lists__link__body__detail
-    -#           .containerCategory__product__lists__link__body__detail__price
-    -#             = product.price
-    -#             円
-    -#           .containerCategory__product__lists__link__body__detail__icon
-    -#             ★
-    -#         .containerCategory__product__lists__link__body__tax （税込）
-    
-
-
 
 = render '/shared/footer'
