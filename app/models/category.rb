@@ -4,21 +4,22 @@ class Category < ApplicationRecord
 
   def set_items
 
-  #   if self.root?
-  #     start_id = self.indirects.first.indirects
-  #     end_id = self.indirects.last.indirects
-  #     items = Item.where(category_id: start_id..end_id)
-  #     return items
+    if self.root?
+      category_id = self.root.id
+      category_ids = self.root.id
+      items = Item.where(category_id: indirect_ids)
 
-  #   elsif self.has_children?
-  #     start_id = self.children.first.id
-  #     end_id = self.childen.last.id
-  #     items = Item.where(category_id: start_id..end_id)
-  #     return items
+      return items
+
+    elsif self.has_children?
+      category_id = self.children.first.id
+      category_ids = self.children.last.id
+      items = Item.where(category_id: child_ids)
+      return items
       
-  #   else
-  #     return self.items
-    # end
-# 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
+    else
+      return self.items
+    end
+# # 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
   end
 end
