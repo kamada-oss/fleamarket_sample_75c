@@ -22,7 +22,6 @@
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
 |introduction|text||
-|phone_number|integer||
 
 ### Association
 - has_many :likes, dependent: :destroy
@@ -48,7 +47,7 @@
 |city|string|null: false|
 |address1|string|null: false|
 |address2|string||
-|phone_number|integer|
+|phone_number|string||
 |user_id|references|null: false, foreign_key: true|
 
 ### Association
