@@ -1,0 +1,47 @@
+= render "shared/header"
+.item
+  = render "items/searches/search-zone"
+  .item__body#short
+    .item__body__title
+      詳細検索結果一覧
+    .item__body__lists
+      - @items.each do |item|
+        -if item.auction_status == '売り切れ'
+          .item__body__lists__list
+            = link_to item_path(item.id) do
+              %figure.list__img
+                = image_tag item.item_images.first.item_image.url if item.item_images.first.present?
+              .list__body
+                %h3.name
+                  = item.name
+                .list__price
+                  %ul
+                    %li
+                      = item.price.to_s(:delimited)
+                      円
+                    %li
+                      = icon('fa', 'star')
+                      = item.favorites.count
+                  %p (税込)
+              .list__sold
+                .list__sold__inner
+                  sold
+        - else
+          .item__body__lists__list
+            = link_to item_path(item.id) do
+              %figure.list__img
+                = image_tag item.item_images.first.item_image.url if item.item_images.first.present?
+              .list__body
+                %h3.name
+                  = item.name
+                .list__price
+                  %ul
+                    %li
+                      = item.price.to_s(:delimited)
+                      円
+                    %li
+                      = icon('fa', 'star')
+                      -# = item.favorites.count
+                  %p (税込)
+= render "shared/footer"
+= render "items/sell-tab"

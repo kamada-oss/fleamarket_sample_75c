@@ -2,7 +2,7 @@ class Items::SearchesController < ApplicationController
   before_action :set_ransack
 
   def index
-    @items = @q.result(distinct: true).page(params[:page]).per(5)
+    @items = @q.result(distinct: true)
     @keyword = (search_params[:name_cont])
   end
 
