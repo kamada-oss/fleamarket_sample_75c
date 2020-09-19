@@ -138,18 +138,6 @@
 - has_many :items
 - has_ancestry
 
-## sizesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|kind|string|null: false|
-|ancestry|string||
-|path|text|null: false|
-
-### Association
-- has_many :items
-- has_ancestry
-
 ## brandsテーブル
 
 |Column|Type|Options|
