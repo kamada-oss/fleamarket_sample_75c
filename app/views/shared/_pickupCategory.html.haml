@@ -5,98 +5,20 @@
     .containerCategory__head
       = link_to "新規投稿商品" ,"#", class: "containerCategory__head__link" 
     .containerCategory__product
+      .containerCategory__product__lists
+      - @items.each do |product|
+        - unless product.purchase.present?
+          = link_to item_path(product), class: "containerCategory__product__lists__link" do
+            %figure.containerCategory__product__lists__link__images
+              = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"containerBrand__product__lists__link__images__image"
+            .containerCategory__product__lists__link__body
+              .containerCategory__product__lists__link__body__name
+                = product.name
+              .containerCategory__product__lists__link__body__detail
+                .containerCategory__product__lists__link__body__detail__price
+                  = product.price
+                  円
+                .containerCategory__product__lists__link__body__detail__icon
+                  ★
+              .containerCategory__product__lists__link__body__tax （税込）
       
-      .containerCategory__product__lists
-        = link_to "#", class: "containerCategory__product__lists__link" do
-          %figure.containerCategory__product__lists__link__images
-            = image_tag "a007.png", class: "containerCategory__product__lists__link__images__image"
-          .containerCategory__product__lists__link__body
-            .containerCategory__product__lists__link__body__name
-              ee
-            .containerCategory__product__lists__link__body__detail
-              .containerCategory__product__lists__link__body__detail__price
-                1000円
-              .containerCategory__product__lists__link__body__detail__icon
-                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-                .containerCategory__product__lists__link__body__detail__icon__text
-                  &nbsp1
-            .containerCategory__product__lists__link__body__tax （税込）
-
-      .containerCategory__product__lists
-        = link_to "#", class: "containerCategory__product__lists__link" do
-          %figure.containerCategory__product__lists__link__images
-            = image_tag "a004.png", class: "containerCategory__product__lists__link__images__image"
-          .containerCategory__product__lists__link__body
-            .containerCategory__product__lists__link__body__name
-              product3
-            .containerCategory__product__lists__link__body__detail
-              .containerCategory__product__lists__link__body__detail__price
-                30000円
-              .containerCategory__product__lists__link__body__detail__icon
-                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-                .containerCategory__product__lists__link__body__detail__icon__text
-                  &nbsp1
-            .containerCategory__product__lists__link__body__tax （税込）
-
-      .containerCategory__product__lists
-        = link_to "#", class: "containerCategory__product__lists__link" do
-          %figure.containerCategory__product__lists__link__images
-            = image_tag "a001.png", class: "containerCategory__product__lists__link__images__image"
-          .containerCategory__product__lists__link__body
-            .containerCategory__product__lists__link__body__name
-              product2
-            .containerCategory__product__lists__link__body__detail
-              .containerCategory__product__lists__link__body__detail__price
-                20000円
-              .containerCategory__product__lists__link__body__detail__icon
-                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-                .containerCategory__product__lists__link__body__detail__icon__text
-                  &nbsp1
-            .containerCategory__product__lists__link__body__tax （税込）
-
-      .containerCategory__product__lists
-        = link_to "#", class: "containerCategory__product__lists__link" do
-          %figure.containerCategory__product__lists__link__images
-            = image_tag "a007.png", class: "containerCategory__product__lists__link__images__image"
-          .containerCategory__product__lists__link__body
-            .containerCategory__product__lists__link__body__name
-              product2
-            .containerCategory__product__lists__link__body__detail
-              .containerCategory__product__lists__link__body__detail__price
-                20000円
-              .containerCategory__product__lists__link__body__detail__icon
-                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-                .containerCategory__product__lists__link__body__detail__icon__text
-                  &nbsp1
-            .containerCategory__product__lists__link__body__tax （税込）
-
-      .containerCategory__product__lists
-        = link_to "#", class: "containerCategory__product__lists__link" do
-          %figure.containerCategory__product__lists__link__images
-            = image_tag "a004.png", class: "containerCategory__product__lists__link__images__image"
-          .containerCategory__product__lists__link__body
-            .containerCategory__product__lists__link__body__name
-              product2
-            .containerCategory__product__lists__link__body__detail
-              .containerCategory__product__lists__link__body__detail__price
-                20000円
-              .containerCategory__product__lists__link__body__detail__icon
-                = icon('fa', 'star', class: "containerCategory__product__lists__link__body__detail__icon__image")
-                .containerCategory__product__lists__link__body__detail__icon__text
-                  &nbsp1
-            .containerCategory__product__lists__link__body__tax （税込）
-
-        -# - @items.each do |product|
-        -#   = link_to product_path(product), class: "listBtn" do
-        -#     %figure.product__images
-        -#       = image_tag product.images[0].name.url, alt: "image_url",size: "200x150", class:"new-img"
-        -#     .containerCategory__product--lists__list--body
-        -#       %h3.product--name
-        -#         = product.name
-        -#       .containerCategory__product--lists__list--body__details
-        -#         %ul.details__menu
-        -#           %li
-        -#             = product.price
-        -#             円
-        -#           %li ★
-        -#       %p.taxIncluded （税込）
