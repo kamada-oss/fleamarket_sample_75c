@@ -62,6 +62,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def delete_done
+  end
+
   def search_child
     respond_to do |format|
       format.html

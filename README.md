@@ -25,7 +25,6 @@
 
 ### Association
 - has_many :likes, dependent: :destroy
-- has_many :likes, through: :likes, source: :item
 - has_many :comments
 - has_one :deliver_address
 - accepts_nested_attributes_for :deliver_address
@@ -111,7 +110,6 @@
 - belongs_to :category
 - belongs_to :brand, optional: true
 - has_many :likes, depedent: :destroy
-- has_many :likes, through: :likes, source: :user
 - has_many :comments
 - belongs_to :size, optional: true
 - has_many :item_images, dependent: :destroy
