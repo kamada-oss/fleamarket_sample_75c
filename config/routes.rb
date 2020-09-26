@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   }
   get 'items/purchase'
   root 'items#index'
+  namespace :items do
+    resources :searches, only: [:index]
+  end
+
   resources :items, only: [:new, :show, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
@@ -17,7 +21,6 @@ Rails.application.routes.draw do
       get 'update_done'
     end
   end
-
 
   resources :categories, only: [:index, :new, :show] do
     member do

@@ -1,6 +1,8 @@
 class Category < ApplicationRecord
   has_many :items
   has_ancestry
+  scope :ancestries, ->(ancestry) {where(ancestry: ancestry)}
+  scope :name_not, ->(name) {where.not(name: name).pluck(:name)}
 
   def set_items
 
@@ -20,6 +22,5 @@ class Category < ApplicationRecord
     else
       return self.items
     end
-# # 必要 残す理由 ピックアップブランドとカテゴリーからリンクをできるようにするため
   end
 end
