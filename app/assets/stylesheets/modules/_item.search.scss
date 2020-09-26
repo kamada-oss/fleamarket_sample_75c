@@ -60,6 +60,20 @@ span{
     flex-wrap: wrap;
     padding-left: 20px;
 
+    &__sort {
+      height: 30px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: left;
+      &__price {
+        margin: 0 20px;
+      }
+      &__created-at{
+        margin: 0 20px;
+      }
+    }
+
     &__list{
       width: 220px;
       height: 230px;

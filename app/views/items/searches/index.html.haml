@@ -5,6 +5,16 @@
     .item__body__title
       詳細検索結果一覧
     .item__body__lists
+      .item__body__lists__sort
+        .item__body__lists__sort__price
+        %thead
+          %tr
+            %th= sort_link(@q, :created_at, "出品順", default_order: :desc)
+        .item__body__lists__sort__created-at
+        %thead
+          %tr
+            %th= sort_link(@q, :price, "価格順")
+
       - @items.each do |item|
         -if item.auction_status == '売り切れ'
           .item__body__lists__list
@@ -41,7 +51,6 @@
                       円
                     %li
                       = icon('fa', 'star')
-                      -# = item.favorites.count
                   %p (税込)
 = render "shared/footer"
 = render "items/sell-tab"
