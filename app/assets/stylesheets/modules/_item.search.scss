@@ -8,7 +8,6 @@
   align-items: center;
 }
 @mixin input{
-  // appearance: none;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -19,7 +18,6 @@
   line-height: 1;
   margin: 0;
   padding: 0 56px 0 16px;
-  // width: 100%;
 }
 #parent_category_search, #children_category_search {
   margin-bottom: 12px;
@@ -265,7 +263,7 @@ span{
           }
           .search-action {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             &__box {
               &__btn {
                 border: white;

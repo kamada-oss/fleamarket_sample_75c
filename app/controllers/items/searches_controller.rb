@@ -20,11 +20,6 @@ class Items::SearchesController < ApplicationController
       :brand_name_cont, :condition_eq, :fee_burden_eq,
       :category_id_eq, :prefecture_eq, :price_lteq, :price_gteq)
   end
-
-  def category_parent_array
-    @category_parent_array = Category.where(ancestry: nil).each do |parent|
-    end
-  end
   
   def check_item_details
     @item = Item.where(user_id: current_user.id).last
