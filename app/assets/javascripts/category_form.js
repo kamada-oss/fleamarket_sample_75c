@@ -57,7 +57,6 @@ $(function(){
     }else{
       $('#category__box--children').remove(); //親カテゴリーが初期値になった時、子以下を削除する
       $('#category__box--grandchildren').remove();
-
     }
   });
   // 孫要素のアクション

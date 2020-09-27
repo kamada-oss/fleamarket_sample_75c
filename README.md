@@ -21,7 +21,7 @@
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
-|introduction|text|
+|introduction|text||
 
 ### Association
 - has_many :likes, dependent: :destroy
@@ -31,6 +31,7 @@
 - has_many :items, through: :purchases
 - has_many :purchases
 - has_one :card
+- has_many :sns_credentials
 
 ## deliver_addressテーブル
 
@@ -41,11 +42,11 @@
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |zip_code|integer|null: false|
-|prefecture|string|null: false|
+|prefecture|integer|null: false|
 |city|string|null: false|
 |address1|string|null: false|
 |address2|string||
-|phone_number|string|
+|phone_number|string||
 |user_id|references|null: false, foreign_key: true|
 
 ### Association
@@ -85,8 +86,7 @@
 
 ### Association
 - belongs_to :item
-- belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
-- belongs_to :saler, class_name: 'User', foreign_key: 'saler_id'
+- belongs_to :saler, class_name: 'User'
 
 
 ## itemsテーブル
@@ -94,21 +94,24 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|text|text|null: false|
+|text|string|null: false|
 |category_id|references|null: false, foreign_key: true|
-|brand_id|references|null: false, foreign_key: true|
+|brand_name|string|null: false|
 |condition|integer|null: false|
 |price|integer|null: false|
 |prefecture|integer|null: false|
 |fee_burden|integer|null: false|
 |handling_time|integer|null:false|
+|auction_status|integer|null:false,_suffix: true, default:"1"|
 
 ### Association
-- has_many :users, through: :purchases
+- has_one    :purchase, dependent: :destroy
+- belongs_to :user
 - belongs_to :category
 - belongs_to :brand, optional: true
 - has_many :likes, depedent: :destroy
 - has_many :comments
+- belongs_to :size, optional: true
 - has_many :item_images, dependent: :destroy
 - accepts_nested_attributes_for :item_images, allow_destroy: true
 
@@ -116,12 +119,11 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|image_url|string|null: false|
+|item_image|string|null: false|
 |item_id|references|null: false, foreign_key: true|
-|user_id|references|null: falsem foreign_key: true|
 
 ### Association
-- belongs_to :item, optional: true
+- belongs_to :item
 
 ## categoriesテーブル
 
@@ -129,19 +131,6 @@
 |------|----|-------|
 |name|string|null: false|
 |ancestry|string||
-|path|text|null: false|
-
-### Association
-- has_many :items
-- has_ancestry
-
-## sizesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|kind|string|null: false|
-|ancestry|string||
-|path|text|null: false|
 
 ### Association
 - has_many :items
@@ -167,6 +156,16 @@
 ### Association
 - belongs_to :user
 
+## sns_credentials テーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|provider|string||
+|uid|string||
+|user_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user, optional: true
 
 ## ER図
 <img width="1148" alt="ER図２" src="https://user-images.githubusercontent.com/64828177/88174033-8777f800-cc5e-11ea-9574-2ba429ef25a5.png">
