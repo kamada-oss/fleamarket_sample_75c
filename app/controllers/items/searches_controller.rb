@@ -1,5 +1,4 @@
 class Items::SearchesController < ApplicationController
-  before_action :category_parent_array, only: [:index, :new, :create, :edit, :update]
   before_action :check_item_details, only: [:index, :post_done, :update_done]
   before_action :category_map, only: [:index, :edit, :update]
   before_action :set_ransack
