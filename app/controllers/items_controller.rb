@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @selling_items = Item.where(auction_status: 1).limit(5)
     @parents = Category.all.order("id ASC").limit(13)
   end
 

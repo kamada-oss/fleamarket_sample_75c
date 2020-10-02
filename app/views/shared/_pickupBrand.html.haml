@@ -6,19 +6,18 @@
       = link_to "アーカイバ" ,"#", class: "containerBrand__head__link"
     .containerBrand__product
       .containerBrand__product__lists
-      - @items.first(7).each do |product|
-        - unless product.purchase.present?
-          = link_to item_path(product), class: "containerBrand__product__lists__link" do
-            %figure.containerBrand__product__lists__link__images
-              = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"containerBrand__product__lists__link__images__image"
-            .containerBrand__product__lists__link__body
-              .containerBrand__product__lists__link__body__name
-                = product.name
-              .containerBrand__product__lists__link__body__detail
-                .containerBrand__product__lists__link__body__detail__price
-                  = product.price
-                  円
-                .containerBrand__product__lists__link__body__detail__icon
-                  ★
-              .containerBrand__product__lists__link__body__tax （税込）
+      - @selling_items.each do |product|
+        = link_to item_path(product), class: "containerBrand__product__lists__link" do
+          %figure.containerBrand__product__lists__link__images
+            = image_tag product.item_images[0].item_image.url, alt: "image_url",size: "200x150", class:"containerBrand__product__lists__link__images__image"
+          .containerBrand__product__lists__link__body
+            .containerBrand__product__lists__link__body__name
+              = product.name
+            .containerBrand__product__lists__link__body__detail
+              .containerBrand__product__lists__link__body__detail__price
+                = product.price
+                円
+              .containerBrand__product__lists__link__body__detail__icon
+                ★
+            .containerBrand__product__lists__link__body__tax （税込）
       
