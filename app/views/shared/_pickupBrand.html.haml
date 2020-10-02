@@ -6,7 +6,7 @@
       = link_to "アーカイバ" ,"#", class: "containerBrand__head__link"
     .containerBrand__product
       .containerBrand__product__lists
-      - @items.each do |product|
+      - @items.first(5).each do |product|
         - unless product.purchase.present?
           = link_to item_path(product), class: "containerBrand__product__lists__link" do
             %figure.containerBrand__product__lists__link__images
